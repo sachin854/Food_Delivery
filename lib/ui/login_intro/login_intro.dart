@@ -4,6 +4,7 @@ import '../../resources/constants/dimensions.dart';
 import '../../widgets/component/text_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../resources/assets/images.dart';
+import '../../widgets/google_sign_in_button.dart';
 
 class LoginIntro extends StatefulWidget {
   static const routeName = "/loginIntro";
@@ -73,36 +74,7 @@ class _LoginIntroState extends State<LoginIntro> {
                   ),
                 ),
               ),
-              GestureDetector(
-                child: Container(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8),
-                  margin: const EdgeInsets.only(
-                      left: Dimensions.dimen20,
-                      right: Dimensions.dimen20,
-                      top: Dimensions.dimen8,
-                      bottom: Dimensions.dimen8),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColor.blackColor12),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        Images.googleBlackLogo,
-                        height: 30,
-                      ),
-                      const SizedBox(
-                        width: Dimensions.dimen10,
-                      ),
-                      const TextWidget(
-                        title: "Continue with Google",
-                        fontWeight: FontWeight.w500,
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              const GoogleSignInButton(),
               GestureDetector(
                 child: Container(
                   padding: const EdgeInsets.only(top: 8, bottom: 8),
