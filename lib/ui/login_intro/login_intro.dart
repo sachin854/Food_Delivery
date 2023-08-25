@@ -15,6 +15,7 @@ class LoginIntro extends StatefulWidget {
 }
 
 class _LoginIntroState extends State<LoginIntro> {
+  var img=[Images.facebookLogo,Images.googleBlackLogo,Images.appleLogo];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,67 +45,10 @@ class _LoginIntroState extends State<LoginIntro> {
                 padding: EdgeInsets.only(top: Dimensions.dimen20),
               ),
               const Spacer(),
-              GestureDetector(
-                child: Container(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8),
-                  margin: const EdgeInsets.only(
-                      left: Dimensions.dimen20,
-                      right: Dimensions.dimen20,
-                      top: Dimensions.dimen10,
-                      bottom: Dimensions.dimen8),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColor.blackColor12),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        Images.facebookLogo,
-                        height: 30,
-                      ),
-                      const SizedBox(
-                        width: Dimensions.dimen10,
-                      ),
-                      const TextWidget(
-                        title: "Continue with Facebook",
-                        fontWeight: FontWeight.w500,titleColor: AppColor.blackColor,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              const GoogleSignInButton(),
-              GestureDetector(
-                child: Container(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8),
-                  margin: const EdgeInsets.only(
-                      left: Dimensions.dimen20,
-                      right: Dimensions.dimen20,
-                      top: Dimensions.dimen8,
-                      bottom: Dimensions.dimen8),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColor.blackColor12),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        Images.appleLogo,
-                        height: 30,
-                      ),
-                      const SizedBox(
-                        width: Dimensions.dimen10,
-                      ),
-                      const TextWidget(
-                        title: "Continue with Apple",
-                        fontWeight: FontWeight.w500,
-                      )
-                    ],
-                  ),
-                ),
-              ),
+
+              for(int i=0;i<img.length;i++)
+                 GoogleSignInButton(imgName:img[i]),
+
               const Padding(
                 padding: EdgeInsets.only(
                   top: Dimensions.dimen20,
@@ -132,6 +76,7 @@ class _LoginIntroState extends State<LoginIntro> {
                   ],
                 ),
               ),
+
               SizedBox(width: MediaQuery.of(context).size.width*0.9,height: Dimensions.dimen45,
                 child: ElevatedButton(
                     style:  ElevatedButton.styleFrom(

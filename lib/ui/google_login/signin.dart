@@ -15,13 +15,13 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(backgroundColor: Colors.black,
+      child: Scaffold(backgroundColor: Colors.white,
         body: Center(
           child: Column(
             children: [
               const Spacer(),
               SvgPicture.asset( Images.googleBlackLogo,
-                height: 160,color: Colors.white,),
+                height: 160,),
               const SizedBox(height: 20),
               const Spacer(),
               FutureBuilder(

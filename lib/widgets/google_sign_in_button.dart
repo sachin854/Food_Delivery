@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../resources/assets/images.dart';
 import '../resources/constants/color.dart';
 import '../resources/constants/dimensions.dart';
 import 'component/text_widget.dart';
 
 class GoogleSignInButton extends StatefulWidget {
-  const GoogleSignInButton({super.key});
+  String imgName;
+   GoogleSignInButton({super.key,required this.imgName});
 
   @override
   State<GoogleSignInButton> createState() => _GoogleSignInButtonState();
@@ -17,6 +17,9 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   @override
   Widget build(BuildContext context) {
     return  GestureDetector(
+      onTap: (){
+
+      },
       child: Container(
         padding: const EdgeInsets.only(top: 8, bottom: 8),
         margin: const EdgeInsets.only(
@@ -32,7 +35,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              Images.googleBlackLogo,
+              widget.imgName,
               height: 30,
             ),
             const SizedBox(
