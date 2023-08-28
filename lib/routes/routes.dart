@@ -1,11 +1,13 @@
-import 'package:finalapppp/ui/google_login/signin.dart';
 import 'package:flutter/material.dart';
 import '../../../ui/splash/splashScreen.dart';
 import '../services/rest_api/client.dart';
+import '../ui/home_screen/home_page.dart';
 import '../ui/login_intro/login_intro.dart';
 
 class AppRoutes {
 
+
+  
   Route onGeneratedRoutes(RouteSettings setting) {
     RestApiClientService.shared.setToken();
 
@@ -14,8 +16,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) =>   const SplashScreen());
       case LoginIntro.routeName:
         return MaterialPageRoute(builder: (context) => const LoginIntro());
-        case SignInScreen.routeName:
-        return MaterialPageRoute(builder: (context) =>  SignInScreen());
+        case HomePage.routeName:
+        return MaterialPageRoute(builder: (context) =>  HomePage());
       default:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
     }

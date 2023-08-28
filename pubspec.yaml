@@ -43,8 +43,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.7
   country_code_picker:
-  flutter_bloc: ^8.1.2  firebase_auth: ^4.8.0
-  google_sign_in: ^6.1.4
+  flutter_bloc: ^8.1.2
+  firebase_auth:
+  google_sign_in:
 
 dev_dependencies:
   flutter_test:

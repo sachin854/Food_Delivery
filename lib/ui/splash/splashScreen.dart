@@ -1,8 +1,8 @@
-import 'package:finalapppp/ui/google_login/signin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../../resources/constants/font_weight.dart';
-import '../../../widgets/component/text_widget.dart';
 import '../../resources/constants/constants.dart';
+import '../../widgets/component/text_widget.dart';
+import '../home_screen/home_page.dart';
 import '../login_intro/login_intro.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,28 +16,47 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    checkUser();
     super.initState();
-    Future.delayed(Duration.zero, () {
-      // Navigator.of(context).pushNamed(LoginIntro.routeName);
-      Navigator.of(context).pushNamed(SignInScreen.routeName);
-    });
+  }
+
+
+
+  Future checkUser() async {
+    try {
+      User? user =  FirebaseAuth.instance.currentUser;
+      if (!mounted) {
+        return;
+      }
+      if (user != null) {
+        await Future.delayed(const Duration(seconds: 0));
+        Navigator.of(context).pushNamed(HomePage.routeName);
+      }
+      else{
+        await Future.delayed(const Duration(seconds: 0));
+        Navigator.of(context).pushNamed(LoginIntro.routeName);
+      }
+    } catch (e) {
+      print('Error during userCheck(): $e');
+    }
   }
 
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: TextWidget(title: Constants.appName,
-        fontWeight: AppFontWeight.bold,),
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: TextWidget(
+            title: Constants.appName,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }
