@@ -1,13 +1,16 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../controller/bloc/signup/signup_event.dart';
 import '../../controller/bloc/signup/signup_state.dart';
+import '../../resources/assets/images.dart';
 import '../../resources/constants/color.dart';
 import '../../resources/constants/dimensions.dart';
 import '../../resources/constants/font_weight.dart';
 import '../../resources/constants/padding.dart';
 import '../../controller/bloc/signup/signup_bloc.dart';
+import '../../widgets/component/text_widget.dart';
 
 class SignUp extends StatefulWidget {
   static const routeName = "/signUp";
@@ -55,7 +58,14 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.primaryColor,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: AppColor.primaryColor,
+          leading: const BackButton(
+            color: AppColor.greyColor,
+          ),
+        ),
         body: SingleChildScrollView(
           child: BlocConsumer<SignUpBloc, SignUpState>(
               listener: (context, state) {},
@@ -64,12 +74,6 @@ class _SignUpState extends State<SignUp> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.grey,
-                        )),
                     SizedBox(
                       height: 200,
                       width: MediaQuery.of(context).size.width,
@@ -221,35 +225,55 @@ class _SignUpState extends State<SignUp> {
                             const SizedBox(
                               height: Dimensions.dimen10,
                             ),
-                            Container(
-                                height: Dimensions.dimen50,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10)),
-                                width: MediaQuery.of(context).size.width,
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppColor.greenColor),
-                                    onPressed: () {
-                                      print("submit$state");
-                                      signUpPressed(context);
-                                    },
-                                    child: const Text(
-                                      "Sign Up",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                          color: Colors.white),
-                                    ))),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width ,
+                              height: Dimensions.dimen50,
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: AppColor.whiteColor,
+                                    backgroundColor:
+                                    AppColor.greenColor, // Set the button's text color
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(36), // Set the corner radius here
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    signUpPressed(context);
+                                  },
+                                  child: const TextWidget(
+                                    title: "Sign up",   fontWeight: FontWeight.bold,fontSize: AppFontWeight.font16,
+                                  )),
+                            ),
+                            // Container(
+                            //     height: Dimensions.dimen50,
+                            //     decoration: BoxDecoration(
+                            //         borderRadius: BorderRadius.circular(10)),
+                            //     width: MediaQuery.of(context).size.width,
+                            //     child: ElevatedButton(
+                            //         style: ElevatedButton.styleFrom(
+                            //             backgroundColor: AppColor.greenColor),
+                            //         onPressed: () {
+                            //           print("submit$state");
+                            //           signUpPressed(context);
+                            //         },
+                            //         child: const Text(
+                            //           "Sign Up",
+                            //           style: TextStyle(
+                            //               fontWeight: FontWeight.bold,
+                            //               fontSize: 16,
+                            //               color: Colors.white),
+                            //         ))),
                             const SizedBox(
-                              height: Dimensions.dimen20,
+                              height: Dimensions.dimen25,
                             ),
                             Row(
                               children: [
                                 Expanded(
                                   child: Divider(
-                                    indent: 20,
-                                    endIndent: 40,
-                                    color: Colors.grey.withOpacity(0.2),
+                                    indent: 15,
+                                    endIndent: 10,
+                                    color: Colors.grey.withOpacity(0.4),
                                   ),
                                 ),
                                 const Text(
@@ -261,58 +285,60 @@ class _SignUpState extends State<SignUp> {
                                 ),
                                 Expanded(
                                   child: Divider(
-                                      indent: 20,
-                                      endIndent: 40,
-                                      color: Colors.grey.withOpacity(0.2)),
+                                      indent: 15,
+                                      endIndent: 10,
+                                      color: Colors.grey.withOpacity(0.4)),
                                 ),
                               ],
                             ),
                             const SizedBox(
-                              height: Dimensions.dimen25,
+                              height: Dimensions.dimen20,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Container(
-                                  height: Dimensions.dimen60,
-                                  width: Dimensions.dimen60,
+                                  padding: const EdgeInsets.only(top: 5, bottom: 5),
+                                  height: Dimensions.dimen50,
+                                  width: Dimensions.dimen70,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Colors.white.withOpacity(0.1),
                                       border: Border.all(
-                                          color: AppColor.greyColor)),
-                                  child: const Icon(
-                                    Icons.face,
-                                    size: 30,
-                                    color: Colors.grey,
+                                          color: AppColor.greyColor.withOpacity(0.2))),
+                                  child: SvgPicture.asset(
+                                    Images.facebookColoredLogo,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(top: 8, bottom: 8),
+                                    height: Dimensions.dimen50,
+                                    width: Dimensions.dimen70,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white.withOpacity(0.1),
+                                        border: Border.all(
+                                            color: AppColor.greyColor.withOpacity(0.2))),
+                                    child: SvgPicture.asset(
+                                      Images.googleColoredLogo,
+                                    ),
                                   ),
                                 ),
                                 Container(
-                                  height: Dimensions.dimen60,
-                                  width: Dimensions.dimen60,
+                                  padding: const EdgeInsets.only(top: 8, bottom: 8),
+                                  height: Dimensions.dimen50,
+                                  width: Dimensions.dimen70,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Colors.white.withOpacity(0.1),
                                       border: Border.all(
-                                          color: AppColor.greyColor)),
-                                  child: const Icon(
-                                    Icons.g_mobiledata_rounded,
-                                    size: 30,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Container(
-                                  height: Dimensions.dimen60,
-                                  width: Dimensions.dimen60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white.withOpacity(0.1),
-                                      border: Border.all(
-                                          color: AppColor.greyColor)),
-                                  child: const Icon(
-                                    Icons.apple,
-                                    size: 30,
-                                    color: Colors.grey,
+                                          color: AppColor.greyColor.withOpacity(0.2))),
+                                  child:  SvgPicture.asset(
+                                    Images.appleLogo,
                                   ),
                                 ),
                               ],

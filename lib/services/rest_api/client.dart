@@ -1,16 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../resources/constants/color.dart';
+import '../../resources/constants/dimensions.dart';
 import 'base.dart';
 
 class RestApiClientService extends RestApiBaseService {
   static RestApiClientService shared = RestApiClientService._internal();
   RestApiClientService._internal() : super();
 
- Future signUpPressed(
+  Future signUpPressed(
       {required String number,
       required String email,
       required String fullname}) async {
@@ -35,50 +39,105 @@ class RestApiClientService extends RestApiBaseService {
 
 
 
-  List<dynamic> getNotificationData(){
+  List<dynamic> getNotificationData() {
     List data = [
       {
+        "avatar":  CircleAvatar(
+            backgroundColor:
+            AppColor.redColor.withOpacity(0.1),
+            radius: 25,
+            child: Container(
+              height: Dimensions.dimen20,
+              width: Dimensions.dimen20,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color:
+                  AppColor.redColor.withOpacity(0.7)),
+              child: const Icon(
+                Icons.close,
+                color: AppColor.whiteColor,
+                size: 15,
+              ),
+            )),
         "title": "Orders Cancelled!",
         "date": "19 Dec. 2022",
         "time": "20:50 PM",
         "description":
-        "You have cancelled an oreder at Burger Hut.We apologize for your inconvenience.We will try to improve our service next time.",
-        "buttonshow":true
+            "You have cancelled an oreder at Burger Hut.We apologize for your inconvenience.We will try to improve our service next time.",
+        "buttonshow": true
       },
       {
+        "avatar":CircleAvatar(
+            backgroundColor:
+            AppColor.greenColor.withOpacity(0.1),
+            radius: 25,
+            child: const Icon(
+              Icons.shopping_bag,
+              color: AppColor.greenColor,
+              size: 25,
+            )),
         "title": "Orders Successful!",
         "date": "19 Dec. 2022",
         "time": "20:50 PM",
         "description":
-        "You have cancelled an oreder at Burger Hut and paid \$24.Your food will arrive soon.Enjoy our services.",
-        "buttonshow":true
+            "You have cancelled an oreder at Burger Hut and paid \$24.Your food will arrive soon.Enjoy our services.",
+        "buttonshow": true
       },
       {
+        "avatar":CircleAvatar(
+            backgroundColor:
+            AppColor.lemonYellow.withOpacity(0.1),
+            radius: 25,
+            child: const Icon(
+              Icons.stars,
+              color: AppColor.lemonYellow,
+              size: 25,
+            )),
         "title": "New Services Available!",
         "date": "14 Dec. 2022",
         "time": "10:50 AM",
-        "description":"You can now make multiple food orders at one time.You can also cancel your orders.",
-        "buttonshow":false
+        "description":
+            "You can now make multiple food orders at one time.You can also cancel your orders.",
+        "buttonshow": false
       },
       {
+        "avatar":CircleAvatar(
+            backgroundColor:
+            AppColor.blueColor,
+            radius: 25,
+            child:  Icon(
+              Icons.credit_card,
+              color: AppColor.blueColor.withOpacity(1.0),
+              size: 25,
+            )),
         "title": "Credit Card Connected!",
         "date": "14 Dec. 2022",
         "time": "15:38 PM",
-        "description":"Your credit card has been successfully linked with Foodu.Enjoy our services.",
-        "buttonshow":false
+        "description":
+            "Your credit card has been successfully linked with Foodu.Enjoy our services.",
+        "buttonshow": false
       },
       {
+        "avatar":CircleAvatar(
+            backgroundColor:
+            AppColor.greenColor.withOpacity(0.1),
+            radius: 25,
+            child: const Icon(
+              Icons.person,
+              color: AppColor.greenColor,
+              size: 25,
+            )),
         "title": "Account Setup Successfull!",
         "date": "14 Dec. 2022",
         "time": "15:38 PM",
-        "description":"Your account creation is successfull,you can now experience our services.",
-        "buttonshow":false
+        "description":
+            "Your account creation is successfull,you can now experience our services.",
+        "buttonshow": false
       },
     ];
-    List notificationdata=data;
+    List notificationdata = data;
     return notificationdata;
   }
-
   static Future<User?> signInWithGoogle({required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
