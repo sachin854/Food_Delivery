@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,33 @@ import 'base.dart';
 class RestApiClientService extends RestApiBaseService {
   static RestApiClientService shared = RestApiClientService._internal();
   RestApiClientService._internal() : super();
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+  Future<void> verifyPhone({
+    required String phoneNumber,
+    required Function(PhoneAuthCredential) verificationCompleted,
+    required Function(FirebaseAuthException) verificationFailed,
+    required Function(String, int?) codeSent,
+    required Function(String) codeAutoRetrievalTimeout,
+  }) async {
+    await auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: verificationCompleted,
+      verificationFailed: verificationFailed,
+      codeSent: codeSent,
+      codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
+
+    );
+  }
+  Future  loginData() async {
+      await Future.delayed(Duration(seconds: 2)); // Simulating delay
+      var userData = {
+        '_id': 'user123',
+        'userID': 'ddddd',
+      };
+      return userData;
+  }
+
 
   Future signUpPressed(
       {required String number,
