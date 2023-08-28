@@ -9,21 +9,21 @@ class SignUpNumberErrorState extends SignUpState{
   SignUpNumberErrorState(this.number);
 }
 
-class SignUpEmailChangeState extends SignUpState{
+class SignUpEmailErrorState extends SignUpState{
   final String email;
-  SignUpEmailChangeState(this.email);
+  SignUpEmailErrorState(this.email);
 }
-class SignUpPasswordErrorState extends SignUpState{
-  final String password;
-  SignUpPasswordErrorState(this.password);
+class SignUpFullNameErrorState extends SignUpState{
+  final String fullName;
+  SignUpFullNameErrorState(this.fullName);
 }
 
 
 class SignUpAllErrorState extends SignUpState{
   final String number;
   final String email;
-  final String password;
-  SignUpAllErrorState(this.number, this.email, this.password);
+  final String fullName;
+  SignUpAllErrorState(this.number, this.email, this.fullName);
 }
 class SignUpInvalidState extends SignUpState{
   final String errorMessage;

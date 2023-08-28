@@ -1,1 +1,4 @@
-{}
+{
+  "enter_full_name": "Please enter fullname",
+  "create_account": "Create New Account"
+}
