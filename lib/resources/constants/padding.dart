@@ -22,6 +22,7 @@ class Paddings{
   static const double padding5 = 5.0;
   static const double padding8 = 8.0;
   static const double padding10 = 10.0;
+  static const double padding12 = 12.0;
   static const double padding14 = 14.0;
   static const double padding17 = 17.0;
   static const double padding20 = 20.0;

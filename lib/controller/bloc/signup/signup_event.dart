@@ -9,14 +9,14 @@ class SignUpEmailChangedEvent extends SignUpEvent{
   SignUpEmailChangedEvent(this.email);
 }
 
-class SignUpPasswordChangedEvent extends SignUpEvent{
-  final String password;
-  SignUpPasswordChangedEvent(this.password);
+class SignUpNameChangedEvent extends SignUpEvent{
+  final String name;
+  SignUpNameChangedEvent(this.name);
 }
 
 class SignUpSubmitEvent extends SignUpEvent{
   final String number;
   final String email;
-  final String password;
-  SignUpSubmitEvent(this.number, this.email, this.password);
+  final String name;
+  SignUpSubmitEvent(this.number, this.email, this.name);
 }

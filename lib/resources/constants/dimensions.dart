@@ -55,6 +55,7 @@ class Dimensions {
   static const double dimen50 = 50.0;
   static const double dimen52 = 52.0;
   static const double dimen55 = 55.0;
+  static const double dimen56 = 56.0;
   static const double dimen60 = 60.0;
   static const double dimen65 = 65.0;
   static const double dimen61 = 61.0;
