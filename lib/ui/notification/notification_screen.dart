@@ -1,13 +1,13 @@
-import 'package:finalapppp/controller/bloc/notification/notification_bloc.dart';
-import 'package:finalapppp/controller/bloc/notification/notification_state.dart';
-import 'package:finalapppp/resources/constants/color.dart';
-import 'package:finalapppp/resources/constants/dimensions.dart';
-import 'package:finalapppp/resources/constants/font_weight.dart';
-import 'package:finalapppp/resources/constants/padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../controller/bloc/notification/notification_bloc.dart';
+import '../../controller/bloc/notification/notification_state.dart';
+import '../../resources/constants/color.dart';
+import '../../resources/constants/dimensions.dart';
+import '../../resources/constants/font_weight.dart';
+import '../../resources/constants/padding.dart';
 class NotificationScreen extends StatefulWidget {
+  static const routeName = "/notification";
   const NotificationScreen({super.key});
 
   @override
@@ -15,20 +15,18 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          backgroundColor: AppColor.transparentColor,
+      backgroundColor: AppColor.primaryColor,
       appBar: AppBar(
-        backgroundColor: AppColor.transparentColor,
-        leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.arrow_back,
-              color: AppColor.blackColor,
-            )),
+        elevation: 0,
+        backgroundColor: AppColor.primaryColor,
+        leading: BackButton(
+          onPressed: () {},
+          color: AppColor.blackColor,
+        ),
         title: const Text(
           "Notification",
           style: TextStyle(color: AppColor.blackColor),
@@ -49,135 +47,141 @@ class _NotificationScreenState extends State<NotificationScreen> {
             right: Paddings.padding16,
             top: Paddings.padding20),
         child: SingleChildScrollView(
-          child: BlocBuilder<NotificationBloc,NotificationState>(
-            builder: (context,state) {
-              if(state is NotificationLoadingState) {
-                return SizedBox(
+          child: BlocBuilder<NotificationBloc, NotificationState>(
+              builder: (context, state) {
+            if (state is NotificationLoadingState) {
+              return SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
-                    itemCount:state.notificationdata.length,
+                    itemCount: state.notificationdata.length,
                     itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Row(
+                      return Column(
                         children: [
-                          CircleAvatar(
-                              backgroundColor: AppColor.redColor.withOpacity(0.1),
-                              radius: 23,
-                              child: Container(
-                                height: Dimensions.dimen20,
+
+                          Row(
+                            children: [
+                              state.notificationdata[index]["avatar"],
+                              const SizedBox(
                                 width: Dimensions.dimen20,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: AppColor.redColor.withOpacity(0.7)),
-                                child: const Icon(
-                                  Icons.close,
-                                  color: AppColor.whiteColor,
-                                  size: 15,
-                                ),
-                              )),
-                          SizedBox(
-                            width: Dimensions.dimen20,
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                 Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                     state.notificationdata[index]["title"],
-                                      style: TextStyle(
-                                          fontSize: AppFontWeight.font16,
-                                          fontWeight: FontWeight.w700,
-                                          color: AppColor.blackColor),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          state.notificationdata[index]
+                                              ["title"],
+                                          style: const TextStyle(
+                                              fontSize: AppFontWeight.font16,
+                                              fontWeight: FontWeight.w700,
+                                              color: AppColor.blackColor),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: Paddings.padding5),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                state.notificationdata[index]
+                                                    ["date"],
+                                                style: const TextStyle(
+                                                    fontSize:
+                                                        AppFontWeight.font12,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: AppColor.greyColor),
+                                              ),
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: Paddings.padding5,
+                                                    right: Paddings.padding5),
+                                                child: Text(
+                                                  " | ",
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          AppFontWeight.font12,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      color:
+                                                          AppColor.greyColor),
+                                                ),
+                                              ),
+                                              Text(
+                                                state.notificationdata[index]
+                                                    ["time"],
+                                                style: const TextStyle(
+                                                    fontSize:
+                                                        AppFontWeight.font12,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: AppColor.greyColor),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.only(top: Paddings.padding5),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            state.notificationdata[index]["date"],
-                                            style: TextStyle(
-                                                fontSize: AppFontWeight.font12,
-                                                fontWeight: FontWeight.w700,
-                                                color: AppColor.greyColor),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                left: Paddings.padding5,
-                                                right: Paddings.padding5),
-                                            child: Text(
-                                              " | ",
-                                              style: TextStyle(
-                                                  fontSize: AppFontWeight.font12,
-                                                  fontWeight: FontWeight.w700,
-                                                  color: AppColor.greyColor),
-                                            ),
-                                          ),
-                                          Text(
-                                              state.notificationdata[index]["time"],
-                                            style: TextStyle(
-                                                fontSize: AppFontWeight.font12,
-                                                fontWeight: FontWeight.w700,
-                                                color: AppColor.greyColor),
-                                          ),
-                                        ],
-                                      ),
-                                    )
+                                    state.notificationdata[index]
+                                                ["buttonshow"] ==
+                                            true
+                                        ? Container(
+                                            height: Dimensions.dimen30,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(14)),
+                                            width: 53,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        AppColor.greenColor),
+                                                onPressed: () {},
+                                                child: const Text(
+                                                  "New",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize:
+                                                          AppFontWeight.font10,
+                                                      color: Colors.white),
+                                                )))
+                                        : SizedBox()
                                   ],
                                 ),
-                                state.notificationdata[index]["buttonshow"]==true?
-                                Container(
-                                    height: Dimensions.dimen30,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(14)),
-                                    width: 53,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: AppColor.greenColor),
-                                        onPressed: () {},
-                                        child: const Text(
-                                          "New",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: AppFontWeight.font10,
-                                              color: Colors.white),
-                                        ))):SizedBox()
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: Dimensions.dimen15,
-                      ),
-                       Row(
-                        children: [
-                          Expanded(
-                              child: Text(
+                          const SizedBox(
+                            height: Dimensions.dimen15,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: Text(
                                 state.notificationdata[index]["description"],
-                            style: TextStyle(
-                                color: AppColor.blackColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: AppFontWeight.font14),
-                          ))
+                                style: const TextStyle(
+                                    color: AppColor.blackColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: AppFontWeight.font14),
+                              ))
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          )
                         ],
-                      ),
-                      SizedBox(height: 30,)
-                    ],
-                  );
-                }),
+                      );
+                    }),
               );
-              } else
-                {
-                  return SizedBox();
-                }
-
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(
+                    color: AppColor.blackColor),
+              );
             }
-          ),
+          }),
         ),
       ),
     ));
