@@ -1,13 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../controller/bloc/google_sign_in/authentication.dart';
+import '../controller/bloc/auth_sign_in/auth_bloc.dart';
+import '../controller/bloc/auth_sign_in/auth_event.dart';
 import '../resources/assets/images.dart';
 import '../resources/constants/color.dart';
 import '../resources/constants/dimensions.dart';
-import '../ui/home_screen/home_page.dart';
 import 'component/text_widget.dart';
 
 class SocialSignInButton extends StatefulWidget {
@@ -20,23 +19,22 @@ class SocialSignInButton extends StatefulWidget {
 }
 
 class _SocialSignInButtonState extends State<SocialSignInButton> {
+  late AuthBloc _authBloc;
 
-  googleSignIn() async {
-    User? user = await Authentication.signInWithGoogle(context: context);
-    if (user != null) {
-      Navigator.of(context).pushNamed(HomePage.routeName);
-    }
+  @override
+  void initState() {
+    super.initState();
+    _authBloc = AuthBloc();
   }
+
 
   @override
   Widget build(BuildContext context) {
     return
       GestureDetector(onTap: () {
-
         if(widget.type=="google") {
-          googleSignIn();
+          _authBloc.add(GoogleSignInTapEvent(context));
         }
-
       },
         child: Container(
           padding: const EdgeInsets.only(top: 8, bottom: 8),
@@ -58,11 +56,13 @@ class _SocialSignInButtonState extends State<SocialSignInButton> {
                     : widget.type == "facebook"
                         ? Images.facebookLogo
                         : Images.appleLogo,
-                height: 30,
+                height: Dimensions.dimen30,
               ),
+
               const SizedBox(
                 width: Dimensions.dimen10,
               ),
+
               const TextWidget(
                 title: "Continue with Google",
                 fontWeight: FontWeight.w500,

@@ -1,13 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../controller/bloc/google_sign_in/authentication.dart';
+import '../../controller/bloc/auth_sign_in/auth_bloc.dart';
 import '../../resources/constants/color.dart';
 import '../../resources/constants/dimensions.dart';
 import '../../widgets/component/text_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../resources/assets/images.dart';
 import '../../widgets/social_sign_in_button.dart';
-import '../home_screen/home_page.dart';
 
 class LoginIntro extends StatefulWidget {
   static const routeName = "/loginIntro";
@@ -18,16 +16,18 @@ class LoginIntro extends StatefulWidget {
 }
 
 class _LoginIntroState extends State<LoginIntro> {
+  late AuthBloc _authBloc;
 
-  Future googleSignIn() async {
-    if (mounted) {
-      User? user = await Authentication.signInWithGoogle(context: context);
-      if (user != null) {
-        // WidgetsBinding.instance.addPostFrameCallback((_) {
-          Navigator.of(context).pushNamed(HomePage.routeName);
-        // });
-      }
-    }
+  @override
+  void initState() {
+    super.initState();
+    _authBloc = AuthBloc();
+  }
+
+  @override
+  void dispose() {
+    _authBloc.close();
+    super.dispose();
   }
 
   @override
@@ -42,6 +42,7 @@ class _LoginIntroState extends State<LoginIntro> {
           color: Colors.black,
         ),
       ),
+
       body: Column(
         children: [
 

@@ -1,8 +1,10 @@
+import 'package:finalapppp/services/rest_api/client.dart';
 import 'package:finalapppp/ui/login_intro/login_intro.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../controller/bloc/google_sign_in/authentication.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -43,7 +45,7 @@ class _HomePageState extends State<HomePage> {
 
   Route _routeToSignInScreen() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => LoginIntro(),
+      pageBuilder: (context, animation, secondaryAnimation) => const LoginIntro(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         var begin = const Offset(-1.0, 0.0);
         var end = Offset.zero;
@@ -57,6 +59,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
 
 
   @override
@@ -128,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     onPressed: () async {
-                      await Authentication.signOut(context: context);
+                      await RestApiClientService.signOut(context: context);
                       Navigator.of(context)
                           .pushReplacement(_routeToSignInScreen());
                     },
