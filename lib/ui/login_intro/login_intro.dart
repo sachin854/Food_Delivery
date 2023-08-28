@@ -36,17 +36,19 @@ class _LoginIntroState extends State<LoginIntro> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: AppColor.primaryColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColor.primaryColor,
-        leading: const BackButton(
-          color: Colors.black,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
+          elevation: 0,
+          backgroundColor: AppColor.primaryColor,
+          leading: const BackButton(
+            color: Colors.black,
+        ),
+
         ),
       ),
-
       body: Column(
         children: [
-
           Center(
             child: SvgPicture.asset(
               Images.loginIntro,
@@ -54,7 +56,6 @@ class _LoginIntroState extends State<LoginIntro> {
               width: Dimensions.dimen233,
             ),
           ),
-
           const Padding(
             padding: EdgeInsets.only(top: Dimensions.dimen20),
             child: TextWidget(
@@ -64,21 +65,16 @@ class _LoginIntroState extends State<LoginIntro> {
               fontWeight: FontWeight.bold,
             ),
           ),
-
           const Spacer(),
-
           SocialSignInButton(
             type: "facebook",
           ),
-
           SocialSignInButton(
             type: "google",
           ),
-
           SocialSignInButton(
             type: "apple",
           ),
-
           const Padding(
             padding: EdgeInsets.only(
               top: Dimensions.dimen20,
@@ -89,7 +85,8 @@ class _LoginIntroState extends State<LoginIntro> {
                 Expanded(
                     child: Divider(
                   thickness: 1,
-                  indent: Dimensions.dimen20,endIndent: Dimensions.dimen20,
+                  indent: Dimensions.dimen20,
+                  endIndent: Dimensions.dimen20,
                 )),
                 TextWidget(
                   title: "or",
@@ -100,13 +97,13 @@ class _LoginIntroState extends State<LoginIntro> {
                 ),
                 Expanded(
                     child: Divider(
-                  endIndent: Dimensions.dimen20,indent: Dimensions.dimen20,
+                  endIndent: Dimensions.dimen20,
+                  indent: Dimensions.dimen20,
                   thickness: 1,
                 )),
               ],
             ),
           ),
-
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
             height: Dimensions.dimen45,
@@ -116,20 +113,21 @@ class _LoginIntroState extends State<LoginIntro> {
                   backgroundColor:
                       AppColor.blackColor, // Set the button's text color
                   shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(36), // Set the corner radius here
+                    borderRadius: BorderRadius.circular(
+                        36), // Set the corner radius here
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, LoginScreen.routeName);
+                },
                 child: const TextWidget(
-                  title: "Sign in with Phone Number",   fontWeight: FontWeight.bold,
+                  title: "Sign in with Phone Number",
+                  fontWeight: FontWeight.bold,
                 )),
           ),
-
           const SizedBox(
             height: 20,
           ),
-
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -137,23 +135,24 @@ class _LoginIntroState extends State<LoginIntro> {
               InkWell(
                   onTap: () {},
                   child: const TextWidget(
-                    title: "Don't have an account? ",titleColor: AppColor.greyColor,fontSize: 16,
+                    title: "Don't have an account? ",
+                    titleColor: AppColor.greyColor,
+                    fontSize: 16,
                   )),
               InkWell(
                 onTap: () {},
                 child: const TextWidget(
                   title: "Sign Up",
                   titleColor: AppColor.greenColor,
-                  fontWeight: FontWeight.bold,fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
                 ),
               )
             ],
           ),
-
           const SizedBox(
             height: Dimensions.dimen20,
           ),
-
         ],
       ),
     ));
