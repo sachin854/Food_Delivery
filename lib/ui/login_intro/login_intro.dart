@@ -6,6 +6,7 @@ import '../../widgets/component/text_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../resources/assets/images.dart';
 import '../../widgets/social_sign_in_button.dart';
+import '../authentication/phone_auth.dart';
 
 class LoginIntro extends StatefulWidget {
   static const routeName = "/loginIntro";

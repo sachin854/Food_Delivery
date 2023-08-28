@@ -50,6 +50,10 @@ dependencies:
   firebase_storage: ^11.2.6
   firebase_core: ^2.15.1
 
+  pin_code_fields: ^8.0.1
+  
+  firebase_messaging: ^14.6.7
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -68,6 +72,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/.
+    - assets/images/foodLogo.jpg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
