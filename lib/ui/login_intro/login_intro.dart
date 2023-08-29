@@ -1,3 +1,4 @@
+import 'package:finalapppp/ui/recommended/recommended.dart';
 import 'package:flutter/material.dart';
 import '../../controller/bloc/auth_sign_in/auth_bloc.dart';
 import '../../resources/constants/color.dart';
@@ -119,7 +120,7 @@ class _LoginIntroState extends State<LoginIntro> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, LoginScreen.routeName);
+                  Navigator.pushNamed(context, RecommendedScreen.routeName);
                 },
                 child: const TextWidget(
                   title: "Sign in with Phone Number",

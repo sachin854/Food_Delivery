@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../resources/assets/images.dart';
 import '../../resources/constants/color.dart';
 import '../../resources/constants/dimensions.dart';
 import 'base.dart';
@@ -67,6 +68,59 @@ class RestApiClientService extends RestApiBaseService {
     ];
     List offersData = data;
     return offersData;
+  }
+  List<dynamic> getRecommendMenuData() {
+    List data = [
+      {
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+      },
+      {
+        "food_title": "Pizza Hut- Lumintu",
+        "distance": "800 m",
+        "rating": "1.3 (2.3k)",
+        "food_price": "\$1.60",
+      },
+      {
+        "food_title": "Mozerella Cheese Burger",
+        "distance": "800 m",
+        "rating": "4.9 (3.1k)",
+        "food_price": "\$3.00",
+      },
+      {
+        "food_title": "Fruit salad -Kumpa",
+        "distance": "800 m",
+        "rating": "4.9 (2.3k)",
+        "food_price": "\$7.00",
+      },
+      {
+        "food_title": "Pizza Hut- Lumintu",
+        "distance": "800 m",
+        "rating": "4.9 (2.3k)",
+        "food_price": "\$4.20",
+      },
+      {
+        "food_title": "Pizza Hut- Lumintu",
+        "distance": "800 m",
+        "rating": "1.3 (2.3k)",
+        "food_price": "\$1.60",
+      },
+    ];
+    List recommendMenuData = data;
+    return recommendMenuData;
+  }
+  List<dynamic> getRecommendFilterData() {
+    List data = [
+      {"title": "All"},
+      {"title": "Hamburger"},
+      {"title": "Pizza"},
+      {"title": "Icecreams"},
+      {"title": "Drinks"}
+    ];
+    List recommendFilterData = data;
+    return recommendFilterData;
   }
 
   Future signUpPressed(
