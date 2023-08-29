@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../resources/assets/images.dart';
 import '../resources/constants/color.dart';
 import '../resources/constants/dimensions.dart';
-import 'component/text_widget.dart';
 
 class OfferCard extends StatefulWidget {
   final Color? color;

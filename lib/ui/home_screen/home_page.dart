@@ -239,7 +239,30 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      const OfferCard(),
+                      OfferCard(
+                        widget: const Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                TextWidget(title: "30%",
+                                    fontSize: 60,
+                                    titleColor: AppColor.whiteColor,
+                                    fontWeight: FontWeight.bold),
+                                TextWidget(title: "DICOUNT ONLY",
+                                    fontSize: 18,
+                                    titleColor: AppColor.whiteColor,
+                                    fontWeight: FontWeight.bold),
+                                TextWidget(title: "VALID FOR TODAY!",
+                                    fontSize: 18,
+                                    titleColor: AppColor.whiteColor,
+                                    fontWeight: FontWeight.bold),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                       ItemList(image: Images.burger),
                       const Row(
                         children: [
@@ -273,8 +296,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
 
-                Container(
-
+                SizedBox(
                   height: Dimensions.dimen300,
                   width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
@@ -296,34 +318,6 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                   ),
-                ),
-
-                OfferCard(),
-                 ItemList(image: Images.burger),
-                const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: Dimensions.dimen20, bottom: Dimensions.dimen20),
-                      child: TextWidget(
-                        title: "Discount Guaranteed! ",
-                        fontWeight: FontWeight.bold,
-                        fontSize: Dimensions.dimen19,
-                      ),
-                    ),
-                    TextWidget(title: '\u{1F44C}',fontSize: 18,),
-                    Spacer(),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: Dimensions.dimen20, bottom: Dimensions.dimen20),
-                      child: TextWidget(
-                        title: "See All",
-                        titleColor: AppColor.greenColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: Dimensions.dimen15,
-                      ),
-                    ),
-                  ],
                 ),
 
                 // Text(

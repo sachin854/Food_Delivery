@@ -42,7 +42,7 @@ class _DiscountCardState extends State<DiscountCard> {
       margin: const EdgeInsets.only(
           left: Dimensions.dimen10,
           top: Dimensions.dimen5,
-          bottom: Dimensions.dimen5,),
+          bottom: Dimensions.dimen15,),
 
       width: Dimensions.dimen200,
       child: Card(
@@ -52,7 +52,7 @@ class _DiscountCardState extends State<DiscountCard> {
         ),
         elevation: 10,
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.only(left: Dimensions.dimen10,right: Dimensions.dimen10,top: Dimensions.dimen10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -103,6 +103,7 @@ class _DiscountCardState extends State<DiscountCard> {
                TextWidget(
                 title: widget.foodTitle,
                 maxLine: 1,
+                fontWeight: FontWeight.bold,
                 textoverflow: TextOverflow.ellipsis,
               ),
               const SizedBox(
@@ -115,6 +116,8 @@ class _DiscountCardState extends State<DiscountCard> {
                     title: widget.distance,
                       maxLine: 1,
                       textoverflow: TextOverflow.ellipsis,
+                      fontSize: 13,
+                      titleColor: AppColor.greyColor,
                     ),
                     const VerticalDivider(
                       color: AppColor.greyColor,
@@ -133,6 +136,8 @@ class _DiscountCardState extends State<DiscountCard> {
                     TextWidget(
                       title:widget.ratings,
                       maxLine: 1,
+                      fontSize: 13,
+                      titleColor: AppColor.greyColor,
                       textoverflow: TextOverflow.ellipsis,
                     ),
                   ],
@@ -149,7 +154,7 @@ class _DiscountCardState extends State<DiscountCard> {
                       maxLine: 1,
                       titleColor: AppColor.greenColor,
                       textoverflow: TextOverflow.ellipsis,
-                      fontSize: 18,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                     const VerticalDivider(
@@ -161,14 +166,15 @@ class _DiscountCardState extends State<DiscountCard> {
                     const Icon(
                       Icons.bike_scooter,
                       color: AppColor.greenColor,
-                      size: 18,
+                      size: 20,
                     ),
                     const SizedBox(
                       width: 8,
                     ),
                      TextWidget(
                       title: widget.deliveryCharges,
-                      maxLine: 1,
+                      maxLine: 1,  fontSize: 13,
+                      titleColor: AppColor.greyColor,
                       textoverflow: TextOverflow.ellipsis,
                     ),
                     const Spacer(),
