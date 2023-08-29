@@ -1,6 +1,7 @@
 import 'package:finalapppp/controller/bloc/signup/signup_event.dart';
 import 'package:finalapppp/controller/bloc/signup/signup_state.dart';
 import 'package:bloc/bloc.dart';
+import 'package:finalapppp/ui/home_screen/home_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../generated/l10n.dart';
@@ -91,9 +92,10 @@ class SignUpBloc extends Bloc<SignUpEvent,SignUpState>{
       print("ff"+fullname.toString());
       // ignore: invalid_use_of_visible_for_testing_member
       emit(SignUpValidState());
+      Navigator.pushNamed(context!, HomePage.routeName);
       return;
       // RestApiClientService.shared.setToken();
-     // Navigator.pushNamed(context!, CategoryScreen.routeName);
+
     }
     // catch (error) {
     //   // ignore: invalid_use_of_visible_for_testing_member

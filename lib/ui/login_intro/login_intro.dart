@@ -6,6 +6,7 @@ import '../../widgets/component/text_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../resources/assets/images.dart';
 import '../../widgets/social_sign_in_button.dart';
+import '../sign_up/sign_up.dart';
 import '../authentication/phone_auth.dart';
 
 class LoginIntro extends StatefulWidget {
@@ -140,7 +141,9 @@ class _LoginIntroState extends State<LoginIntro> {
                     fontSize: 16,
                   )),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, SignUp.routeName);
+                  },
                 child: const TextWidget(
                   title: "Sign Up",
                   titleColor: AppColor.greenColor,
