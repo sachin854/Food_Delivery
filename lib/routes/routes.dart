@@ -1,7 +1,9 @@
 import 'package:finalapppp/controller/bloc/notification/notification_bloc.dart';
 import 'package:finalapppp/controller/bloc/offers/offers_bloc.dart';
+import 'package:finalapppp/controller/bloc/recommended/recommed_bloc.dart';
 import 'package:finalapppp/ui/mycart/my_cart.dart';
 import 'package:finalapppp/ui/notification/notification_screen.dart';
+import 'package:finalapppp/ui/recommended/recommended.dart';
 import 'package:finalapppp/ui/sign_up/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,6 +58,11 @@ class AppRoutes {
             builder: (context) => BlocProvider(
                 create: (context) => OffersBloc(),
                 child: SpecialOffers()));
+      case RecommendedScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                create: (context) => RecommendedBloc(),
+                child: RecommendedScreen()));
       default:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
     }
