@@ -7,7 +7,9 @@ import '../resources/constants/dimensions.dart';
 import 'component/text_widget.dart';
 
 class OfferCard extends StatefulWidget {
-  const OfferCard({super.key});
+  final Color? color;
+  final Widget? widget;
+  OfferCard({this.color,this.widget});
 
   @override
   State<OfferCard> createState() => _OfferCardState();
@@ -19,7 +21,7 @@ class _OfferCardState extends State<OfferCard> {
     return Container(
       padding: const EdgeInsets.only(left: Dimensions.dimen20,right: Dimensions.dimen5),
       decoration: BoxDecoration(
-        color: AppColor.greenColor,
+        color: widget.color,
         borderRadius: BorderRadius.circular(36),
         boxShadow: [
           BoxShadow(
@@ -32,11 +34,9 @@ class _OfferCardState extends State<OfferCard> {
       ),
       child: Row(
         children: [
-           const Column(crossAxisAlignment: CrossAxisAlignment.start,
+           Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextWidget(title: "30%",fontSize: 45,titleColor: AppColor.whiteColor,fontWeight: FontWeight.bold,),
-              TextWidget(title: "DISCOUNT ONLY ",fontSize: 24,titleColor: AppColor.whiteColor,fontWeight: FontWeight.bold,),
-              TextWidget(title: "VALID FOR TODAY",fontSize: 24,titleColor: AppColor.whiteColor,fontWeight: FontWeight.bold,),
+              widget.widget ?? SizedBox(),
             ],
           ),
           const Spacer(),

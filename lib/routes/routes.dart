@@ -1,4 +1,5 @@
 import 'package:finalapppp/controller/bloc/notification/notification_bloc.dart';
+import 'package:finalapppp/controller/bloc/offers/offers_bloc.dart';
 import 'package:finalapppp/ui/mycart/my_cart.dart';
 import 'package:finalapppp/ui/notification/notification_screen.dart';
 import 'package:finalapppp/ui/sign_up/sign_up.dart';
@@ -14,6 +15,8 @@ import '../ui/home_screen/home_page.dart';
 import '../ui/login_intro/login_intro.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../ui/offers/special_offers.dart';
+
 class AppRoutes {
   SignInBloc signInBloc = SignInBloc();
 
@@ -22,7 +25,7 @@ class AppRoutes {
 
     switch (setting.name) {
       case "/":
-        return MaterialPageRoute(builder: (context) =>  SplashScreen());
+        return MaterialPageRoute(builder: (context) => SplashScreen());
       case LoginIntro.routeName:
         return MaterialPageRoute(builder: (context) => const LoginIntro());
       case HomePage.routeName:
@@ -30,23 +33,29 @@ class AppRoutes {
       case SignUp.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => SignUpBloc(), child:  SignUp()));
+                create: (context) => SignUpBloc(), child: SignUp()));
       case NotificationScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => NotificationBloc(), child: const NotificationScreen()));
+                create: (context) => NotificationBloc(),
+                child: const NotificationScreen()));
       case LoginScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider.value(
-              value: signInBloc,
-              child: LoginScreen(),
-            ));
+                  value: signInBloc,
+                  child: LoginScreen(),
+                ));
       case VerifyOtpScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider.value(
-              value: signInBloc,
-              child: VerifyOtpScreen(res: setting.arguments as Map),
-            ));
+                  value: signInBloc,
+                  child: VerifyOtpScreen(res: setting.arguments as Map),
+                ));
+      case SpecialOffers.routeName:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                create: (context) => OffersBloc(),
+                child: SpecialOffers()));
       default:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
     }
