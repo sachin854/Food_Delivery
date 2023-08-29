@@ -1,4 +1,5 @@
 import 'package:finalapppp/controller/bloc/notification/notification_bloc.dart';
+import 'package:finalapppp/ui/mycart/my_cart.dart';
 import 'package:finalapppp/ui/notification/notification_screen.dart';
 import 'package:finalapppp/ui/sign_up/sign_up.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class AppRoutes {
 
     switch (setting.name) {
       case "/":
-        return MaterialPageRoute(builder: (context) => const SplashScreen());
+        return MaterialPageRoute(builder: (context) =>  SplashScreen());
       case LoginIntro.routeName:
         return MaterialPageRoute(builder: (context) => const LoginIntro());
       case HomePage.routeName:
@@ -29,7 +30,7 @@ class AppRoutes {
       case SignUp.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => SignUpBloc(), child: const SignUp()));
+                create: (context) => SignUpBloc(), child:  SignUp()));
       case NotificationScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(

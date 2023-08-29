@@ -2,6 +2,8 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../controller/bloc/auth_sign_in/auth_bloc.dart';
+import '../../controller/bloc/auth_sign_in/auth_event.dart';
 import '../../controller/bloc/signup/signup_event.dart';
 import '../../controller/bloc/signup/signup_state.dart';
 import '../../resources/assets/images.dart';
@@ -11,10 +13,11 @@ import '../../resources/constants/font_weight.dart';
 import '../../resources/constants/padding.dart';
 import '../../controller/bloc/signup/signup_bloc.dart';
 import '../../widgets/component/text_widget.dart';
+import '../../widgets/social_sign_in_button.dart';
 
 class SignUp extends StatefulWidget {
   static const routeName = "/signUp";
-  const SignUp({super.key});
+   SignUp({super.key});
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -22,6 +25,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   SignUpBloc? _signUpBloc;
+  late AuthBloc _authBloc;
   TextEditingController? _phoneNoController;
   TextEditingController? _emailController;
   TextEditingController? _fullNameController;
@@ -31,6 +35,7 @@ class _SignUpState extends State<SignUp> {
   void focus() {
     setState(() {
       isFocus = true;
+
     });
   }
 
@@ -40,6 +45,7 @@ class _SignUpState extends State<SignUp> {
     _phoneNoController = TextEditingController();
     _emailController = TextEditingController();
     _fullNameController = TextEditingController();
+    _authBloc = AuthBloc();
     // TODO: implement initState
     super.initState();
   }
@@ -50,6 +56,8 @@ class _SignUpState extends State<SignUp> {
     _emailController!.dispose();
     _fullNameController!.dispose();
     _signUpBloc!.close();
+    _authBloc.close();
+
     // TODO: implement dispose
     super.dispose();
   }
@@ -310,9 +318,10 @@ class _SignUpState extends State<SignUp> {
                                     Images.facebookColoredLogo,
                                   ),
                                 ),
+
                                 GestureDetector(
                                   onTap: (){
-
+                                    _authBloc.add(GoogleSignInTapEvent(context));
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.only(top: 8, bottom: 8),
@@ -346,22 +355,27 @@ class _SignUpState extends State<SignUp> {
                             const SizedBox(
                               height: Dimensions.dimen20,
                             ),
-                            RichText(
-                              text: const TextSpan(children: [
-                                TextSpan(
-                                    text: "Already have an account? ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColor.greyColor,
-                                        fontSize: AppFontWeight.font14)),
-                                TextSpan(
-                                    text: "Sign in",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColor.greenColor,
-                                        fontSize: AppFontWeight.font14)),
-                              ]),
-                            )
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                InkWell(
+                                    onTap: () {},
+                                    child: const TextWidget(
+                                      title: "Already have an account? ",titleColor: AppColor.greyColor,fontSize: 16,
+                                    )),
+                                InkWell(
+                                  onTap: () {
+                                    //Navigator.pushNamed(context, LoginScreen.routename);
+                                  },
+                                  child: const TextWidget(
+                                    title: "Sign in",
+                                    titleColor: AppColor.greenColor,
+                                    fontWeight: FontWeight.w600,fontSize: AppFontWeight.font15,
+                                  ),
+                                )
+                              ],
+                            ),
                           ],
                         ),
                       ),
