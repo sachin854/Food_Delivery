@@ -233,7 +233,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
 
-                const OfferCard(),
+                OfferCard(),
                  ItemList(image: Images.burger),
                 const Row(
                   children: [

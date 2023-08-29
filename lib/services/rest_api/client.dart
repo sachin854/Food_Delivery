@@ -30,18 +30,44 @@ class RestApiClientService extends RestApiBaseService {
       verificationFailed: verificationFailed,
       codeSent: codeSent,
       codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
-
     );
   }
-  Future  loginData() async {
-      await Future.delayed(Duration(seconds: 2)); // Simulating delay
-      var userData = {
-        '_id': 'user123',
-        'userID': 'ddddd',
-      };
-      return userData;
+
+  Future loginData() async {
+    await Future.delayed(Duration(seconds: 2)); // Simulating delay
+    var userData = {
+      '_id': 'user123',
+      'userID': 'ddddd',
+    };
+    return userData;
   }
 
+  List<dynamic> getOffersData() {
+    List data = [
+      {
+        "percentage": "30%",
+        "discountText": "DISCOUNT ONLY",
+        "validText": "VALID FOR TODAY",
+      },
+      {
+        "percentage": "15%",
+        "discountText": "DISCOUNT ONLY",
+        "validText": "VALID FOR TODAY",
+      },
+      {
+        "percentage": "20%",
+        "discountText": "DISCOUNT ONLY",
+        "validText": "VALID FOR TODAY",
+      },
+      {
+        "percentage": "25%",
+        "discountText": "DISCOUNT ONLY",
+        "validText": "VALID FOR TODAY",
+      },
+    ];
+    List offersData = data;
+    return offersData;
+  }
 
   Future signUpPressed(
       {required String number,
@@ -66,22 +92,18 @@ class RestApiClientService extends RestApiBaseService {
     // }
   }
 
-
-
   List<dynamic> getNotificationData() {
     List data = [
       {
-        "avatar":  CircleAvatar(
-            backgroundColor:
-            AppColor.redColor.withOpacity(0.1),
+        "avatar": CircleAvatar(
+            backgroundColor: AppColor.redColor.withOpacity(0.1),
             radius: 25,
             child: Container(
               height: Dimensions.dimen20,
               width: Dimensions.dimen20,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color:
-                  AppColor.redColor.withOpacity(0.7)),
+                  color: AppColor.redColor.withOpacity(0.7)),
               child: const Icon(
                 Icons.close,
                 color: AppColor.whiteColor,
@@ -96,9 +118,8 @@ class RestApiClientService extends RestApiBaseService {
         "buttonshow": true
       },
       {
-        "avatar":CircleAvatar(
-            backgroundColor:
-            AppColor.greenColor.withOpacity(0.1),
+        "avatar": CircleAvatar(
+            backgroundColor: AppColor.greenColor.withOpacity(0.1),
             radius: 25,
             child: const Icon(
               Icons.shopping_bag,
@@ -113,9 +134,8 @@ class RestApiClientService extends RestApiBaseService {
         "buttonshow": true
       },
       {
-        "avatar":CircleAvatar(
-            backgroundColor:
-            AppColor.lemonYellow.withOpacity(0.1),
+        "avatar": CircleAvatar(
+            backgroundColor: AppColor.lemonYellow.withOpacity(0.1),
             radius: 25,
             child: const Icon(
               Icons.stars,
@@ -130,11 +150,10 @@ class RestApiClientService extends RestApiBaseService {
         "buttonshow": false
       },
       {
-        "avatar":CircleAvatar(
-            backgroundColor:
-            AppColor.blueColor,
+        "avatar": CircleAvatar(
+            backgroundColor: AppColor.blueColor,
             radius: 25,
-            child:  Icon(
+            child: Icon(
               Icons.credit_card,
               color: AppColor.blueColor.withOpacity(1.0),
               size: 25,
@@ -147,9 +166,8 @@ class RestApiClientService extends RestApiBaseService {
         "buttonshow": false
       },
       {
-        "avatar":CircleAvatar(
-            backgroundColor:
-            AppColor.greenColor.withOpacity(0.1),
+        "avatar": CircleAvatar(
+            backgroundColor: AppColor.greenColor.withOpacity(0.1),
             radius: 25,
             child: const Icon(
               Icons.person,
@@ -167,6 +185,7 @@ class RestApiClientService extends RestApiBaseService {
     List notificationdata = data;
     return notificationdata;
   }
+
   static Future<User?> signInWithGoogle({required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
@@ -176,24 +195,22 @@ class RestApiClientService extends RestApiBaseService {
 
       try {
         final UserCredential userCredential =
-        await auth.signInWithPopup(authProvider);
+            await auth.signInWithPopup(authProvider);
 
         user = userCredential.user;
-        print("user"+user.toString());
+        print("user" + user.toString());
       } catch (e) {
-        print("erorrrr"+e.toString());
+        print("erorrrr" + e.toString());
       }
-    }
-    else
-    {
+    } else {
       final GoogleSignIn googleSignIn = GoogleSignIn();
 
       final GoogleSignInAccount? googleSignInAccount =
-      await googleSignIn.signIn();
+          await googleSignIn.signIn();
 
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
+            await googleSignInAccount.authentication;
 
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
@@ -202,11 +219,10 @@ class RestApiClientService extends RestApiBaseService {
 
         try {
           final UserCredential userCredential =
-          await auth.signInWithCredential(credential);
+              await auth.signInWithCredential(credential);
 
           user = userCredential.user;
           print("Userrrr: ${user?.displayName.toString()}");
-
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
             // ...
@@ -230,16 +246,13 @@ class RestApiClientService extends RestApiBaseService {
       }
       await FirebaseAuth.instance.signOut();
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.black,
-            content: Text(
-              "Error signing out. Try again.",
-              style: TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
-            ),
-          )
-      );
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.black,
+        content: Text(
+          "Error signing out. Try again.",
+          style: TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
+        ),
+      ));
     }
   }
-
 }
