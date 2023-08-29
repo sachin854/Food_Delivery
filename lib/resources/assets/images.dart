@@ -6,4 +6,5 @@ class Images{
   static String googleBlackLogo = "assets/images/google_black_logo.svg";
   static String googleColoredLogo = "assets/images/googleColored.svg";
   static String facebookColoredLogo = "assets/images/facebookColored.svg";
+  static String burger = "assets/images/burger.png";
 }

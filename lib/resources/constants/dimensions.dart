@@ -75,6 +75,7 @@ class Dimensions {
   static const double dimen135 = 135.0;
   static const double dimen140 = 140.0;
   static const double dimen150 = 150.0;
+  static const double dimen160 = 160.0;
   static const double dimen170 = 170.0;
   static const double dimen176 = 176;
   static const double dimen183 = 183.0;
