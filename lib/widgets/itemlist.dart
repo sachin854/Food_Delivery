@@ -33,8 +33,7 @@ class _ItemListState extends State<ItemList> {
                     padding: const EdgeInsets.only(top: Dimensions.dimen20,bottom: Dimensions.dimen20),
                     height: Dimensions.dimen80,
                     width: Dimensions.dimen80,
-                    child: Image.asset(widget.image
-                    ),
+                    child: Image.asset(widget.image),
                   ),
                   const TextWidget(title: "Hamburg",fontWeight: FontWeight.bold,)
                 ],

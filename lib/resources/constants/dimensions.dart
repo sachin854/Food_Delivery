@@ -78,11 +78,14 @@ class Dimensions {
   static const double dimen160 = 160.0;
   static const double dimen170 = 170.0;
   static const double dimen176 = 176;
+  static const double dimen180 = 180.0;
   static const double dimen183 = 183.0;
   static const double dimen190 = 190;
+  static const double dimen200 = 200;
   static const double dimen233 = 233;
   static const double dimen280 = 280;
   static const double dimen328 = 328;
   static const double dimen300 = 300;
+  static const double dimen400 = 400;
   static const double dimen500 = 500;
 }

@@ -21,8 +21,8 @@ class _OfferCardState extends State<OfferCard> {
     return Container(
       padding: const EdgeInsets.only(left: Dimensions.dimen20,right: Dimensions.dimen5),
       decoration: BoxDecoration(
-        color: widget.color,
-        borderRadius: BorderRadius.circular(36),
+        color: AppColor.greenColor,
+        borderRadius: BorderRadius.circular(32),
         boxShadow: [
           BoxShadow(
             color: AppColor.greenColor.withOpacity(0.5),

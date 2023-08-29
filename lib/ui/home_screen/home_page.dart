@@ -23,6 +23,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  var discountArray = {
+    "food_image":Images.burger,
+    "food_title": "Mixed Salad BambooooBambooooBamboooo",
+    "distance": "1.5 km",
+    "ratings": "4.8 (1.2k)",
+    "food_price": "\$6.00",
+    "delivery_charges": "\$2.00",
+  };
+
   User? user;
 
   @override
@@ -75,162 +85,217 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   automaticallyImplyLeading: false,
-        //   elevation: 0,
-        //   backgroundColor: Colors.white,
-        //   centerTitle: true,
-        //   // title: const Text("Food Delivery Home Page"),
-        // ),
-        body: Padding(
-          padding: const EdgeInsets.only(
-              left: Dimensions.dimen15,
-              right: Dimensions.dimen15,
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.only(
               top: Dimensions.dimen15,
-              bottom: Dimensions.dimen15),
-          child: SingleChildScrollView(physics: NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      clipBehavior: Clip.hardEdge,
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(36),
+                Padding(
+                  padding: const EdgeInsets.only(left: Dimensions.dimen15,
+                    right: Dimensions.dimen15,),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            clipBehavior: Clip.hardEdge,
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(36),
+                            ),
+                            child: Image.network(
+                                "https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg"),
+                          ),
+                          const SizedBox(
+                            width: Dimensions.dimen15,
+                          ),
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextWidget(
+                                title: "Deliver to",
+                                titleColor: AppColor.greyColor,
+                              ),
+                              SizedBox(
+                                height: Dimensions.dimen10,
+                              ),
+                              Row(
+                                children: [
+                                  TextWidget(
+                                    title: "Times Square",
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: Dimensions.dimen40,
+                                width: Dimensions.dimen40,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1,
+                                      color: AppColor.borderColor,
+                                    ),
+                                    borderRadius: BorderRadius.circular(36)),
+                                child: const Stack(children: <Widget>[
+                                  Center(child: Icon(Icons.notifications_active)),
+                                  Positioned(
+                                    // draw a red marble
+                                    top: Dimensions.dimen8,
+                                    right: Dimensions.dimen8,
+                                    child: Icon(Icons.brightness_1,
+                                        size: Dimensions.dimen8,
+                                        color: Colors.redAccent),
+                                  )
+                                ]),
+                              ),
+                              const SizedBox(
+                                width: Dimensions.dimen15,
+                              ),
+                              Container(
+                                height: Dimensions.dimen40,
+                                width: Dimensions.dimen40,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1,
+                                      color: AppColor.borderColor,
+                                    ),
+                                    borderRadius: BorderRadius.circular(36)),
+                                child: const Stack(children: <Widget>[
+                                  Center(
+                                    child: Icon(Icons.shopping_cart),
+                                  ),
+                                  Positioned(
+                                    // draw a red marble
+                                    top: Dimensions.dimen8,
+                                    right: Dimensions.dimen8,
+                                    child: Icon(Icons.brightness_1,
+                                        size: Dimensions.dimen8,
+                                        color: Colors.redAccent),
+                                  )
+                                ]),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
-                      child: Image.network(
-                          "https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg"),
-                    ),
-                    const SizedBox(
-                      width: Dimensions.dimen15,
-                    ),
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextWidget(
-                          title: "Deliver to",
-                          titleColor: AppColor.greyColor,
-                        ),
-                        SizedBox(
-                          height: Dimensions.dimen10,
-                        ),
-                        Row(
-                          children: [
-                            TextWidget(
-                              title: "Times Square",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: Dimensions.dimen40,
-                          width: Dimensions.dimen40,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 1,
-                                color: AppColor.borderColor,
-                              ),
-                              borderRadius: BorderRadius.circular(36)),
-                          child: const Stack(children: <Widget>[
-                            Center(child: Icon(Icons.notifications_active)),
-                            Positioned(
-                              // draw a red marble
-                              top: Dimensions.dimen8,
-                              right: Dimensions.dimen8,
-                              child: Icon(Icons.brightness_1,
-                                  size: Dimensions.dimen8, color: Colors.redAccent),
-                            )
-                          ]),
-                        ),
-                        const SizedBox(
-                          width: Dimensions.dimen15,
-                        ),
-                        Container(
-                          height: Dimensions.dimen40,
-                          width: Dimensions.dimen40,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 1,
-                                color: AppColor.borderColor,
-                              ),
-                              borderRadius: BorderRadius.circular(36)),
-                          child: const Stack(children: <Widget>[
-                            Center(
-                              child: Icon(Icons.shopping_cart),
-                            ),
-                            Positioned(
-                              // draw a red marble
-                              top: Dimensions.dimen8,
-                              right: Dimensions.dimen8,
-                              child: Icon(Icons.brightness_1,
-                                  size: Dimensions.dimen8, color: Colors.redAccent),
-                            )
-                          ]),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                const SizedBox(height: Dimensions.dimen20),
+                      const SizedBox(height: Dimensions.dimen20),
 
-                Container(
-                  height: Dimensions.dimen48,
-                  padding: const EdgeInsets.all(Paddings.padding10),
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: TextFormField(
-                    onChanged: (val) {},
-                    keyboardType: TextInputType.emailAddress,
-                    // controller: ,
-                    decoration: const InputDecoration(
-                      enabledBorder: InputBorder.none,
-                      hintText: "What are you craving?",
-                      hintStyle: TextStyle(color: AppColor.greyColor),
-                      prefixIcon: Icon(
-                        Icons.search,
-                        size: Dimensions.dimen27,
+                      Container(
+                        height: Dimensions.dimen48,
+                        padding: const EdgeInsets.all(Paddings.padding10),
+                        decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(12)),
+                        child: TextFormField(
+                          onChanged: (val) {},
+                          keyboardType: TextInputType.emailAddress,
+                          // controller: ,
+                          decoration: const InputDecoration(
+                            enabledBorder: InputBorder.none,
+                            hintText: "What are you craving?",
+                            hintStyle: TextStyle(color: AppColor.greyColor),
+                            prefixIcon: Icon(
+                              Icons.search,
+                              size: Dimensions.dimen27,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+
+                      const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: Dimensions.dimen20, bottom: Dimensions.dimen20),
+                            child: TextWidget(
+                              title: "Special Offers",
+                              fontWeight: FontWeight.bold,
+                              fontSize: Dimensions.dimen19,
+                            ),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: Dimensions.dimen20, bottom: Dimensions.dimen20),
+                            child: TextWidget(
+                              title: "See All",
+                              titleColor: AppColor.greenColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: Dimensions.dimen15,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const OfferCard(),
+                      ItemList(image: Images.burger),
+                      const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: Dimensions.dimen20, bottom: Dimensions.dimen20),
+                            child: TextWidget(
+                              title: "Discount Guaranteed! ",
+                              fontWeight: FontWeight.bold,
+                              fontSize: Dimensions.dimen19,
+                            ),
+                          ),
+                          TextWidget(
+                            title: '\u{1F44C}',
+                            fontSize: 18,
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: Dimensions.dimen20, bottom: Dimensions.dimen20),
+                            child: TextWidget(
+                              title: "See All",
+                              titleColor: AppColor.greenColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: Dimensions.dimen15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
 
-                const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: Dimensions.dimen20, bottom: Dimensions.dimen20),
-                      child: TextWidget(
-                        title: "Special Offers",
-                        fontWeight: FontWeight.bold,
-                        fontSize: Dimensions.dimen19,
-                      ),
-                    ),
-                    Spacer(),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: Dimensions.dimen20, bottom: Dimensions.dimen20),
-                      child: TextWidget(
-                        title: "See All",
-                        titleColor: AppColor.greenColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: Dimensions.dimen15,
-                      ),
-                    ),
-                  ],
+                Container(
+
+                  height: Dimensions.dimen300,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView.builder(
+                    itemCount: discountArray.length,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        children: [
+                          DiscountCard(
+                            img: discountArray['food_image'] ?? "",
+                            foodTitle: discountArray['food_title'] ?? "",
+                            distance: discountArray['distance'] ?? '',
+                            ratings: discountArray['ratings'] ?? '',
+                            foodPrice: discountArray['food_price'] ?? '',
+                            deliveryCharges: discountArray['delivery_charges'] ?? '',
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                 ),
 
                 OfferCard(),
@@ -260,8 +325,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-
-                DiscountCard()
 
                 // Text(
                 //   user?.displayName ?? "",
