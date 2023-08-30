@@ -1,8 +1,8 @@
 import 'package:finalapppp/controller/bloc/mycart/myCart_bloc.dart';
+import 'package:finalapppp/controller/bloc/item_filter/filter_bloc.dart';
 import 'package:finalapppp/controller/bloc/notification/notification_bloc.dart';
 import 'package:finalapppp/controller/bloc/offers/offers_bloc.dart';
 import 'package:finalapppp/controller/bloc/recommended/recommed_bloc.dart';
-import 'package:finalapppp/ui/mycart/my_cart.dart';
 import 'package:finalapppp/ui/notification/notification_screen.dart';
 import 'package:finalapppp/ui/recommended/recommended.dart';
 import 'package:finalapppp/ui/sign_up/sign_up.dart';
@@ -16,9 +16,9 @@ import '../ui/authentication/phone_auth.dart';
 import '../ui/authentication/verify_otp.dart';
 import '../ui/home_screen/home_page.dart';
 import '../ui/login_intro/login_intro.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../ui/offers/special_offers.dart';
+import '../ui/recommended/filter.dart';
 
 class AppRoutes {
   SignInBloc signInBloc = SignInBloc();
@@ -69,6 +69,11 @@ class AppRoutes {
             builder: (context) => BlocProvider(
                 create: (context) => RecommendedBloc(),
                 child: RecommendedScreen()));
+        case FilterScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                create: (context) => FilterBloc(),
+                child: FilterScreen()));
       default:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
     }
