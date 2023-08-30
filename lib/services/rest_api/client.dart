@@ -309,4 +309,50 @@ class RestApiClientService extends RestApiBaseService {
       ));
     }
   }
+  List<dynamic> getCartData(){
+    List cardData = [
+      {
+        "images": [
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+        ],
+        "title": "Mixed Salad Bowl",
+        "itemCount": "1 items",
+        "kms": "1.5 kms",
+        "price": "\$ 60.00"
+      },
+      {
+        "images": [
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+          "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png"
+        ],
+        "title": "Mixed Salad Bowl",
+        "itemCount": "2 items",
+        "kms": "1.5 kms",
+        "price": "\$ 60.00"
+      },
+      {
+        "images": [
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+          "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png"
+        ],
+        "title": "Mixed Salad Bowl",
+        "itemCount": "2 items",
+        "kms": "1.5 kms",
+        "price": "\$ 60.00"
+      },
+      {
+        "images": [
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+          "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png",
+          "https://www.freepnglogos.com/uploads/food-png/fast-food-transparent-png-pictures-icons-and-png-18.png"
+        ],
+        "title": "Mixed Salad Bowl",
+        "itemCount": "2 items",
+        "kms": "1.5 kms",
+        "price": "\$ 60.00"
+      },
+    ];
+    List cartData = cardData;
+    return cartData;
+  }
 }
