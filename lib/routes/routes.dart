@@ -1,3 +1,4 @@
+import 'package:finalapppp/controller/bloc/mycart/myCart_bloc.dart';
 import 'package:finalapppp/controller/bloc/notification/notification_bloc.dart';
 import 'package:finalapppp/controller/bloc/offers/offers_bloc.dart';
 import 'package:finalapppp/controller/bloc/recommended/recommed_bloc.dart';
@@ -27,7 +28,8 @@ class AppRoutes {
 
     switch (setting.name) {
       case "/":
-        return MaterialPageRoute(builder: (context) => SplashScreen());
+        return MaterialPageRoute(
+            builder: (context) => const SplashScreen());
       case LoginIntro.routeName:
         return MaterialPageRoute(builder: (context) => const LoginIntro());
       case HomePage.routeName:
@@ -50,9 +52,13 @@ class AppRoutes {
       case VerifyOtpScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider.value(
-                  value: signInBloc,
-                  child: VerifyOtpScreen(res: setting.arguments as Map),
-                ));
+                      value: signInBloc,
+                      child: VerifyOtpScreen(res: setting.arguments as Map),
+                    ));
+      case MyCartScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                create: (context) => MyCartCardBloc(), child: const MyCartScreen()));
       case SpecialOffers.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
