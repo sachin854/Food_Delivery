@@ -7,4 +7,11 @@ class Images{
   static String googleColoredLogo = "assets/images/googleColored.svg";
   static String facebookColoredLogo = "assets/images/facebookColored.svg";
   static String burger = "assets/images/burger.png";
+  static String pizza = "assets/images/pizza.png";
+  static String noodles = "assets/images/noodles.png";
+  static String meat = "assets/images/meat.png";
+  static String vegetables = "assets/images/vegetables.png";
+  static String dessert = "assets/images/dessert.png";
+  static String drink = "assets/images/drink.png";
+  static String more = "assets/images/more.png";
 }

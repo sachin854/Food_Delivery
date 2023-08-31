@@ -30,6 +30,7 @@ class Dimensions {
   static const double dimen13 = 13.0;
   static const double dimen14 = 14.0;
   static const double dimen15 = 15.0;
+  static const double dimen16 = 16.0;
   static const double dimen17 = 17.0;
   static const double dimen19 = 19.0;
   static const double dimen20 = 20.0;
@@ -59,6 +60,7 @@ class Dimensions {
   static const double dimen60 = 60.0;
   static const double dimen65 = 65.0;
   static const double dimen61 = 61.0;
+  static const double dimen63 = 63.0;
   static const double dimen70 = 70.0;
   static const double dimen73 = 73.0;
   static const double dimen80 = 80.0;

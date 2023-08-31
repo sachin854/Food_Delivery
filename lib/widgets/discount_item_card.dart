@@ -1,9 +1,8 @@
-import 'package:finalapppp/resources/constants/color.dart';
-import 'package:finalapppp/widgets/component/text_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../resources/constants/color.dart';
 import '../resources/constants/dimensions.dart';
+import 'component/text_widget.dart';
 
 class DiscountCard extends StatefulWidget {
   String img;
@@ -12,6 +11,7 @@ class DiscountCard extends StatefulWidget {
   String ratings;
   String foodPrice;
   String deliveryCharges;
+  bool likeValue;
   DiscountCard(
       {required this.img,
       required this.foodTitle,
@@ -19,6 +19,7 @@ class DiscountCard extends StatefulWidget {
       required this.ratings,
       required this.foodPrice,
       required this.deliveryCharges,
+      required this.likeValue,
       super.key});
 
   @override
@@ -160,11 +161,11 @@ class _DiscountCardState extends State<DiscountCard> {
                     const VerticalDivider(
                       color: AppColor.greyColor,
                       thickness: 1,
-                      indent: 3,
-                      endIndent: 3,
+                      indent: 6,
+                      endIndent: 6,
                     ),
                     const Icon(
-                      Icons.bike_scooter,
+                      Icons.delivery_dining,
                       color: AppColor.greenColor,
                       size: 20,
                     ),
@@ -178,8 +179,9 @@ class _DiscountCardState extends State<DiscountCard> {
                       textoverflow: TextOverflow.ellipsis,
                     ),
                     const Spacer(),
-                    const Icon(
-                      Icons.favorite,
+                     Icon(
+                       widget.likeValue ?Icons.favorite:
+                       Icons.favorite_border_outlined,
                       color: AppColor.redColor,
                     )
                   ],

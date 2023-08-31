@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../resources/assets/images.dart';
@@ -18,6 +15,7 @@ class RestApiClientService extends RestApiBaseService {
   RestApiClientService._internal() : super();
 
   FirebaseAuth auth = FirebaseAuth.instance;
+
   Future<void> verifyPhone({
     required String phoneNumber,
     required Function(PhoneAuthCredential) verificationCompleted,
@@ -70,11 +68,24 @@ class RestApiClientService extends RestApiBaseService {
     return offersData;
   }
 
+  List<dynamic> getRecommendFilterData() {
+    List data = [
+      {"food_image": Images.burger,
+        "title": "All"},
+      {"food_image": Images.burger,"title": "Hamburger"},
+      {"food_image": Images.burger,"title": "Pizza"},
+      {"food_image": Images.burger,"title": "Icecreams"},
+      {"food_image": Images.burger,"title": "Drinks"}
+    ];
+    List recommendFilterData = data;
+    return recommendFilterData;
+  }
 
   List<dynamic> getRecommendMenuData() {
     List data = [
       {
         "food_filter":"All",
+        "food_image": Images.burger,
         "food_title": "Vegitarian Noodles",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
@@ -82,20 +93,25 @@ class RestApiClientService extends RestApiBaseService {
       },
       {
         "food_filter":"HamBurger",
+        "food_image": Images.burger,
         "food_title": "Pizza Hut- Lumintu",
         "distance": "800 m",
         "rating": "1.3 (2.3k)",
         "food_price": "\$1.60",
       },
+      
       {
         "food_filter":"Pizza",
+        "food_image": Images.burger,
         "food_title": "Mozerella Cheese Burger",
         "distance": "800 m",
         "rating": "4.9 (3.1k)",
         "food_price": "\$3.00",
       },
+      
       {
         "food_filter":"IceCream",
+      "food_image": Images.burger,
         "food_title": "Fruit salad -Kumpa",
         "distance": "800 m",
         "rating": "4.9 (2.3k)",
@@ -103,13 +119,15 @@ class RestApiClientService extends RestApiBaseService {
       },
       {
         "food_filter":"Drinks",
+      "food_image": Images.burger,
         "food_title": "Pizza Hut- Lumintu",
         "distance": "800 m",
         "rating": "4.9 (2.3k)",
         "food_price": "\$4.20",
       },
       {
-        "food_filter":"Dessert",
+      "food_filter":"Dessert",
+      "food_image": Images.burger,
         "food_title": "Pizza Hut- Lumintu",
         "distance": "800 m",
         "rating": "1.3 (2.3k)",
@@ -417,4 +435,107 @@ class RestApiClientService extends RestApiBaseService {
     List allCuisines = ['Bakery & Cake', 'Dessert', 'Pizza'];
     return allCuisines;
   }
+
+  ///Home Page
+  Future getUser() async {
+    User? user;
+    try {
+      user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        print("User Details hh: ${user.toString()}");
+        return user;
+      }
+    } catch (e) {
+      print('Error during userCheck(): $e');
+    }
+  }
+
+  List<dynamic> getUserDetails() {
+
+    List userData = [
+      {
+        "profile": "https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg",
+        "address":"Times Square",
+      },
+
+    ];
+    return userData;
+  }
+
+
+  List<dynamic> getDicountData() {
+
+    List discountArray = [
+      {
+        "food_image": Images.burger,
+        "food_title": "Shwetha Puri",
+        "distance": "1.5 km",
+        "ratings": "4.8 (1.2k)",
+        "food_price": "\$6.00",
+        "delivery_charges": "\$21.00",
+        "like":false,
+      },
+      {
+        "food_image": Images.burger,
+        "food_title": "Udupi Shwetha chorepat",
+        "distance": "2.0 km",
+        "ratings": "4.8 (1.2k)",
+        "food_price": "\$20.00",
+        "delivery_charges": "\$5.00",
+        "like":false,
+      },
+      {
+        "food_image": Images.burger,
+        "food_title": "Mixed Salad BambooooBambooooBamboooo",
+        "distance": "1.5 km",
+        "ratings": "4.8 (1.2k)",
+        "food_price": "\$60.00",
+        "delivery_charges": "\$20.00",
+        "like":false,
+      },
+    ];
+
+
+    return discountArray;
+  }
+
+  List<dynamic> getcategoryData() {
+
+    List category = [
+      {
+        "food_image":Images.burger,
+        "category_name":"Humbarg",
+      },
+      {
+        "food_image":Images.pizza,
+        "category_name":"Pizza",
+      },{
+        "food_image":Images.noodles,
+        "category_name":"Noodles",
+      },
+      {
+        "food_image":Images.meat,
+        "category_name":"Meat",
+      },
+      {
+        "food_image":Images.vegetables,
+        "category_name":"Vegetables",
+      },
+      {
+        "food_image":Images.dessert,
+        "category_name":"Dessert",
+      },
+      {
+        "food_image":Images.drink,
+        "category_name":"Drink",
+      },
+      {
+        "food_image":Images.more,
+        "category_name":"More",
+      },
+    ];
+    return category;
+  }
+
+
 }

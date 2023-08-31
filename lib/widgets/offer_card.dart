@@ -8,7 +8,7 @@ import '../resources/constants/dimensions.dart';
 class OfferCard extends StatefulWidget {
   final Color? color;
   final Widget? widget;
-  OfferCard({this.color,this.widget});
+  const OfferCard({super.key, this.color,this.widget});
 
   @override
   State<OfferCard> createState() => _OfferCardState();
@@ -18,7 +18,7 @@ class _OfferCardState extends State<OfferCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: Dimensions.dimen20,right: Dimensions.dimen5),
+      padding: const EdgeInsets.only(left: Dimensions.dimen20,right: Dimensions.dimen5,bottom: Dimensions.dimen10),
       decoration: BoxDecoration(
         color: AppColor.greenColor,
         borderRadius: BorderRadius.circular(32),
@@ -27,7 +27,7 @@ class _OfferCardState extends State<OfferCard> {
             color: AppColor.greenColor.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 10,
-            offset: Offset(1, 2),
+            offset: const Offset(1, 2),
           ),
         ]
       ),
@@ -35,7 +35,7 @@ class _OfferCardState extends State<OfferCard> {
         children: [
            Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              widget.widget ?? SizedBox(),
+              widget.widget ?? const SizedBox(),
             ],
           ),
           const Spacer(),

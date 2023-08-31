@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../services/rest_api/client.dart';
 import '../../../ui/recommended/filter.dart';
+import 'recommend_event.dart';
+import 'recommend_state.dart';
 
 class RecommendedBloc extends Bloc<RecommendedEvent, RecommendedState> {
   RecommendedBloc() : super(RecommendedInitialState()) {

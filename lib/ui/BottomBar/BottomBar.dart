@@ -9,9 +9,11 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar > {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Search Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Profile Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    Text('Home', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    Text('Orders', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    Text('Message', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    Text('E-wallet', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    Text('Profile', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
   ];
 
   void _onItemTapped(int index) {
@@ -28,6 +30,7 @@ class _BottomBarState extends State<BottomBar > {
       ),
       bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
+
             BottomNavigationBarItem(
               icon: Icon(Icons.home,size: 30,),
               label: 'Home',
@@ -49,6 +52,7 @@ class _BottomBarState extends State<BottomBar > {
               icon: Icon(Icons.person,size: 30,),
               label: 'Profile',
             ),
+
           ],
 
           currentIndex: _selectedIndex,

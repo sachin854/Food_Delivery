@@ -1,5 +1,4 @@
 import 'package:finalapppp/controller/bloc/recommended/recommend_state.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../controller/bloc/recommended/recommed_bloc.dart';

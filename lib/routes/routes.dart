@@ -1,5 +1,6 @@
 import 'package:finalapppp/controller/bloc/mycart/myCart_bloc.dart';
 import 'package:finalapppp/controller/bloc/item_filter/filter_bloc.dart';
+import 'package:finalapppp/controller/bloc/home/home_bloc.dart';
 import 'package:finalapppp/controller/bloc/notification/notification_bloc.dart';
 import 'package:finalapppp/controller/bloc/offers/offers_bloc.dart';
 import 'package:finalapppp/controller/bloc/recommended/recommed_bloc.dart';
@@ -17,6 +18,7 @@ import '../ui/authentication/verify_otp.dart';
 import '../ui/home_screen/home_page.dart';
 import '../ui/login_intro/login_intro.dart';
 
+import '../ui/more_category/more_category.dart';
 import '../ui/offers/special_offers.dart';
 import '../ui/recommended/filter.dart';
 
@@ -32,8 +34,18 @@ class AppRoutes {
             builder: (context) => const SplashScreen());
       case LoginIntro.routeName:
         return MaterialPageRoute(builder: (context) => const LoginIntro());
+
       case HomePage.routeName:
-        return MaterialPageRoute(builder: (context) => const HomePage());
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                create: (context) => HomeBloc(),
+                child: HomePage()));
+        case MoreCategory.routeName:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                create: (context) => HomeBloc(),
+                child: MoreCategory()));
+
       case SignUp.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(

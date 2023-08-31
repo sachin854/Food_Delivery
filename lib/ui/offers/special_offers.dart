@@ -1,12 +1,14 @@
-import 'package:finalapppp/controller/bloc/offers/offers_bloc.dart';
-import 'package:finalapppp/controller/bloc/offers/offers_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../controller/bloc/offers/offers_bloc.dart';
+import '../../controller/bloc/offers/offers_state.dart';
 import '../../resources/constants/color.dart';
-import '../../widgets/offerbadge.dart';
+import '../../widgets/offer_card.dart';
 
 class SpecialOffers extends StatefulWidget {
   static const routeName = "/SpecialOffers";
+
+  const SpecialOffers({super.key});
 
   @override
   State<SpecialOffers> createState() => _SpecialOffersState();
@@ -19,7 +21,7 @@ class _SpecialOffersState extends State<SpecialOffers> {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(left: 16, right: 16),
+          margin: const EdgeInsets.only(left: 16, right: 16),
           child: Column(children: [
             Row(
               children: [
@@ -27,8 +29,8 @@ class _SpecialOffersState extends State<SpecialOffers> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    icon: Icon(Icons.arrow_back)),
-                Text(
+                    icon: const Icon(Icons.arrow_back)),
+                const Text(
                   'Special Offers',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
@@ -41,7 +43,7 @@ class _SpecialOffersState extends State<SpecialOffers> {
                     return SizedBox(
                       height: MediaQuery.of(context).size.height,
                       child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: state.offerdata.length,
                           itemBuilder: (context, index) {
@@ -52,7 +54,7 @@ class _SpecialOffersState extends State<SpecialOffers> {
                               Colors.blue.shade300
                             ];
                             return Container(
-                              margin: EdgeInsets.only(top: 20),
+                              margin: const EdgeInsets.only(top: 20),
                               child: OfferCard(
                                 color: cardColors[index % cardColors.length],
                                 widget: Row(
@@ -64,21 +66,21 @@ class _SpecialOffersState extends State<SpecialOffers> {
                                         Text(
                                             state.offerdata[index]
                                                 ["percentage"]!,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 40,
                                                 color: AppColor.whiteColor,
                                                 fontWeight: FontWeight.bold)),
                                         Text(
                                             state.offerdata[index]
                                                 ["discountText"]!,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 15,
                                                 color: AppColor.whiteColor,
                                                 fontWeight: FontWeight.bold)),
                                         Text(
                                             state.offerdata[index]
                                                 ["validText"]!,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 15,
                                                 color: AppColor.whiteColor,
                                                 fontWeight: FontWeight.bold)),
@@ -91,7 +93,7 @@ class _SpecialOffersState extends State<SpecialOffers> {
                           }),
                     );
                   } else {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
