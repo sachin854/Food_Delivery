@@ -387,4 +387,34 @@ class RestApiClientService extends RestApiBaseService {
     List cartData = cardData;
     return cartData;
   }
+  List<dynamic> getRecentSearchData(){
+    List recentSearchData = [
+      'Italian Pizza',
+      'Burger King',
+      'Salad',
+      'Vegetarian',
+      'Dessert',
+      'Pancakes',
+    ];
+    return recentSearchData;
+
+  }
+  List<dynamic> getPopularCuisines(){
+    List popularCuisines = [
+      'Breakfast',
+      'Snack',
+      'Fast Food',
+      'Beverages',
+      'Chicken',
+      'Noodles',
+      'Rice',
+      'Seafood',
+      'International',
+    ];
+    return popularCuisines;
+  }
+  List<dynamic> getAllCuisines(){
+    List allCuisines = ['Bakery & Cake', 'Dessert', 'Pizza'];
+    return allCuisines;
+  }
 }
