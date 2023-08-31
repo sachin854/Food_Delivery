@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../resources/assets/images.dart';
 import '../../resources/constants/color.dart';
+import '../../resources/constants/dimensions.dart';
 import '../../resources/constants/font_weight.dart';
 import '../../resources/constants/padding.dart';
 import '../../widgets/component/text_widget.dart';
@@ -32,7 +33,6 @@ class _FilterScreenState extends State<FilterScreen> {
       _isFocused = true;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +70,12 @@ class _FilterScreenState extends State<FilterScreen> {
                               itemCount: state.Filteritemdata.length,
                               itemBuilder: (context, index) {
                                 bool isFocused = _selectedButtonIndex == index;
-                                bool isSortButton =
-                                    state.Filteritemdata[index]["food_filter"] == "Sort";
-                                bool isFilterButton =
-                                    state.Filteritemdata[index]["food_filter"] == "Filter";
+                                bool isSortButton = state.Filteritemdata[index]
+                                        ["food_filter"] ==
+                                    "Sort";
+                                bool isFilterButton = state
+                                        .Filteritemdata[index]["food_filter"] ==
+                                    "Filter";
                                 return Container(
                                   decoration: BoxDecoration(
                                     color: isFocused
@@ -125,7 +127,8 @@ class _FilterScreenState extends State<FilterScreen> {
                                             padding:
                                                 const EdgeInsets.only(left: 5),
                                             child: TextWidget(
-                                              title: state.Filteritemdata[index]["food_filter"],
+                                              title: state.Filteritemdata[index]
+                                                  ["food_filter"],
                                               titleColor: isFocused
                                                   ? Colors.white
                                                   : Colors.green,
@@ -158,25 +161,48 @@ class _FilterScreenState extends State<FilterScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Container(
-                                          padding: EdgeInsets.all(
-                                              Paddings.padding15),
-                                          height: 120,
-                                          width: 120,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            border: Border.all(
-                                                color: AppColor.whiteColor,
-                                                width: 1.5),
-                                          ),
-                                          child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              child: Image.asset(
-                                                Images.burger,
-                                                fit: BoxFit.cover,
-                                              )),
+                                        Stack(
+                                          children: [
+                                            Card(
+                                              color: AppColor.whiteColor,
+                                              elevation: 0,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(
+                                                    20), // Adjust the radius as needed
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
+                                                child: Image.asset(
+                                                  Images.burger,
+                                                  width: Dimensions.dimen100,
+                                                  height: Dimensions.dimen90,
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              top: 10,
+                                              left: 20,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: AppColor.greenColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                padding: const EdgeInsets.only(
+                                                    top: Dimensions.dimen5,
+                                                    bottom: Dimensions.dimen5,
+                                                    left: Dimensions.dimen8,
+                                                    right: Dimensions.dimen8),
+                                                child: const TextWidget(
+                                                    title: "Promo",
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.bold,
+                                                    titleColor:
+                                                        AppColor.whiteColor),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                         Expanded(
                                           child: Column(
