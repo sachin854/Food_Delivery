@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-import '../../resources/assets/images.dart';
 import '../../resources/constants/color.dart';
 import '../../resources/constants/dimensions.dart';
 import 'base.dart';
@@ -171,6 +169,45 @@ class RestApiClientService extends RestApiBaseService {
     ];
     List filterdata=data;
     return filterdata;
+  }
+
+  List<dynamic> getHomeItemData(){
+    List data=[
+      {
+        "images":
+        "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "your_title": "1x mixed vegitable salad",
+        "menu_title": "Special bound salad",
+        "drink_title": "1x Fresh Avacado juice",
+        "price": "\$ 60.00"
+      },
+      {
+        "images":
+        "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "your_title": "1x mixed vegitable salad",
+        "menu_title": "Special bound salad",
+        "drink_title": "1x Fresh Avacado juice",
+        "price": "\$ 60.00"
+      },
+      {
+        "images":
+        "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png",
+        "your_title": "1x mixed vegitable salad",
+        "menu_title": "Special bound salad",
+        "drink_title": "1x Fresh Avacado juice",
+        "price": "\$ 60.00"
+      },
+      {
+        "images":
+        "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "your_title": "1x mixed vegitable salad",
+        "menu_title": "Special bound salad",
+        "drink_title": "1x Fresh Avacado juice",
+        "price": "\$ 60.00"
+      },
+    ];
+    List gethomeitem=data;
+    return gethomeitem;
   }
 
   Future signUpPressed(

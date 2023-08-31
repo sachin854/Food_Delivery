@@ -21,7 +21,6 @@ class RecommendedBloc extends Bloc<RecommendedEvent, RecommendedState> {
 
   void filtertap(RecomendFilterEvent event, Emitter<RecommendedState> emit) {
     final currentState = state;
-    
     if (currentState is RecommendedLoadingState) {
         var selectedFilter = currentState.recommenddata[event.item];
         if (selectedFilter == "Hamburger") {
@@ -30,7 +29,6 @@ class RecommendedBloc extends Bloc<RecommendedEvent, RecommendedState> {
         }
       emit(RecommendedFilterState());
     }
-
 // void filtertap(
     //     RecomendFilterEvent event, Emitter<RecommendedState> emit) async {
     //   final currentState = state;

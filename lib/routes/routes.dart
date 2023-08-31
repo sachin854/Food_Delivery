@@ -11,10 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../ui/splash/splashScreen.dart';
 import '../controller/bloc/authentication/signIn/signin_bloc.dart';
+import '../controller/bloc/home_item/tapitem_bloc.dart';
 import '../controller/bloc/signup/signup_bloc.dart';
 import '../services/rest_api/client.dart';
 import '../ui/authentication/phone_auth.dart';
 import '../ui/authentication/verify_otp.dart';
+import '../ui/home_screen/addbasket/addbasket_screen.dart';
 import '../ui/home_screen/home_page.dart';
 import '../ui/login_intro/login_intro.dart';
 
@@ -87,6 +89,11 @@ class AppRoutes {
             builder: (context) => BlocProvider(
                 create: (context) => FilterBloc(),
                 child: FilterScreen()));
+        case HomeItemScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                create: (context) => ItemTapBloc(),
+                child: HomeItemScreen()));
       default:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
     }
