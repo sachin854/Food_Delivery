@@ -19,6 +19,7 @@ import '../ui/home_screen/home_page.dart';
 import '../ui/login_intro/login_intro.dart';
 
 import '../ui/more_category/more_category.dart';
+import '../ui/mycart/my_cart.dart';
 import '../ui/offers/special_offers.dart';
 import '../ui/recommended/filter.dart';
 
