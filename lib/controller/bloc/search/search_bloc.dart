@@ -6,28 +6,44 @@ import '../../../services/rest_api/client.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc() : super(SearchInitialState()) {
-    getRecentSearch();
-    getPopularCuisines();
-    getAllCuisines();
+    getData();
+    on<SearchTextChangedEvent>((event, emit) => getFoodData());
+   // getFoodData();
+    // getPopularCuisines();
+    // getAllCuisines();
   }
 
-  getRecentSearch() async {
-    List result = await RestApiClientService.shared.getRecentSearchData();
-    print("ssssssss");
+  Future getData() async {
+    List result =  RestApiClientService.shared.getRecentSearchData();
+    List popular =  RestApiClientService.shared.getPopularCuisines();
+    List allCuisine =  RestApiClientService.shared.getAllCuisines();
     print(result);
-    emit(SearchRecentSearchState(result));
-    return result;
+    emit(SearchLoadedState(recentSearchData: result, popularCuisineData: popular,allCuisineData:  allCuisine));
+
+    // emit(SearchRecentSearchState(result));
+    // emit(SearchPopularCuisineState(popular));
+    // emit(SearchAllCuisinesState(allCuisine));
+
   }
 
   getPopularCuisines() async {
     List result = await RestApiClientService.shared.getPopularCuisines();
     emit(SearchPopularCuisineState(result));
-    return result;
+    print("SearchPopularCuisineState");
   }
 
   getAllCuisines() async {
-    List result = await RestApiClientService.shared.getPopularCuisines();
+    List result = await RestApiClientService.shared.getAllCuisines();
     emit(SearchAllCuisinesState(result));
-    return result;
   }
+
+   getFoodData() async{
+    List foodData=await RestApiClientService.shared.getCartData();
+    List filtersData=await RestApiClientService.shared.getFilterdata();
+    List searchData=await RestApiClientService.shared.searchData;
+    print("sssssssssss");
+    print(state);
+    print(foodData);
+    emit(SearchTextChangedState(foodData,filtersData,searchData));
+   }
 }
