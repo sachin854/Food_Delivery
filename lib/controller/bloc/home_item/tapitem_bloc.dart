@@ -7,8 +7,8 @@ import '../../../services/rest_api/client.dart';
 
 class ItemTapBloc extends Bloc<TapItemEvent, ItemTapState> {
   BuildContext? context;
-
-  ItemTapBloc() : super(ItemTapInitialState()) {
+int? selectedItem;
+  ItemTapBloc(this.selectedItem) : super(ItemTapInitialState()) {
     on<MenuitemEvent>(_menuItem);
     HomeMenuData();
   }

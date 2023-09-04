@@ -1,10 +1,8 @@
 import 'package:finalapppp/controller/bloc/additem/additem_bloc.dart';
-import 'package:finalapppp/controller/bloc/additem/additem_event.dart';
 import 'package:finalapppp/widgets/component/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../controller/bloc/home_item/tapitem_bloc.dart';
-import '../../../controller/bloc/home_item/tapitem_event.dart';
 import '../../../controller/bloc/home_item/tapitem_state.dart';
 import '../../../resources/constants/color.dart';
 import '../../../resources/constants/dimensions.dart';
@@ -22,21 +20,11 @@ class HomeItemScreen extends StatefulWidget {
 }
 
 class _HomeItemScreenState extends State<HomeItemScreen> {
-  late ItemTapBloc _itemTapBloc;
-
   int _selectedCardIndex = -1;
   int _selectedMenuIndex = -1;
   int _selectedDrinkIndex = -1;
 
   double totalPrice = 0.0;
-  int totalItem = 0;
-
-  @override
-  void initState() {
-    _itemTapBloc = BlocProvider.of<ItemTapBloc>(context);
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +46,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.arrow_back,
                           color: Colors.white,
                         )),
@@ -68,9 +56,9 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                     right: 60,
                     child: GestureDetector(
                         onTap: () {
-                          // context.read<ItemTapBloc>().likeItem();
+// context.read<ItemTapBloc>().likeItem();
                         },
-                        child: const Icon(
+                        child: Icon(
                           Icons.favorite_outline,
                           color: Colors.white,
                         )),
@@ -80,17 +68,16 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                     right: 20,
                     child: GestureDetector(
                         onTap: () {
-                          // toggleFavorite(
-                          //     index);
+// toggleFavorite(
+// index);
                         },
-                        child: const Icon(
+                        child: Icon(
                           Icons.send,
                           color: Colors.white,
                         )),
                   )
                 ],
               ),
-
               Container(
                 margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Column(
@@ -99,36 +86,31 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                     SingleChildScrollView(
                         child: BlocConsumer<ItemTapBloc, ItemTapState>(
                       listener: (context, state) {
-                        // if (state is ItemTapLoadingtate) {
-                        //   if (state.index != null) {
-                        //     if (state.homeitemdata[state.index!].isLiked!) {
-                        //       ScaffoldMessenger.of(context).showSnackBar(
-                        //         SnackBar(content: Text('Liked')),
-                        //       );
-                        //     } else {
-                        //       ScaffoldMessenger.of(context)
-                        //           .showSnackBar(SnackBar(
-                        //         content: Text('Unliked'),
-                        //         backgroundColor: Colors.amber,
-                        //       ));
-                        //     }
-                        //   }
-                        // }
-
-                        // if(state is ItemCardTappedState){
-                        //   _selectedCardIndex = state.selectedIndex!;
-                        // }
+// if (state is ItemTapLoadingtate) {
+// if (state.index != null) {
+// if (state.homeitemdata[state.index!].isLiked!) {
+// ScaffoldMessenger.of(context).showSnackBar(
+// SnackBar(content: Text('Liked')),
+// );
+// } else {
+// ScaffoldMessenger.of(context)
+// .showSnackBar(SnackBar(
+// content: Text('Unliked'),
+// backgroundColor: Colors.amber,
+// ));
+// }
+// }
+// }
                       },
                       builder: (context, state) {
                         if (state is ItemTapLoadingtate) {
-                          //totalPrice = state.homeitemdata[_selectedCardIndex]?["price"] as double? ?? 0.0;
                           return BlocProvider(
                             create: (context) => AddItemBloc(
                                 state.homeitemdata[widget.index!].index),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Row(
+                                Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
@@ -143,15 +125,15 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     )
                                   ],
                                 ),
-                                const Divider(
+                                Divider(
                                   height: 30,
                                 ),
-                                const Row(
+                                Row(
                                   children: [
                                     Icon(Icons.star,
                                         color: Colors.orange, size: 20),
                                     Padding(
-                                      padding: EdgeInsets.only(
+                                      padding: const EdgeInsets.only(
                                           left: 7, right: 7),
                                       child: TextWidget(
                                         title: "4.8",
@@ -173,15 +155,15 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     )
                                   ],
                                 ),
-                                const Divider(
+                                Divider(
                                   height: 30,
                                 ),
-                                const Row(
+                                Row(
                                   children: [
                                     Icon(Icons.local_pizza,
                                         color: Colors.green, size: 20),
                                     Padding(
-                                      padding: EdgeInsets.only(left: 5),
+                                      padding: const EdgeInsets.only(left: 5),
                                       child: TextWidget(
                                         title: "2.4 km",
                                         titleColor: AppColor.blackColor,
@@ -231,15 +213,15 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     ],
                                   ),
                                 ),
-                                const Divider(
+                                Divider(
                                   height: 20,
                                 ),
-                                const Row(
+                                Row(
                                   children: [
                                     Icon(Icons.local_offer,
                                         color: Colors.green, size: 20),
                                     Padding(
-                                      padding: EdgeInsets.only(left: 7),
+                                      padding: const EdgeInsets.only(left: 7),
                                       child: TextWidget(
                                         title: "Offers are available",
                                         titleColor: AppColor.blackColor,
@@ -274,15 +256,13 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                       final bestSellerIndices = [0, 2];
                                       final isBestSeller =
                                           bestSellerIndices.contains(index);
+                                      bool isCardTapped =
+                                          _selectedCardIndex == index;
                                       return GestureDetector(
                                         onTap: () {
-                                          _itemTapBloc
-                                              .add(MenuitemEvent(index));
-                                          // setState(() {
-                                          //   _selectedCardIndex = index;
-                                          //   totalPrice = state.homeitemdata[index]["price"] as double? ?? 0.0;
-                                          //
-                                          // });
+                                          setState(() {
+                                            _selectedCardIndex = index;
+                                          });
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -290,10 +270,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                   BorderRadius.circular(32),
                                               border: Border.all(
                                                   width: 2,
-                                                  color: state.homeitemdata[
-                                                                  index]
-                                                              ['isTapped'] ==
-                                                          true
+                                                  color: isCardTapped
                                                       ? Colors.green
                                                           .withOpacity(0.7)
                                                       : Colors.white
@@ -334,6 +311,8 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                   GestureDetector(
                                                     onTap: () {
                                                       {
+//context.read<ItemTapBloc>().add(MenuitemEvent(index));
+
                                                         print('iteeemmm...' +
                                                             index.toString());
                                                         Map<String, dynamic>
@@ -345,7 +324,8 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                             AddItemScreen
                                                                 .routeName,
                                                             arguments: item);
-                                                      };
+                                                      }
+                                                      ;
                                                     },
                                                     child: Stack(
                                                       children: [
@@ -380,7 +360,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                         ),
                                                         if (isBestSeller)
                                                           Positioned(
-                                                            top: 15,
+                                                            top: 20,
                                                             left: 10,
                                                             child: Container(
                                                               decoration:
@@ -418,52 +398,48 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 10, left: 10),
-                                                    child: TextWidget(
-                                                      title: state.homeitemdata[
-                                                          index]["your_title"],
-                                                      titleColor:
-                                                          state.homeitemdata[index]['isTapped'] == true
-                                                              ? AppColor
-                                                                  .greenColor
-                                                              : AppColor
-                                                                  .blackColor,
-                                                      maxLine: 2,
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      textoverflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
+                                                  const SizedBox(
+                                                    height: 10,
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 10, left: 10),
-                                                    child: IntrinsicHeight(
-                                                      child: Row(
-                                                        children: [
-                                                          TextWidget(
-                                                            title: state
-                                                                .homeitemdata[
-                                                                    index]
-                                                                    ["price"]
-                                                                .toString(),
-                                                            maxLine: 1,
-                                                            titleColor: AppColor
-                                                                .greenColor,
-                                                            textoverflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            fontSize: 15,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ],
-                                                      ),
+                                                  TextWidget(
+                                                    title: state
+                                                            .homeitemdata[index]
+                                                        ["your_title"],
+                                                    titleColor: isCardTapped
+                                                        ? AppColor.greenColor
+                                                        : AppColor.blackColor,
+                                                    maxLine: 2,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    textoverflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  IntrinsicHeight(
+                                                    child: Row(
+                                                      children: [
+                                                        TextWidget(
+                                                          title: state
+                                                              .homeitemdata[
+                                                                  index]
+                                                                  ["price"]
+                                                              .toString(),
+                                                          maxLine: 1,
+                                                          titleColor: AppColor
+                                                              .greenColor,
+                                                          textoverflow:
+                                                              TextOverflow
+                                                                  .ellipsis,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ],
@@ -475,8 +451,6 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     },
                                   ),
                                 ),
-
-                                ///Menu
                                 Padding(
                                   padding: EdgeInsets.only(top: 20, bottom: 10),
                                   child: TextWidget(
@@ -486,7 +460,6 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-
                                 SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height / 2,
@@ -497,24 +470,35 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                       final bestNewIndices = [0, 3];
                                       final isNewSeller =
                                           bestNewIndices.contains(index);
+                                      bool isCardTapped =
+                                          _selectedMenuIndex == index;
+                                      double price = state.homeitemdata[index]
+                                              ["price"] as double? ??
+                                          0.0;
+                                      if (isCardTapped) {
+                                        totalPrice =
+                                            0.0; // Reset the total price
+                                        for (int i = 0;
+                                            i < state.homeitemdata.length;
+                                            i++) {
+                                          if (_selectedMenuIndex == i) {
+                                            totalPrice += state.homeitemdata[i]
+                                                    ["price"] as double? ??
+                                                0.0;
+                                          }
+                                        }
+                                      }
                                       return GestureDetector(
                                         onTap: () {
-                                          _itemTapBloc
-                                              .add(MenuitemEvent(index));
-                                          // setState(() {
-                                          //   _selectedMenuIndex = index;
-                                          //   totalPrice = state.homeitemdata[index]["price"] as double? ?? 0.0;
-                                          //
-                                          // });
+                                          setState(() {
+                                            _selectedMenuIndex = index;
+                                          });
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                   width: 2,
-                                                  color: state.homeitemdata[
-                                                                  index]
-                                                              ['isTapped'] ==
-                                                          true
+                                                  color: isCardTapped
                                                       ? Colors.green
                                                           .withOpacity(0.7)
                                                       : Colors.grey
@@ -541,47 +525,30 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   children: [
-                                                    GestureDetector(
-                                                      onTap:(){
-                                                        {
-                                                          print('iteeemmm...' +
-                                                              index.toString());
-                                                          Map<String, dynamic>
-                                                          item = {
-                                                            "index": index
-                                                          };
-                                                          Navigator.pushNamed(
-                                                              context,
-                                                              AddItemScreen
-                                                                  .routeName,
-                                                              arguments: item);
-                                                        };
-                                                      },
-                                                      child: Container(
-                                                        padding: EdgeInsets.all(
-                                                            Paddings.padding15),
-                                                        height: 120,
-                                                        width: 120,
-                                                        decoration: BoxDecoration(
+                                                    Container(
+                                                      padding: EdgeInsets.all(
+                                                          Paddings.padding15),
+                                                      height: 120,
+                                                      width: 120,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
+                                                        border: Border.all(
+                                                            color: AppColor
+                                                                .whiteColor,
+                                                            width: 1.5),
+                                                      ),
+                                                      child: ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(20),
-                                                          border: Border.all(
-                                                              color: AppColor
-                                                                  .whiteColor,
-                                                              width: 1.5),
-                                                        ),
-                                                        child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(20),
-                                                            child: Image.network(
-                                                              state.homeitemdata[
-                                                                      index]
-                                                                  ["images"],
-                                                              fit: BoxFit.cover,
-                                                            )),
-                                                      ),
+                                                          child: Image.network(
+                                                            state.homeitemdata[
+                                                                    index]
+                                                                ["images"],
+                                                            fit: BoxFit.cover,
+                                                          )),
                                                     ),
                                                     Expanded(
                                                       child: Column(
@@ -633,11 +600,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                                         index][
                                                                     "menu_title"] ??
                                                                 "",
-                                                            titleColor: state.homeitemdata[
-                                                                            index]
-                                                                        [
-                                                                        'isTapped'] ==
-                                                                    true
+                                                            titleColor: isCardTapped
                                                                 ? AppColor
                                                                     .greenColor
                                                                 : AppColor
@@ -647,12 +610,12 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                                     .font18,
                                                             fontWeight:
                                                                 FontWeight.w700,
-                                                            //height: 4,
+//height: 4,
                                                             textoverflow:
                                                                 TextOverflow
                                                                     .ellipsis,
                                                           ),
-                                                          const SizedBox(
+                                                          SizedBox(
                                                             height: 15,
                                                           ),
                                                           TextWidget(
@@ -685,8 +648,6 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     },
                                   ),
                                 ),
-
-                                ///Drinks
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       top: 20, bottom: 10),
@@ -707,28 +668,36 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                       final bestPromoIndices = [0, 2];
                                       final isPromoSeller =
                                           bestPromoIndices.contains(index);
-                                      // double price = state.homeitemdata[index]
-                                      //         ["price"] as double? ??
-                                      //     0.0;
+                                      bool isCardTapped =
+                                          _selectedDrinkIndex == index;
+                                      double price = state.homeitemdata[index]
+                                              ["price"] as double? ??
+                                          0.0;
+                                      if (isCardTapped) {
+                                        totalPrice =
+                                            0.0; // Reset the total price
+                                        for (int i = 0;
+                                            i < state.homeitemdata.length;
+                                            i++) {
+                                          if (_selectedDrinkIndex == i) {
+                                            totalPrice += state.homeitemdata[i]
+                                                    ["price"] as double? ??
+                                                0.0;
+                                          }
+                                        }
+                                      }
                                       return GestureDetector(
                                         onTap: () {
-                                          _itemTapBloc
-                                              .add(MenuitemEvent(index));
-                                          // setState(() {
-                                          //   _selectedDrinkIndex = index;
-                                          //   totalPrice = state.homeitemdata[index]["price"] as double? ?? 0.0;
-                                          //
-                                          // });
+                                          setState(() {
+                                            _selectedDrinkIndex = index;
+                                          });
                                         },
                                         child: Container(
-                                          margin: const EdgeInsets.only(top: 15),
+                                          margin: EdgeInsets.only(top: 15),
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                   width: 2,
-                                                  color: state.homeitemdata[
-                                                                  index]
-                                                              ['isTapped'] ==
-                                                          true
+                                                  color: isCardTapped
                                                       ? Colors.green
                                                           .withOpacity(0.7)
                                                       : Colors.grey
@@ -756,7 +725,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                       MainAxisAlignment.start,
                                                   children: [
                                                     Container(
-                                                      padding: const EdgeInsets.all(
+                                                      padding: EdgeInsets.all(
                                                           Paddings.padding15),
                                                       height: 120,
                                                       width: 120,
@@ -829,11 +798,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                                         index][
                                                                     "drink_title"] ??
                                                                 "",
-                                                            titleColor: state.homeitemdata[
-                                                                            index]
-                                                                        [
-                                                                        'isTapped'] ==
-                                                                    true
+                                                            titleColor: isCardTapped
                                                                 ? AppColor
                                                                     .greenColor
                                                                 : AppColor
@@ -843,12 +808,12 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                                     .font18,
                                                             fontWeight:
                                                                 FontWeight.w700,
-                                                            //height: 4,
+//height: 4,
                                                             textoverflow:
                                                                 TextOverflow
                                                                     .ellipsis,
                                                           ),
-                                                          const SizedBox(
+                                                          SizedBox(
                                                             height: 15,
                                                           ),
                                                           TextWidget(
@@ -881,9 +846,8 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     },
                                   ),
                                 ),
-
                                 Container(
-                                  margin: const EdgeInsets.only(top: 20, bottom: 30),
+                                  margin: EdgeInsets.only(top: 20, bottom: 30),
                                   width: MediaQuery.of(context).size.width,
                                   height: 50,
                                   child: ElevatedButton(
@@ -899,11 +863,13 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                         children: [
                                           TextWidget(
                                             title:
-                                                'Basket . 3 items . \$${totalPrice}',
+                                                'Total Price: \$${totalPrice.toStringAsFixed(2)}',
                                             height: 2,
                                             fontSize: 16,
                                             titleColor: Colors.white,
                                           ),
+
+// 'Basket . 3 items . \$24.00',
                                         ],
                                       )),
                                 ),
@@ -911,7 +877,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                             ),
                           );
                         } else {
-                          return const CircularProgressIndicator();
+                          return CircularProgressIndicator();
                         }
                       },
                     )),

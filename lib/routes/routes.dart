@@ -128,7 +128,7 @@ class AppRoutes {
       case HomeItemScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => ItemTapBloc(), child: HomeItemScreen(index: setting.arguments as int)));
+                create: (context) => ItemTapBloc(setting.arguments as int), child: HomeItemScreen()));
       case AddItemScreen.routeName:
         Map<String, dynamic> arguments =
             setting.arguments as Map<String, dynamic>;
