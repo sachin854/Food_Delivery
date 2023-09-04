@@ -25,8 +25,8 @@ class _DiscountCardItemState extends State<DiscountCardItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:EdgeInsets.only(top: Dimensions.dimen15,bottom: Dimensions.dimen15),
-      height: Dimensions.dimen70,
+      padding:const EdgeInsets.only(top: Dimensions.dimen15,bottom: Dimensions.dimen15),
+      height: Dimensions.dimen90,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(Dimensions.dimen16)),
         color: AppColor.whiteColor,
@@ -45,13 +45,14 @@ class _DiscountCardItemState extends State<DiscountCardItem> {
             const SizedBox(
               width: Dimensions.dimen10,
             ),
-            Column(
+            Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 TextWidget(
                   title: widget.discountTitle,
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),
+                const SizedBox(height: Dimensions.dimen10,),
                 TextWidget(
                   title: widget.discountDetails,
                   fontSize: 15,

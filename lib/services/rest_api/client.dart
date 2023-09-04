@@ -54,6 +54,11 @@ class RestApiClientService extends RestApiBaseService {
   ];
   List data = [
     {
+      "food_title": "Burger1",
+      "delivery_charges": "\$10.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
       "images":
           "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
       "your_title": "1x mixed vegitable salad",
@@ -66,8 +71,12 @@ class RestApiClientService extends RestApiBaseService {
 
     },
     {
-      "images":
-          "https://www.acouplecooks.com/wp-content/uploads/2019/05/Chopped-Salad-001_1.jpg",
+      "food_title": "Burger2",
+      "delivery_charges": "\$11.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
+      "images":"https://www.acouplecooks.com/wp-content/uploads/2019/05/Chopped-Salad-001_1.jpg",
       "your_title": "Hamburger",
       "menu_title": "HHSpecial bound salad",
       "drink_title": "1x Fresh Avacado juice",
@@ -77,6 +86,11 @@ class RestApiClientService extends RestApiBaseService {
           "This burger is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
     {
+      "food_title": "Burger 3",
+      "delivery_charges": "\$51.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
       "images":
           "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png",
       "your_title": "1x mixed vegitable salad",
@@ -88,6 +102,11 @@ class RestApiClientService extends RestApiBaseService {
           "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
     {
+      "food_title": "Burger 4",
+      "delivery_charges": "\$51.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
       "images":
           "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
       "your_title": "1x mixed vegitable salad",
@@ -98,11 +117,26 @@ class RestApiClientService extends RestApiBaseService {
       "description":
           "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
+    {
+      "food_title": "Pizza ",
+      "delivery_charges": "\$51.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
+      "images":
+      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "JJSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 10.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+
   ];
   List<dynamic> getHomeItemData() {
-    return data;
+    return discountArray;
   }
-
   List payment = [
     {
       "icon": const Icon(
@@ -155,8 +189,9 @@ class RestApiClientService extends RestApiBaseService {
       "details": "only valid for new user",
     },{
       "icon":const Icon(
-      Icons.paypal,color:AppColor.secondaryColor,
-),
+        Icons.wallet,
+        color: AppColor.greenColor,
+      ),
       "title": "Discount 20% OFF",
       "details": "20% discount on all menus",
     },{
@@ -723,39 +758,39 @@ class RestApiClientService extends RestApiBaseService {
     return userData;
   }
 
-  List<dynamic> getDicountData() {
-    List discountArray = [
-      {
-        "food_image": Images.burger,
-        "food_title": "Shwetha Puri",
-        "distance": "1.5 km",
-        "ratings": "4.8 (1.2k)",
-        "food_price": "\$6.00",
-        "delivery_charges": "\$21.00",
-        "like": false,
-      },
-      {
-        "food_image": Images.burger,
-        "food_title": "Udupi Shwetha chorepat",
-        "distance": "2.0 km",
-        "ratings": "4.8 (1.2k)",
-        "food_price": "\$20.00",
-        "delivery_charges": "\$5.00",
-        "like": false,
-      },
-      {
-        "food_image": Images.burger,
-        "food_title": "Mixed Salad BambooooBambooooBamboooo",
-        "distance": "1.5 km",
-        "ratings": "4.8 (1.2k)",
-        "food_price": "\$60.00",
-        "delivery_charges": "\$20.00",
-        "like": false,
-      },
-    ];
-
-    return discountArray;
-  }
+  // List<dynamic> getDicountData() {
+  //   List discountArray = [
+  //     {
+  //       "food_image": Images.burger,
+  //       "food_title": "Shwetha Puri",
+  //       "distance": "1.5 km",
+  //       "ratings": "4.8 (1.2k)",
+  //       "food_price": "\$6.00",
+  //       "delivery_charges": "\$21.00",
+  //       "like": false,
+  //     },
+  //     {
+  //       "food_image": Images.burger,
+  //       "food_title": "Udupi Shwetha chorepat",
+  //       "distance": "2.0 km",
+  //       "ratings": "4.8 (1.2k)",
+  //       "food_price": "\$20.00",
+  //       "delivery_charges": "\$5.00",
+  //       "like": false,
+  //     },
+  //     {
+  //       "food_image": Images.burger,
+  //       "food_title": "Mixed Salad BambooooBambooooBamboooo",
+  //       "distance": "1.5 km",
+  //       "ratings": "4.8 (1.2k)",
+  //       "food_price": "\$60.00",
+  //       "delivery_charges": "\$20.00",
+  //       "like": false,
+  //     },
+  //   ];
+  //
+  //   return discountArray;
+  // }
 
   List<dynamic> getcategoryData() {
     List category = [
@@ -795,13 +830,30 @@ class RestApiClientService extends RestApiBaseService {
     return category;
   }
 
-  List<dynamic> getFilteredData(String selectedCategoryName) {
+
+  List<dynamic> sortOptions(){
+    List<Map<String, dynamic>> sortOptions=[
+      {
+        "food_filter": "Filter",
+      },{
+        "food_filter": "Sort",
+      },{
+
+    "food_filter": "Promo",
+      },{
+        "food_filter": "Selft Pick",
+      },
+    ];
+    return sortOptions;
+  }
+
+  List<dynamic> getFilteredData(String selectedCategoryName,) {
     List<Map<String, dynamic>> categoryData = [
       {
         "id": "Humbarg",
         "food_filter": "Filter",
         "food_image": Images.burger,
-        "food_title": "Vegitarian Noodles",
+        "food_title": "Humbarg",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
         "food_price": "\$8.00",
@@ -811,7 +863,7 @@ class RestApiClientService extends RestApiBaseService {
         "id": "Humbarg",
         "food_filter": "Sort",
         "food_image": Images.burger,
-        "food_title": "Vegitarian Noodles",
+        "food_title": "Humbarg item",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
         "food_price": "\$8.00",
@@ -821,7 +873,7 @@ class RestApiClientService extends RestApiBaseService {
         "id": "Humbarg",
         "food_filter": "Promo",
         "food_image": Images.burger,
-        "food_title": "Vegitarian Noodles",
+        "food_title": "Humbarg",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
         "food_price": "\$8.00",
@@ -831,7 +883,7 @@ class RestApiClientService extends RestApiBaseService {
         "id": "Humbarg",
         "food_filter": "Self Pick",
         "food_image": Images.burger,
-        "food_title": "Vegitarian Noodles",
+        "food_title": "Humbarg ",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
         "food_price": "\$8.00",
@@ -841,7 +893,7 @@ class RestApiClientService extends RestApiBaseService {
         "id": "Pizza",
         "food_filter": "Self Pick",
         "food_image": Images.burger,
-        "food_title": "Vegitarian Noodles",
+        "food_title": "Pizza a",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
         "food_price": "\$8.00",
@@ -850,7 +902,16 @@ class RestApiClientService extends RestApiBaseService {
       {
         "id": "Pizza",
         "food_image": Images.burger,
-        "food_title": "Vegitarian Noodles",
+        "food_title": "Pizza 2",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Pizza",
+      },
+      {
+        "id": "Pizza",
+        "food_image": Images.burger,
+        "food_title": "Pizza 3",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
         "food_price": "\$8.00",
@@ -859,7 +920,16 @@ class RestApiClientService extends RestApiBaseService {
       {
         "id": "Noodles",
         "food_image": Images.burger,
-        "food_title": "Vegitarian Noodles",
+        "food_title": "Noodles 1",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Pizza",
+      },
+      {
+        "id": "Noodles",
+        "food_image": Images.burger,
+        "food_title": "Noodles 2",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
         "food_price": "\$8.00",
@@ -868,7 +938,7 @@ class RestApiClientService extends RestApiBaseService {
       {
         "id": "Meat",
         "food_image": Images.burger,
-        "food_title": "Vegitarian Noodles",
+        "food_title": "Meat 1",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
         "food_price": "\$8.00",
@@ -877,7 +947,7 @@ class RestApiClientService extends RestApiBaseService {
       {
         "id": "Meat",
         "food_image": Images.burger,
-        "food_title": "Vegitarian Noodles",
+        "food_title": "Meat2",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
         "food_price": "\$8.00",

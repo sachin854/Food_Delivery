@@ -58,7 +58,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_back,
                           color: Colors.white,
                         )),
@@ -70,7 +70,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                         onTap: () {
                           // context.read<ItemTapBloc>().likeItem();
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.favorite_outline,
                           color: Colors.white,
                         )),
@@ -83,13 +83,14 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                           // toggleFavorite(
                           //     index);
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.send,
                           color: Colors.white,
                         )),
                   )
                 ],
               ),
+
               Container(
                 margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Column(
@@ -142,7 +143,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     )
                                   ],
                                 ),
-                                Divider(
+                                const Divider(
                                   height: 30,
                                 ),
                                 const Row(
@@ -172,15 +173,15 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     )
                                   ],
                                 ),
-                                Divider(
+                                const Divider(
                                   height: 30,
                                 ),
-                                Row(
+                                const Row(
                                   children: [
                                     Icon(Icons.local_pizza,
                                         color: Colors.green, size: 20),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 5),
+                                      padding: EdgeInsets.only(left: 5),
                                       child: TextWidget(
                                         title: "2.4 km",
                                         titleColor: AppColor.blackColor,
@@ -230,15 +231,15 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     ],
                                   ),
                                 ),
-                                Divider(
+                                const Divider(
                                   height: 20,
                                 ),
-                                Row(
+                                const Row(
                                   children: [
                                     Icon(Icons.local_offer,
                                         color: Colors.green, size: 20),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 7),
+                                      padding: EdgeInsets.only(left: 7),
                                       child: TextWidget(
                                         title: "Offers are available",
                                         titleColor: AppColor.blackColor,
@@ -651,7 +652,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                                 TextOverflow
                                                                     .ellipsis,
                                                           ),
-                                                          SizedBox(
+                                                          const SizedBox(
                                                             height: 15,
                                                           ),
                                                           TextWidget(
@@ -720,7 +721,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                           // });
                                         },
                                         child: Container(
-                                          margin: EdgeInsets.only(top: 15),
+                                          margin: const EdgeInsets.only(top: 15),
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                   width: 2,
@@ -755,7 +756,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                       MainAxisAlignment.start,
                                                   children: [
                                                     Container(
-                                                      padding: EdgeInsets.all(
+                                                      padding: const EdgeInsets.all(
                                                           Paddings.padding15),
                                                       height: 120,
                                                       width: 120,
@@ -847,7 +848,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                                 TextOverflow
                                                                     .ellipsis,
                                                           ),
-                                                          SizedBox(
+                                                          const SizedBox(
                                                             height: 15,
                                                           ),
                                                           TextWidget(
@@ -882,7 +883,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                 ),
 
                                 Container(
-                                  margin: EdgeInsets.only(top: 20, bottom: 30),
+                                  margin: const EdgeInsets.only(top: 20, bottom: 30),
                                   width: MediaQuery.of(context).size.width,
                                   height: 50,
                                   child: ElevatedButton(
@@ -910,7 +911,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                             ),
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         }
                       },
                     )),

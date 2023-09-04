@@ -1,3 +1,4 @@
+import 'package:finalapppp/ui/CheckoutOrders/checkout_order_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import '../../resources/constants/padding.dart';
 import '../../widgets/component/text_widget.dart';
 import '../../widgets/component/textfield_widget.dart';
 import '../../widgets/get_discount_card.dart';
+import '../home_screen/home_page.dart';
 
 class GetDiscount extends StatefulWidget {
   static const routeName = "/getDiscount";
@@ -31,7 +33,7 @@ class _GetDiscountState extends State<GetDiscount> {
         backgroundColor: AppColor.whiteColor,
         leading: InkWell(
           onTap: () {
-            // Navigator.pushNamed(context, HomePage.routeName);
+            Navigator.pushNamed(context, HomePage.routeName);
           },
           child: const Icon(
             Icons.arrow_back,
@@ -60,9 +62,9 @@ class _GetDiscountState extends State<GetDiscount> {
               if (state is GetDiscountAppyTappedState) {}
               if (state is GetDiscountCardSelectionTappedState) {
                 selectedIndex=state.selectedIndex;
-                if (kDebugMode) {
                   print("Card Selected${state.selectedIndex}");
-                }
+                  // Navigator.pushNamed(context, CheckoutOrderScreen());
+
               }
             },
             builder: (context, state) {
@@ -89,7 +91,7 @@ class _GetDiscountState extends State<GetDiscount> {
                                     .read<GetDiscountBloc>()
                                     .add(GetDiscountCardTapEvent(selectedIndex));
                               },
-                              child:DiscountCardItem(icons: state.discountData[index]['icon'],discountDetails: state.discountData[index]['title'],discountTitle: state.discountData[index]['details'],isSelected:selectedIndex == index ,onChanged: (value) {
+                              child:DiscountCardItem(icons: state.discountData[index]['icon'],discountDetails:  state.discountData[index]['details'],discountTitle:state.discountData[index]['title'],isSelected:selectedIndex == index ,onChanged: (value) {
                                 context
                                     .read<GetDiscountBloc>()
                                     .add(GetDiscountCardTapEvent(index));
@@ -179,9 +181,7 @@ class _GetDiscountState extends State<GetDiscount> {
                               fontWeight: FontWeight.w700,
                             ))),
                   ),
-                  const Divider(
-                    thickness: 1,
-                  ),
+
                 ]);
               }
               return const Center(

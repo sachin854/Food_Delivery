@@ -4,6 +4,7 @@ import '../../controller/bloc/offers/offers_bloc.dart';
 import '../../controller/bloc/offers/offers_state.dart';
 import '../../resources/constants/color.dart';
 import '../../widgets/offer_card.dart';
+import '../home_screen/home_page.dart';
 
 class SpecialOffers extends StatefulWidget {
   static const routeName = "/SpecialOffers";
@@ -25,25 +26,26 @@ class _SpecialOffersState extends State<SpecialOffers> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: const Text(
+            'Special Offers',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: AppColor.blackColor),
+          ),
+          backgroundColor: AppColor.primaryColor,
+          leading:  BackButton(
+            onPressed: (){
+              Navigator.pushNamed(context, HomePage.routeName);
+            },
+            color: Colors.black,
+          ),
+        ),
+          body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.only(left: 16, right: 16),
           child: Column(children: [
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(Icons.arrow_back)),
-                const Text(
-                  'Special Offers',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
             SingleChildScrollView(
               child: BlocBuilder<OffersBloc, OffersState>(
                 builder: (context, state) {

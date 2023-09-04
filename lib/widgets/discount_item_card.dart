@@ -69,7 +69,7 @@ class _DiscountCardState extends State<DiscountCard> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
-                      child: Image.asset(
+                      child: Image.network(
                         widget.img,
                         width: Dimensions.dimen180,
                         height: Dimensions.dimen120,

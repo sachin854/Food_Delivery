@@ -113,7 +113,7 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
                 create: (context) => FilterBloc(selectedCategoryName: setting.arguments as String,),
-                child:  FilterScreen()));
+                child:  FilterScreen(selectedCategoryName: setting.arguments as String,)));
       case DeliverAddressScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
@@ -128,7 +128,7 @@ class AppRoutes {
       case HomeItemScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => ItemTapBloc(), child: HomeItemScreen()));
+                create: (context) => ItemTapBloc(), child: HomeItemScreen(index: setting.arguments as int)));
       case AddItemScreen.routeName:
         Map<String, dynamic> arguments =
             setting.arguments as Map<String, dynamic>;
@@ -142,6 +142,7 @@ class AppRoutes {
                 create: (context) => PaymentBloc(),
                 child: const Payment()));
         case GetDiscount.routeName:
+        /*"/":*/
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
                 create: (context) => GetDiscountBloc(),

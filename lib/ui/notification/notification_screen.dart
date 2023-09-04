@@ -1,3 +1,4 @@
+import 'package:finalapppp/ui/home_screen/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../controller/bloc/notification/notification_bloc.dart';
@@ -24,7 +25,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
         elevation: 0,
         backgroundColor: AppColor.primaryColor,
         leading: BackButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, HomePage.routeName);
+          },
           color: AppColor.blackColor,
         ),
         title: const Text(

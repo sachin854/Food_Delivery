@@ -47,7 +47,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     user = FirebaseAuth.instance.currentUser;
     List userData =  RestApiClientService.shared.getUserDetails();
     List categoryData =  RestApiClientService.shared.getcategoryData();
-    List discountArray =  RestApiClientService.shared.getDicountData();
+    List discountArray =  RestApiClientService.shared.discountArray;
+    // List discountArray =  RestApiClientService.shared.getDicountData();
     List recommendFilterData =  RestApiClientService.shared.getRecommendFilterData();
     List recommendMenuData =  RestApiClientService.shared.getRecommendMenuData();
 

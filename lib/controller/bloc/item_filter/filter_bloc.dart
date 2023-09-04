@@ -8,12 +8,16 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
   String selectedCategoryName;
   FilterBloc({required this.selectedCategoryName}) : super(FilterInitialState()) {
     itemFilter();
+    on<FilterCardEvent>((event, emit) {
+      emit(FilterCardTappedState());
+    });
   }
 
   itemFilter() async{
+    List sortOptions= await RestApiClientService.shared.sortOptions();
     List categoryDataFilter = await RestApiClientService.shared.getFilteredData(selectedCategoryName);
     print("categoryDataFilter"+categoryDataFilter.toString());
-    emit(FilterLoadingState(categoryDataFilter));
+    emit(FilterLoadingState(sortOptions,categoryDataFilter));
   }
 
 
