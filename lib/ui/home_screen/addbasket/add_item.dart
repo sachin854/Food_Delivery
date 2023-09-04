@@ -198,7 +198,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                                 ),
                                 onPressed: () => {},
                                 child: Text(
-                                  'Add to Basket -\$24.00',
+                                  'Add to Basket -${state.additemdata['price'] ?? ""}',
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white),
                                 )),

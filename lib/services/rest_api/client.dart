@@ -60,8 +60,10 @@ class RestApiClientService extends RestApiBaseService {
       "menu_title": "Special bound salad",
       "drink_title": "1x Fresh Avacado juice",
       "price": 50.00,
+      "isTapped": false,
       "description":
           "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+
     },
     {
       "images":
@@ -70,6 +72,7 @@ class RestApiClientService extends RestApiBaseService {
       "menu_title": "HHSpecial bound salad",
       "drink_title": "1x Fresh Avacado juice",
       "price": 30.00,
+      "isTapped": false,
       "description":
           "This burger is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
@@ -80,6 +83,7 @@ class RestApiClientService extends RestApiBaseService {
       "menu_title": "KKSpecial bound salad",
       "drink_title": "1x Fresh Avacado juice",
       "price": 20.00,
+      "isTapped": false,
       "description":
           "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
@@ -90,6 +94,7 @@ class RestApiClientService extends RestApiBaseService {
       "menu_title": "JJSpecial bound salad",
       "drink_title": "1x Fresh Avacado juice",
       "price": 10.00,
+      "isTapped": false,
       "description":
           "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
@@ -177,6 +182,10 @@ class RestApiClientService extends RestApiBaseService {
       "details": "Christmas & new year promo",
     },
   ];
+  Map<String, dynamic> additemdata(String id) {
+    List description = data;
+    return description[int.parse(id)];
+  }
 
   FirebaseAuth auth = FirebaseAuth.instance;
   List<dynamic> deliveryaddress = [
@@ -386,10 +395,6 @@ class RestApiClientService extends RestApiBaseService {
     return filterdata;
   }
 
-  Map<String, dynamic> additemdata(String id) {
-    List description = data;
-    return description[int.parse(id)];
-  }
 
   Future signUpPressed(
       {required String number,

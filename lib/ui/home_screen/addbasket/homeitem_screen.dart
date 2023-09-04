@@ -1,8 +1,10 @@
 import 'package:finalapppp/controller/bloc/additem/additem_bloc.dart';
+import 'package:finalapppp/controller/bloc/additem/additem_event.dart';
 import 'package:finalapppp/widgets/component/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../controller/bloc/home_item/tapitem_bloc.dart';
+import '../../../controller/bloc/home_item/tapitem_event.dart';
 import '../../../controller/bloc/home_item/tapitem_state.dart';
 import '../../../resources/constants/color.dart';
 import '../../../resources/constants/dimensions.dart';
@@ -20,11 +22,21 @@ class HomeItemScreen extends StatefulWidget {
 }
 
 class _HomeItemScreenState extends State<HomeItemScreen> {
+  late ItemTapBloc _itemTapBloc;
+
   int _selectedCardIndex = -1;
-  int _selectedMenuIndex= -1;
+  int _selectedMenuIndex = -1;
   int _selectedDrinkIndex = -1;
 
   double totalPrice = 0.0;
+  int totalItem = 0;
+
+  @override
+  void initState() {
+    _itemTapBloc = BlocProvider.of<ItemTapBloc>(context);
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,17 +113,23 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                         //     }
                         //   }
                         // }
+
+                        // if(state is ItemCardTappedState){
+                        //   _selectedCardIndex = state.selectedIndex!;
+                        // }
                       },
                       builder: (context, state) {
                         if (state is ItemTapLoadingtate) {
+                          //totalPrice = state.homeitemdata[_selectedCardIndex]?["price"] as double? ?? 0.0;
                           return BlocProvider(
                             create: (context) => AddItemBloc(
                                 state.homeitemdata[widget.index!].index),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                const Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     TextWidget(
                                       title: "Big garden Salad",
@@ -127,11 +145,13 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                 Divider(
                                   height: 30,
                                 ),
-                                Row(
+                                const Row(
                                   children: [
-                                    Icon(Icons.star, color: Colors.orange, size: 20),
+                                    Icon(Icons.star,
+                                        color: Colors.orange, size: 20),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 7, right: 7),
+                                      padding: EdgeInsets.only(
+                                          left: 7, right: 7),
                                       child: TextWidget(
                                         title: "4.8",
                                         titleColor: AppColor.blackColor,
@@ -157,7 +177,8 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                 ),
                                 Row(
                                   children: [
-                                    Icon(Icons.local_pizza, color: Colors.green, size: 20),
+                                    Icon(Icons.local_pizza,
+                                        color: Colors.green, size: 20),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 5),
                                       child: TextWidget(
@@ -175,7 +196,8 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 25, top: 7),
+                                  padding:
+                                      const EdgeInsets.only(left: 25, top: 7),
                                   child: Row(
                                     children: [
                                       TextWidget(
@@ -184,7 +206,8 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                         fontSize: AppFontWeight.font15,
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 10, right: 10),
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10),
                                         child: TextWidget(
                                           title: "|",
                                           titleColor: AppColor.greyColor,
@@ -195,7 +218,8 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                       Icon(Icons.delivery_dining,
                                           color: Colors.green, size: 15),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 10),
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
                                         child: TextWidget(
                                           title: "\$8.00",
                                           titleColor: AppColor.greyColor,
@@ -211,7 +235,8 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                 ),
                                 Row(
                                   children: [
-                                    Icon(Icons.local_offer, color: Colors.green, size: 20),
+                                    Icon(Icons.local_offer,
+                                        color: Colors.green, size: 20),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 7),
                                       child: TextWidget(
@@ -229,7 +254,8 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 30, bottom: 20),
+                                  padding: const EdgeInsets.only(
+                                      top: 30, bottom: 20),
                                   child: TextWidget(
                                     title: "For You",
                                     titleColor: AppColor.blackColor,
@@ -245,14 +271,17 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder: (context, index) {
                                       final bestSellerIndices = [0, 2];
-                                      final isBestSeller = bestSellerIndices.contains(index);
-                                      bool isCardTapped =
-                                          _selectedCardIndex == index;
+                                      final isBestSeller =
+                                          bestSellerIndices.contains(index);
                                       return GestureDetector(
-                                        onTap: (){
-                                          setState(() {
-                                            _selectedCardIndex = index;
-                                          });
+                                        onTap: () {
+                                          _itemTapBloc
+                                              .add(MenuitemEvent(index));
+                                          // setState(() {
+                                          //   _selectedCardIndex = index;
+                                          //   totalPrice = state.homeitemdata[index]["price"] as double? ?? 0.0;
+                                          //
+                                          // });
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -260,7 +289,10 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                   BorderRadius.circular(32),
                                               border: Border.all(
                                                   width: 2,
-                                                  color: isCardTapped
+                                                  color: state.homeitemdata[
+                                                                  index]
+                                                              ['isTapped'] ==
+                                                          true
                                                       ? Colors.green
                                                           .withOpacity(0.7)
                                                       : Colors.white
@@ -301,31 +333,31 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                   GestureDetector(
                                                     onTap: () {
                                                       {
-                                                        //context.read<ItemTapBloc>().add(MenuitemEvent(index));
-
                                                         print('iteeemmm...' +
                                                             index.toString());
                                                         Map<String, dynamic>
-                                                            item = {"index": index};
+                                                            item = {
+                                                          "index": index
+                                                        };
                                                         Navigator.pushNamed(
                                                             context,
                                                             AddItemScreen
                                                                 .routeName,
                                                             arguments: item);
-                                                      }
-                                                      ;
+                                                      };
                                                     },
                                                     child: Stack(
                                                       children: [
                                                         Card(
-                                                          color:
-                                                              AppColor.greyColor,
+                                                          color: AppColor
+                                                              .greyColor,
                                                           elevation: 0,
                                                           shape:
                                                               RoundedRectangleBorder(
                                                             borderRadius:
-                                                                BorderRadius.circular(
-                                                                    20), // Adjust the radius as needed
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20), // Adjust the radius as needed
                                                           ),
                                                           child: ClipRRect(
                                                               borderRadius:
@@ -337,93 +369,100 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                                 state.homeitemdata[
                                                                         index]
                                                                     ["images"],
-                                                                fit: BoxFit.cover,
+                                                                fit: BoxFit
+                                                                    .cover,
                                                                 height: Dimensions
                                                                     .dimen120,
                                                                 width: Dimensions
                                                                     .dimen170,
                                                               )),
                                                         ),
-                                                        if(isBestSeller)
-                                                        Positioned(
-                                                          top: 20,
-                                                          left: 10,
-                                                          child: Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: AppColor
-                                                                  .greenColor,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8),
+                                                        if (isBestSeller)
+                                                          Positioned(
+                                                            top: 15,
+                                                            left: 10,
+                                                            child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: AppColor
+                                                                    .greenColor,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8),
+                                                              ),
+                                                              padding: const EdgeInsets
+                                                                      .only(
+                                                                  top: Dimensions
+                                                                      .dimen5,
+                                                                  bottom:
+                                                                      Dimensions
+                                                                          .dimen5,
+                                                                  left: Dimensions
+                                                                      .dimen8,
+                                                                  right: Dimensions
+                                                                      .dimen8),
+                                                              child: const TextWidget(
+                                                                  title:
+                                                                      "Beset seller",
+                                                                  fontSize: 10,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  titleColor:
+                                                                      AppColor
+                                                                          .whiteColor),
                                                             ),
-                                                            padding: const EdgeInsets
-                                                                    .only(
-                                                                top: Dimensions
-                                                                    .dimen5,
-                                                                bottom:
-                                                                    Dimensions
-                                                                        .dimen5,
-                                                                left: Dimensions
-                                                                    .dimen8,
-                                                                right: Dimensions
-                                                                    .dimen8),
-                                                            child: const TextWidget(
-                                                                title:
-                                                                    "Beset seller",
-                                                                fontSize: 10,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                titleColor: AppColor
-                                                                    .whiteColor),
                                                           ),
-                                                        ),
                                                       ],
                                                     ),
                                                   ),
-                                                  const SizedBox(
-                                                    height: 10,
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10, left: 10),
+                                                    child: TextWidget(
+                                                      title: state.homeitemdata[
+                                                          index]["your_title"],
+                                                      titleColor:
+                                                          state.homeitemdata[index]['isTapped'] == true
+                                                              ? AppColor
+                                                                  .greenColor
+                                                              : AppColor
+                                                                  .blackColor,
+                                                      maxLine: 2,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      textoverflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
                                                   ),
-                                                  TextWidget(
-                                                    title:
-                                                        state.homeitemdata[index]
-                                                            ["your_title"],
-                                                    titleColor: isCardTapped
-                                                        ? AppColor.greenColor
-                                                        : AppColor.blackColor,
-                                                    maxLine: 2,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                    textoverflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  IntrinsicHeight(
-                                                    child: Row(
-                                                      children: [
-                                                        TextWidget(
-                                                          title: state
-                                                              .homeitemdata[index]
-                                                                  ["price"]
-                                                              .toString(),
-                                                          maxLine: 1,
-                                                          titleColor:
-                                                              AppColor.greenColor,
-                                                          textoverflow:
-                                                              TextOverflow
-                                                                  .ellipsis,
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ],
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10, left: 10),
+                                                    child: IntrinsicHeight(
+                                                      child: Row(
+                                                        children: [
+                                                          TextWidget(
+                                                            title: state
+                                                                .homeitemdata[
+                                                                    index]
+                                                                    ["price"]
+                                                                .toString(),
+                                                            maxLine: 1,
+                                                            titleColor: AppColor
+                                                                .greenColor,
+                                                            textoverflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -435,6 +474,8 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     },
                                   ),
                                 ),
+
+                                ///Menu
                                 Padding(
                                   padding: EdgeInsets.only(top: 20, bottom: 10),
                                   child: TextWidget(
@@ -444,7 +485,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                
+
                                 SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height / 2,
@@ -453,31 +494,26 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     itemCount: state.homeitemdata.length,
                                     itemBuilder: (context, index) {
                                       final bestNewIndices = [0, 3];
-                                      final isNewSeller = bestNewIndices.contains(index);
-                                      bool isCardTapped =
-                                          _selectedMenuIndex == index;
-                                      double price = state.homeitemdata[index]
-                                              ["price"] as double? ??
-                                          0.0;
-                                      if (isCardTapped) {
-                                        totalPrice = 0.0; // Reset the total price
-                                        for (int i = 0; i < state.homeitemdata.length; i++) {
-                                          if (_selectedMenuIndex == i) {
-                                            totalPrice += state.homeitemdata[i]["price"] as double? ?? 0.0;
-                                          }
-                                        }
-                                      }
+                                      final isNewSeller =
+                                          bestNewIndices.contains(index);
                                       return GestureDetector(
                                         onTap: () {
-                                          setState(() {
-                                            _selectedMenuIndex = index;
-                                          });
+                                          _itemTapBloc
+                                              .add(MenuitemEvent(index));
+                                          // setState(() {
+                                          //   _selectedMenuIndex = index;
+                                          //   totalPrice = state.homeitemdata[index]["price"] as double? ?? 0.0;
+                                          //
+                                          // });
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                   width: 2,
-                                                  color: isCardTapped
+                                                  color: state.homeitemdata[
+                                                                  index]
+                                                              ['isTapped'] ==
+                                                          true
                                                       ? Colors.green
                                                           .withOpacity(0.7)
                                                       : Colors.grey
@@ -504,32 +540,48 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   children: [
-                                                    Container(
-                                                      padding: EdgeInsets.all(
-                                                          Paddings.padding15),
-                                                      height: 120,
-                                                      width: 120,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20),
-                                                        border: Border.all(
-                                                            color: AppColor
-                                                                .whiteColor,
-                                                            width: 1.5),
-                                                      ),
-                                                      child: ClipRRect(
+                                                    GestureDetector(
+                                                      onTap:(){
+                                                        {
+                                                          print('iteeemmm...' +
+                                                              index.toString());
+                                                          Map<String, dynamic>
+                                                          item = {
+                                                            "index": index
+                                                          };
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              AddItemScreen
+                                                                  .routeName,
+                                                              arguments: item);
+                                                        };
+                                                      },
+                                                      child: Container(
+                                                        padding: EdgeInsets.all(
+                                                            Paddings.padding15),
+                                                        height: 120,
+                                                        width: 120,
+                                                        decoration: BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(20),
-                                                          child: Image.network(
-                                                            state.homeitemdata[
-                                                                    index]
-                                                                ["images"],
-                                                            fit: BoxFit.cover,
-                                                          )),
+                                                          border: Border.all(
+                                                              color: AppColor
+                                                                  .whiteColor,
+                                                              width: 1.5),
+                                                        ),
+                                                        child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(20),
+                                                            child: Image.network(
+                                                              state.homeitemdata[
+                                                                      index]
+                                                                  ["images"],
+                                                              fit: BoxFit.cover,
+                                                            )),
+                                                      ),
                                                     ),
-
                                                     Expanded(
                                                       child: Column(
                                                         mainAxisAlignment:
@@ -539,46 +591,52 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          if(isNewSeller)
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    bottom: 10),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: AppColor
-                                                                  .greenColor,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8),
+                                                          if (isNewSeller)
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      bottom:
+                                                                          10),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: AppColor
+                                                                    .greenColor,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8),
+                                                              ),
+                                                              padding: const EdgeInsets
+                                                                      .only(
+                                                                  top: Dimensions
+                                                                      .dimen5,
+                                                                  bottom:
+                                                                      Dimensions
+                                                                          .dimen5,
+                                                                  left: Dimensions
+                                                                      .dimen8,
+                                                                  right: Dimensions
+                                                                      .dimen8),
+                                                              child: const TextWidget(
+                                                                  title: "New",
+                                                                  fontSize: 10,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  titleColor:
+                                                                      AppColor
+                                                                          .whiteColor),
                                                             ),
-                                                            padding: const EdgeInsets
-                                                                    .only(
-                                                                top: Dimensions
-                                                                    .dimen5,
-                                                                bottom:
-                                                                    Dimensions
-                                                                        .dimen5,
-                                                                left: Dimensions
-                                                                    .dimen8,
-                                                                right: Dimensions
-                                                                    .dimen8),
-                                                            child: const TextWidget(
-                                                                title: "New",
-                                                                fontSize: 10,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                titleColor: AppColor
-                                                                    .whiteColor),
-                                                          ),
                                                           TextWidget(
                                                             title: state.homeitemdata[
                                                                         index][
                                                                     "menu_title"] ??
                                                                 "",
-                                                            titleColor: isCardTapped
+                                                            titleColor: state.homeitemdata[
+                                                                            index]
+                                                                        [
+                                                                        'isTapped'] ==
+                                                                    true
                                                                 ? AppColor
                                                                     .greenColor
                                                                 : AppColor
@@ -627,6 +685,7 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                   ),
                                 ),
 
+                                ///Drinks
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       top: 20, bottom: 10),
@@ -645,32 +704,30 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                     itemCount: state.homeitemdata.length,
                                     itemBuilder: (context, index) {
                                       final bestPromoIndices = [0, 2];
-                                      final isPromoSeller = bestPromoIndices.contains(index);
-                                      bool isCardTapped =
-                                          _selectedDrinkIndex == index;
-                                      double price = state.homeitemdata[index]
-                                              ["price"] as double? ??
-                                          0.0;
-                                      if (isCardTapped) {
-                                        totalPrice = 0.0; // Reset the total price
-                                        for (int i = 0; i < state.homeitemdata.length; i++) {
-                                          if (_selectedDrinkIndex == i) {
-                                            totalPrice += state.homeitemdata[i]["price"] as double? ?? 0.0;
-                                          }
-                                        }
-                                      }
+                                      final isPromoSeller =
+                                          bestPromoIndices.contains(index);
+                                      // double price = state.homeitemdata[index]
+                                      //         ["price"] as double? ??
+                                      //     0.0;
                                       return GestureDetector(
                                         onTap: () {
-                                          setState(() {
-                                            _selectedDrinkIndex = index;
-                                          });
+                                          _itemTapBloc
+                                              .add(MenuitemEvent(index));
+                                          // setState(() {
+                                          //   _selectedDrinkIndex = index;
+                                          //   totalPrice = state.homeitemdata[index]["price"] as double? ?? 0.0;
+                                          //
+                                          // });
                                         },
                                         child: Container(
                                           margin: EdgeInsets.only(top: 15),
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                   width: 2,
-                                                  color: isCardTapped
+                                                  color: state.homeitemdata[
+                                                                  index]
+                                                              ['isTapped'] ==
+                                                          true
                                                       ? Colors.green
                                                           .withOpacity(0.7)
                                                       : Colors.grey
@@ -729,46 +786,53 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          if(isPromoSeller)
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    bottom: 10),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: AppColor
-                                                                  .greenColor,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8),
+                                                          if (isPromoSeller)
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      bottom:
+                                                                          10),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: AppColor
+                                                                    .greenColor,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8),
+                                                              ),
+                                                              padding: const EdgeInsets
+                                                                      .only(
+                                                                  top: Dimensions
+                                                                      .dimen5,
+                                                                  bottom:
+                                                                      Dimensions
+                                                                          .dimen5,
+                                                                  left: Dimensions
+                                                                      .dimen8,
+                                                                  right: Dimensions
+                                                                      .dimen8),
+                                                              child: const TextWidget(
+                                                                  title:
+                                                                      "Promo",
+                                                                  fontSize: 10,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  titleColor:
+                                                                      AppColor
+                                                                          .whiteColor),
                                                             ),
-                                                            padding: const EdgeInsets
-                                                                    .only(
-                                                                top: Dimensions
-                                                                    .dimen5,
-                                                                bottom:
-                                                                    Dimensions
-                                                                        .dimen5,
-                                                                left: Dimensions
-                                                                    .dimen8,
-                                                                right: Dimensions
-                                                                    .dimen8),
-                                                            child: const TextWidget(
-                                                                title: "Promo",
-                                                                fontSize: 10,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                titleColor: AppColor
-                                                                    .whiteColor),
-                                                          ),
                                                           TextWidget(
                                                             title: state.homeitemdata[
                                                                         index][
                                                                     "drink_title"] ??
                                                                 "",
-                                                            titleColor: isCardTapped
+                                                            titleColor: state.homeitemdata[
+                                                                            index]
+                                                                        [
+                                                                        'isTapped'] ==
+                                                                    true
                                                                 ? AppColor
                                                                     .greenColor
                                                                 : AppColor
@@ -834,13 +898,11 @@ class _HomeItemScreenState extends State<HomeItemScreen> {
                                         children: [
                                           TextWidget(
                                             title:
-                                                'Total Price: \$${totalPrice.toStringAsFixed(2)}',
+                                                'Basket . 3 items . \$${totalPrice}',
                                             height: 2,
                                             fontSize: 16,
                                             titleColor: Colors.white,
                                           ),
-
-                                          // 'Basket . 3 items . \$24.00',
                                         ],
                                       )),
                                 ),
