@@ -13,6 +13,58 @@ class RestApiClientService extends RestApiBaseService {
   RestApiClientService._internal() : super();
 
   FirebaseAuth auth = FirebaseAuth.instance;
+  List<dynamic> deliveryaddress = [
+    {
+      "title": "Home",
+      "defaultbutton": true,
+      "address": "Times Square New",
+      "radioenable": true
+    },
+    {
+      "title": "My Office",
+      "defaultbutton": false,
+      "address": "Times Square New",
+      "radioenable": true
+    },
+    {
+      "title": "My Apartment",
+      "defaultbutton": false,
+      "address": "Times Square New",
+      "radioenable": true
+    },
+    {
+      "title": "Parents House",
+      "defaultbutton": false,
+      "address": "Times Square New",
+      "radioenable": true
+    },
+    {
+      "title": "My Villa",
+      "defaultbutton": false,
+      "address": "Times Square New",
+      "radioenable": true
+    },
+  ];
+  List checkoutOrderSummary = [
+    {
+      "img":
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "title": "Mixed Bowl Salad",
+      "price": 18.00
+    },
+    {
+      "img":
+      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "title": "Mixed Bowl Salad",
+      "price": 18.00
+    },
+    {
+      "img":
+      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "title": "Mixed Bowl Salad",
+      "price": 18.00
+    },
+  ];
 
   Future<void> verifyPhone({
     required String phoneNumber,
@@ -136,38 +188,38 @@ class RestApiClientService extends RestApiBaseService {
     return recommendMenuData;
   }
 
-  List<dynamic> getFilterdata(){
+  List<dynamic> getFilterdata() {
     List data = [
       {
-        "food_filter":"Filter",
+        "food_filter": "Filter",
         "food_title": "Vegitarian Noodles",
         "distance": "800 m",
         "rating": "4.8 (1.2k)",
         "food_price": "\$8.00",
       },
       {
-        "food_filter":"Sort",
+        "food_filter": "Sort",
         "food_title": "Pizza Hut- Lumintu",
         "distance": "800 m",
         "rating": "1.3 (2.3k)",
         "food_price": "\$1.60",
       },
       {
-        "food_filter":"Promo",
+        "food_filter": "Promo",
         "food_title": "Mozerella Cheese Burger",
         "distance": "800 m",
         "rating": "4.9 (3.1k)",
         "food_price": "\$3.00",
       },
       {
-        "food_filter":"Self Pick",
+        "food_filter": "Self Pick",
         "food_title": "Fruit salad -Kumpa",
         "distance": "800 m",
         "rating": "4.9 (2.3k)",
         "food_price": "\$7.00",
       },
     ];
-    List filterdata=data;
+    List filterdata = data;
     return filterdata;
   }
 
@@ -396,7 +448,8 @@ class RestApiClientService extends RestApiBaseService {
       ));
     }
   }
-  List<dynamic> getCartData(){
+
+  List<dynamic> getCartData() {
     List cardData = [
       {
         "images": [
@@ -442,7 +495,8 @@ class RestApiClientService extends RestApiBaseService {
     List cartData = cardData;
     return cartData;
   }
-  List<dynamic> getRecentSearchData(){
+
+  List<dynamic> getRecentSearchData() {
     List recentSearchData = [
       'Italian Pizza',
       'Burger King',
@@ -452,9 +506,9 @@ class RestApiClientService extends RestApiBaseService {
       'Pancakes',
     ];
     return recentSearchData;
-
   }
-  List<dynamic> getPopularCuisines(){
+
+  List<dynamic> getPopularCuisines() {
     List popularCuisines = [
       'Breakfast',
       'Snack',
@@ -468,9 +522,46 @@ class RestApiClientService extends RestApiBaseService {
     ];
     return popularCuisines;
   }
-  List<dynamic> getAllCuisines(){
+
+  List<dynamic> getAllCuisines() {
     List allCuisines = ['Bakery & Cake', 'Dessert', 'Pizza'];
     return allCuisines;
+  }
+
+  List<dynamic> getAllAddress() {
+    List deliveryaddress = [
+      {
+        "title": "Home",
+        "defaultbutton": true,
+        "address": "Times Square New",
+        "radioenable": true
+      },
+      {
+        "title": "My Office",
+        "defaultbutton": false,
+        "address": "Times Square New",
+        "radioenable": true
+      },
+      {
+        "title": "My Apartment",
+        "defaultbutton": false,
+        "address": "Times Square New",
+        "radioenable": true
+      },
+      {
+        "title": "Parents House",
+        "defaultbutton": false,
+        "address": "Times Square New",
+        "radioenable": true
+      },
+      {
+        "title": "My Villa",
+        "defaultbutton": false,
+        "address": "Times Square New",
+        "radioenable": true
+      },
+    ];
+    return deliveryaddress;
   }
 
   ///Home Page
