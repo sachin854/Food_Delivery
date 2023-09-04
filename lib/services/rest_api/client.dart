@@ -12,45 +12,86 @@ import 'base.dart';
 class RestApiClientService extends RestApiBaseService {
   static RestApiClientService shared = RestApiClientService._internal();
   RestApiClientService._internal() : super();
+  List searchData = [
+    {
+      "img":
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "restaurant": "Boda Sheera",
+      "kms": "2 kms",
+      "rating": "4.8 (1.2k)",
+      "food_price": "\$8.00",
+      "items": [
+        {
+          "title": "Special Dessert with Strwaberry",
+          "price": "\$10",
+          "img":
+              "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+        },
+        {
+          "title": "Special Dessert with Strwaberry",
+          "price": "\$10",
+          "img":
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+        }
+      ],
+    },
+    {
+      "img":
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "restaurant": "Boda Sheera",
+      "kms": "2 kms",
+      "rating": "4.8 (1.2k)",
+      "food_price": "\$8.00",
+      "items": [
+        {
+          "title": "Special Dessert with Strwaberry",
+          "price": "\$10",
+          "img":
+              "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+        },
+      ],
+    }
+  ];
   List data = [
     {
       "images":
-      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
       "your_title": "1x mixed vegitable salad",
       "menu_title": "Special bound salad",
       "drink_title": "1x Fresh Avacado juice",
       "price": 50.00,
       "description":
-      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+          "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
     {
-      "images":"https://www.acouplecooks.com/wp-content/uploads/2019/05/Chopped-Salad-001_1.jpg",
+      "images":
+          "https://www.acouplecooks.com/wp-content/uploads/2019/05/Chopped-Salad-001_1.jpg",
       "your_title": "Hamburger",
       "menu_title": "HHSpecial bound salad",
       "drink_title": "1x Fresh Avacado juice",
       "price": 30.00,
       "description":
-      "This burger is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+          "This burger is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
     {
       "images":
-      "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png",
+          "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png",
       "your_title": "1x mixed vegitable salad",
       "menu_title": "KKSpecial bound salad",
       "drink_title": "1x Fresh Avacado juice",
       "price": 20.00,
       "description":
-      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+          "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
     {
       "images":
-      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
       "your_title": "1x mixed vegitable salad",
       "menu_title": "JJSpecial bound salad",
       "drink_title": "1x Fresh Avacado juice",
       "price": 10.00,
       "description":
-      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+          "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
   ];
   List<dynamic> getHomeItemData() {
@@ -179,13 +220,13 @@ class RestApiClientService extends RestApiBaseService {
     },
     {
       "img":
-      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "Mixed Bowl Salad",
       "price": 18.00
     },
     {
       "img":
-      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+          "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "Mixed Bowl Salad",
       "price": 18.00
     },
@@ -345,9 +386,7 @@ class RestApiClientService extends RestApiBaseService {
     return filterdata;
   }
 
-
-
-  Map<String,dynamic> additemdata(String id) {
+  Map<String, dynamic> additemdata(String id) {
     List description = data;
     return description[int.parse(id)];
   }
