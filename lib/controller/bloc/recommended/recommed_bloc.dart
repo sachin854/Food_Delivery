@@ -9,7 +9,10 @@ import 'recommend_state.dart';
 
 class RecommendedBloc extends Bloc<RecommendedEvent, RecommendedState> {
   RecommendedBloc() : super(RecommendedInitialState()) {
-    on<RecomendFilterEvent>(filtertap);
+
+    on<RecomendFilterEvent>((event, emit) {
+      emit(RecommendedFilterState());
+    });
     recomendMenuData();
   }
 

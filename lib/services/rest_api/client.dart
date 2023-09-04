@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import '../../resources/assets/images.dart';
 import '../../resources/constants/color.dart';
 import '../../resources/constants/dimensions.dart';
 import 'base.dart';
@@ -11,6 +12,50 @@ import 'base.dart';
 class RestApiClientService extends RestApiBaseService {
   static RestApiClientService shared = RestApiClientService._internal();
   RestApiClientService._internal() : super();
+  List data = [
+    {
+      "images":
+      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "Special bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 50.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {
+      "images":"https://www.acouplecooks.com/wp-content/uploads/2019/05/Chopped-Salad-001_1.jpg",
+      "your_title": "Hamburger",
+      "menu_title": "HHSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 30.00,
+      "description":
+      "This burger is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {
+      "images":
+      "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "KKSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 20.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {
+      "images":
+      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "JJSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 10.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+  ];
+  List<dynamic> getHomeItemData() {
+    return data;
+  }
 
   FirebaseAuth auth = FirebaseAuth.instance;
   List<dynamic> deliveryaddress = [
@@ -120,12 +165,11 @@ class RestApiClientService extends RestApiBaseService {
 
   List<dynamic> getRecommendFilterData() {
     List data = [
-      {"food_image": Images.burger,
-        "title": "All"},
-      {"food_image": Images.burger,"title": "Hamburger"},
-      {"food_image": Images.burger,"title": "Pizza"},
-      {"food_image": Images.burger,"title": "Icecreams"},
-      {"food_image": Images.burger,"title": "Drinks"}
+      {"food_image": Images.burger, "title": "All"},
+      {"food_image": Images.burger, "title": "Hamburger"},
+      {"food_image": Images.burger, "title": "Pizza"},
+      {"food_image": Images.burger, "title": "Icecreams"},
+      {"food_image": Images.burger, "title": "Drinks"}
     ];
     List recommendFilterData = data;
     return recommendFilterData;
@@ -134,7 +178,7 @@ class RestApiClientService extends RestApiBaseService {
   List<dynamic> getRecommendMenuData() {
     List data = [
       {
-        "food_filter":"All",
+        "food_filter": "All",
         "food_image": Images.burger,
         "food_title": "Vegitarian Noodles",
         "distance": "800 m",
@@ -142,42 +186,40 @@ class RestApiClientService extends RestApiBaseService {
         "food_price": "\$8.00",
       },
       {
-        "food_filter":"HamBurger",
+        "food_filter": "HamBurger",
         "food_image": Images.burger,
         "food_title": "Pizza Hut- Lumintu",
         "distance": "800 m",
         "rating": "1.3 (2.3k)",
         "food_price": "\$1.60",
       },
-      
       {
-        "food_filter":"Pizza",
+        "food_filter": "Pizza",
         "food_image": Images.burger,
         "food_title": "Mozerella Cheese Burger",
         "distance": "800 m",
         "rating": "4.9 (3.1k)",
         "food_price": "\$3.00",
       },
-      
       {
-        "food_filter":"IceCream",
-      "food_image": Images.burger,
+        "food_filter": "IceCream",
+        "food_image": Images.burger,
         "food_title": "Fruit salad -Kumpa",
         "distance": "800 m",
         "rating": "4.9 (2.3k)",
         "food_price": "\$7.00",
       },
       {
-        "food_filter":"Drinks",
-      "food_image": Images.burger,
+        "food_filter": "Drinks",
+        "food_image": Images.burger,
         "food_title": "Pizza Hut- Lumintu",
         "distance": "800 m",
         "rating": "4.9 (2.3k)",
         "food_price": "\$4.20",
       },
       {
-      "food_filter":"Dessert",
-      "food_image": Images.burger,
+        "food_filter": "Dessert",
+        "food_image": Images.burger,
         "food_title": "Pizza Hut- Lumintu",
         "distance": "800 m",
         "rating": "1.3 (2.3k)",
@@ -223,43 +265,11 @@ class RestApiClientService extends RestApiBaseService {
     return filterdata;
   }
 
-  List<dynamic> getHomeItemData(){
-    List data=[
-      {
-        "images":
-        "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
-        "your_title": "1x mixed vegitable salad",
-        "menu_title": "Special bound salad",
-        "drink_title": "1x Fresh Avacado juice",
-        "price": "\$ 60.00"
-      },
-      {
-        "images":
-        "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
-        "your_title": "1x mixed vegitable salad",
-        "menu_title": "Special bound salad",
-        "drink_title": "1x Fresh Avacado juice",
-        "price": "\$ 60.00"
-      },
-      {
-        "images":
-        "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png",
-        "your_title": "1x mixed vegitable salad",
-        "menu_title": "Special bound salad",
-        "drink_title": "1x Fresh Avacado juice",
-        "price": "\$ 60.00"
-      },
-      {
-        "images":
-        "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
-        "your_title": "1x mixed vegitable salad",
-        "menu_title": "Special bound salad",
-        "drink_title": "1x Fresh Avacado juice",
-        "price": "\$ 60.00"
-      },
-    ];
-    List gethomeitem=data;
-    return gethomeitem;
+
+
+  Map<String,dynamic> additemdata(String id) {
+    List description = data;
+    return description[int.parse(id)];
   }
 
   Future signUpPressed(
@@ -579,20 +589,17 @@ class RestApiClientService extends RestApiBaseService {
   }
 
   List<dynamic> getUserDetails() {
-
     List userData = [
       {
-        "profile": "https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg",
-        "address":"Times Square",
+        "profile":
+            "https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg",
+        "address": "Times Square",
       },
-
     ];
     return userData;
   }
 
-
   List<dynamic> getDicountData() {
-
     List discountArray = [
       {
         "food_image": Images.burger,
@@ -601,7 +608,7 @@ class RestApiClientService extends RestApiBaseService {
         "ratings": "4.8 (1.2k)",
         "food_price": "\$6.00",
         "delivery_charges": "\$21.00",
-        "like":false,
+        "like": false,
       },
       {
         "food_image": Images.burger,
@@ -610,7 +617,7 @@ class RestApiClientService extends RestApiBaseService {
         "ratings": "4.8 (1.2k)",
         "food_price": "\$20.00",
         "delivery_charges": "\$5.00",
-        "like":false,
+        "like": false,
       },
       {
         "food_image": Images.burger,
@@ -619,51 +626,48 @@ class RestApiClientService extends RestApiBaseService {
         "ratings": "4.8 (1.2k)",
         "food_price": "\$60.00",
         "delivery_charges": "\$20.00",
-        "like":false,
+        "like": false,
       },
     ];
-
 
     return discountArray;
   }
 
   List<dynamic> getcategoryData() {
-
     List category = [
       {
-        "food_image":Images.burger,
-        "category_name":"Humbarg",
+        "food_image": Images.burger,
+        "category_name": "Humbarg",
       },
       {
-        "food_image":Images.pizza,
-        "category_name":"Pizza",
-      },{
-        "food_image":Images.noodles,
-        "category_name":"Noodles",
+        "food_image": Images.pizza,
+        "category_name": "Pizza",
       },
       {
-        "food_image":Images.meat,
-        "category_name":"Meat",
+        "food_image": Images.noodles,
+        "category_name": "Noodles",
       },
       {
-        "food_image":Images.vegetables,
-        "category_name":"Vegetables",
+        "food_image": Images.meat,
+        "category_name": "Meat",
       },
       {
-        "food_image":Images.dessert,
-        "category_name":"Dessert",
+        "food_image": Images.vegetables,
+        "category_name": "Vegetables",
       },
       {
-        "food_image":Images.drink,
-        "category_name":"Drink",
+        "food_image": Images.dessert,
+        "category_name": "Dessert",
       },
       {
-        "food_image":Images.more,
-        "category_name":"More",
+        "food_image": Images.drink,
+        "category_name": "Drink",
+      },
+      {
+        "food_image": Images.more,
+        "category_name": "More",
       },
     ];
     return category;
   }
-
-
 }

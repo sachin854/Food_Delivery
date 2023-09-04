@@ -15,6 +15,14 @@ class SpecialOffers extends StatefulWidget {
 }
 
 class _SpecialOffersState extends State<SpecialOffers> {
+  final List<Color> cardColors = [
+    Colors.green,
+    Colors.orange,
+    Colors.pink,
+    Colors.blue,
+    // Add more colors as needed
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,16 +55,12 @@ class _SpecialOffersState extends State<SpecialOffers> {
                           shrinkWrap: true,
                           itemCount: state.offerdata.length,
                           itemBuilder: (context, index) {
-                            List<Color> cardColors = [
-                              Colors.green,
-                              Colors.orange,
-                              Colors.pink.shade300,
-                              Colors.blue.shade300
-                            ];
+                            final selectedColor = cardColors[index % cardColors.length];
                             return Container(
                               margin: const EdgeInsets.only(top: 20),
                               child: OfferCard(
-                                color: cardColors[index % cardColors.length],
+                                color: selectedColor,
+                               // color: cardColors[index % cardColors.length],
                                 widget: Row(
                                   children: [
                                     Column(

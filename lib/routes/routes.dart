@@ -1,5 +1,6 @@
 import 'package:finalapppp/controller/bloc/checkout_orders/checkout_orders_bloc/checkout_bloc.dart';
 import 'package:finalapppp/controller/bloc/checkout_orders/delivery_address_bloc/delivery_address_bloc.dart';
+import 'package:finalapppp/controller/bloc/additem/additem_bloc.dart';
 import 'package:finalapppp/controller/bloc/mycart/myCart_bloc.dart';
 import 'package:finalapppp/controller/bloc/item_filter/filter_bloc.dart';
 import 'package:finalapppp/controller/bloc/home/home_bloc.dart';
@@ -21,7 +22,8 @@ import '../controller/bloc/signup/signup_bloc.dart';
 import '../services/rest_api/client.dart';
 import '../ui/authentication/phone_auth.dart';
 import '../ui/authentication/verify_otp.dart';
-import '../ui/home_screen/addbasket/addbasket_screen.dart';
+import '../ui/home_screen/addbasket/add_item.dart';
+import '../ui/home_screen/addbasket/homeitem_screen.dart';
 import '../ui/home_screen/home_page.dart';
 import '../ui/login_intro/login_intro.dart';
 
@@ -43,17 +45,14 @@ class AppRoutes {
             ));
       case LoginIntro.routeName:
         return MaterialPageRoute(builder: (context) => const LoginIntro());
-
       case HomePage.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => HomeBloc(),
-                child: HomePage()));
-        case MoreCategory.routeName:
+                create: (context) => HomeBloc(), child: HomePage()));
+      case MoreCategory.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => HomeBloc(),
-                child: MoreCategory()));
+                create: (context) => HomeBloc(), child: MoreCategory()));
 
       case SignUp.routeName:
         return MaterialPageRoute(
@@ -105,10 +104,19 @@ class AppRoutes {
               create: (context) => CheckoutBloc(),
               child:  CheckoutOrderScreen()));
         case HomeItemScreen.routeName:
+      case HomeItemScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => ItemTapBloc(),
-                child: HomeItemScreen()));
+                create: (context) => ItemTapBloc(), child: HomeItemScreen()));
+      case AddItemScreen.routeName:
+        Map<String, dynamic> arguments =
+            setting.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                create: (context) => AddItemBloc(arguments['index']),
+                child: AddItemScreen(
+
+                )));
       default:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
     }
