@@ -1,12 +1,17 @@
+import 'package:finalapppp/controller/bloc/checkout_orders/checkout_orders_bloc/checkout_bloc.dart';
+import 'package:finalapppp/controller/bloc/checkout_orders/delivery_address_bloc/delivery_address_bloc.dart';
 import 'package:finalapppp/controller/bloc/mycart/myCart_bloc.dart';
 import 'package:finalapppp/controller/bloc/item_filter/filter_bloc.dart';
 import 'package:finalapppp/controller/bloc/home/home_bloc.dart';
 import 'package:finalapppp/controller/bloc/notification/notification_bloc.dart';
 import 'package:finalapppp/controller/bloc/offers/offers_bloc.dart';
 import 'package:finalapppp/controller/bloc/recommended/recommed_bloc.dart';
+import 'package:finalapppp/ui/CheckoutOrders/checkout_order_screen.dart';
+import 'package:finalapppp/ui/CheckoutOrders/deliver_address_screen.dart';
 import 'package:finalapppp/ui/notification/notification_screen.dart';
 import 'package:finalapppp/ui/recommended/recommended.dart';
 import 'package:finalapppp/ui/sign_up/sign_up.dart';
+import 'package:finalapppp/widgets/CheckoutOrders/deliver_address_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../ui/splash/splashScreen.dart';
@@ -34,7 +39,8 @@ class AppRoutes {
     switch (setting.name) {
       case "/":
         return MaterialPageRoute(
-            builder: (context) => const SplashScreen());
+            builder: (context) => const SplashScreen(
+            ));
       case LoginIntro.routeName:
         return MaterialPageRoute(builder: (context) => const LoginIntro());
 
@@ -67,28 +73,37 @@ class AppRoutes {
       case VerifyOtpScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider.value(
-                      value: signInBloc,
-                      child: VerifyOtpScreen(res: setting.arguments as Map),
-                    ));
+                  value: signInBloc,
+                  child: VerifyOtpScreen(res: setting.arguments as Map),
+                ));
       case MyCartScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => MyCartCardBloc(), child: const MyCartScreen()));
+                create: (context) => MyCartCardBloc(),
+                child: const MyCartScreen()));
       case SpecialOffers.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => OffersBloc(),
-                child: SpecialOffers()));
+                create: (context) => OffersBloc(), child: SpecialOffers()));
       case RecommendedScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
                 create: (context) => RecommendedBloc(),
                 child: RecommendedScreen()));
-        case FilterScreen.routeName:
+      case FilterScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                create: (context) => FilterBloc(),
-                child: FilterScreen()));
+                create: (context) => FilterBloc(), child: FilterScreen()));
+      case DeliverAddressScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                create: (context) => DeliveryAddressBloc(),
+                child: DeliverAddressScreen()));
+      case CheckoutOrderScreen.routeName:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+              create: (context) => CheckoutBloc(),
+              child:  CheckoutOrderScreen()));
         case HomeItemScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
