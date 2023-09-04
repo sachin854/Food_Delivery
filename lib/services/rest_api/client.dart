@@ -57,6 +57,86 @@ class RestApiClientService extends RestApiBaseService {
     return data;
   }
 
+  List payment = [
+    {
+      "icon": const Icon(
+        Icons.wallet,
+        color: AppColor.greenColor,
+      ),
+      "title": "My Wallet",
+      "price": "\$9.00",
+    },{
+      "icon": const Icon(
+        Icons.paypal,color:AppColor.secondaryColor,
+      ),
+      "title": "PayPal",
+      "price": "\$9.00",
+    },{
+      "icon":  const Icon(
+        Icons.g_mobiledata_rounded,
+        color:  AppColor.greenColor,
+      ),
+      "title": "Google Pay",
+      "price": "\$9.00",
+    },{
+      "icon": const Icon(
+        Icons.apple,
+      ),
+      "title": "Apple Pay",
+      "price": "\$9.00",
+    },{
+      "icon": const Icon(
+        Icons.price_change,color:  AppColor.greenColor,
+      ),
+      "title": "Cash Money",
+      "price": "\$9.00",
+    },{
+      "icon": const Icon(
+        Icons.credit_card,color:  AppColor.orangeColor,
+      ),
+      "title": "**** **** **** 4679",
+      "price": "\$9.00",
+    },
+  ];
+
+  List discount=[
+    {
+      "icon": const Icon(
+        Icons.wallet,
+        color: AppColor.greenColor,
+      ),
+      "title": "New User Promo",
+      "details": "only valid for new user",
+    },{
+      "icon":const Icon(
+      Icons.paypal,color:AppColor.secondaryColor,
+),
+      "title": "Discount 20% OFF",
+      "details": "20% discount on all menus",
+    },{
+      "icon": const Icon(
+        Icons.wallet,
+        color: AppColor.greenColor,
+      ),
+      "title": "Free Delivery Fee",
+      "details": "Free delivery max \$4.00",
+    },{
+      "icon": const Icon(
+        Icons.wallet,
+        color: AppColor.greenColor,
+      ),
+      "title": "Weekend Special",
+      "details": "Valid on Saturday & Sunday",
+    },{
+      "icon": const Icon(
+        Icons.wallet,
+        color: AppColor.greenColor,
+      ),
+      "title": "Year End Promo",
+      "details": "Christmas & new year promo",
+    },
+  ];
+
   FirebaseAuth auth = FirebaseAuth.instance;
   List<dynamic> deliveryaddress = [
     {
@@ -128,7 +208,7 @@ class RestApiClientService extends RestApiBaseService {
   }
 
   Future loginData() async {
-    await Future.delayed(Duration(seconds: 2)); // Simulating delay
+    await Future.delayed(const Duration(seconds: 2)); // Simulating delay
     var userData = {
       '_id': 'user123',
       'userID': 'ddddd',
@@ -669,5 +749,127 @@ class RestApiClientService extends RestApiBaseService {
       },
     ];
     return category;
+  }
+
+  List<dynamic> getFilteredData(String selectedCategoryName) {
+    List<Map<String, dynamic>> categoryData = [
+      {
+        "id": "Humbarg",
+        "food_filter": "Filter",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Humbarg",
+      },
+      {
+        "id": "Humbarg",
+        "food_filter": "Sort",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Humbarg",
+      },
+      {
+        "id": "Humbarg",
+        "food_filter": "Promo",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Humbarg",
+      },
+      {
+        "id": "Humbarg",
+        "food_filter": "Self Pick",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Humbarg",
+      },
+      {
+        "id": "Pizza",
+        "food_filter": "Self Pick",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Pizza",
+      },
+      {
+        "id": "Pizza",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Pizza",
+      },
+      {
+        "id": "Noodles",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Pizza",
+      },
+      {
+        "id": "Meat",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Pizza",
+      },
+      {
+        "id": "Meat",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Pizza",
+      },
+      {
+        "id": "Vegetables",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Pizza",
+      },
+      {
+        "id": "Dessert",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Pizza",
+      },
+      {
+        "id": "Drink",
+        "food_image": Images.burger,
+        "food_title": "Vegitarian Noodles",
+        "distance": "800 m",
+        "rating": "4.8 (1.2k)",
+        "food_price": "\$8.00",
+        "category_name": "Pizza",
+      },
+    ];
+    List<Map<String, dynamic>> filteredData = categoryData
+        .where((item) => item["id"] == selectedCategoryName)
+        .toList();
+    return filteredData;
   }
 }

@@ -5,15 +5,15 @@ import '../../../services/rest_api/client.dart';
 import 'filter_event.dart';
 
 class FilterBloc extends Bloc<FilterEvent, FilterState> {
-  FilterBloc() : super(FilterInitialState()) {
+  String selectedCategoryName;
+  FilterBloc({required this.selectedCategoryName}) : super(FilterInitialState()) {
     itemFilter();
-
   }
 
   itemFilter() async{
-    List result = await RestApiClientService.shared.getFilterdata();
-    print("item result...."+result.toString());
-    emit(FilterLoadingState(result));
+    List categoryDataFilter = await RestApiClientService.shared.getFilteredData(selectedCategoryName);
+    print("categoryDataFilter"+categoryDataFilter.toString());
+    emit(FilterLoadingState(categoryDataFilter));
   }
 
 
