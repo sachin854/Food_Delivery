@@ -1,4 +1,5 @@
 import 'package:finalapppp/ui/home_screen/addbasket/homeitem_screen.dart';
+import 'package:finalapppp/ui/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../controller/bloc/home/home_bloc.dart';
@@ -232,7 +233,7 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(12)),
                             child: TextFormField(
                               onTap: (){
-                                Navigator.pushNamed(context, MoreCategory.routeName);
+                                Navigator.pushNamed(context, SearchScreen.routeName);
                               },
                               onChanged: (val) {},
                               keyboardType: TextInputType.emailAddress,
