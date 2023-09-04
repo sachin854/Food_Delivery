@@ -134,6 +134,83 @@ class RestApiClientService extends RestApiBaseService {
     },
 
   ];
+  List discountArray = [
+    {
+      "food_title": "Burger1",
+      "delivery_charges": "\$10.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
+      "images":
+      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "Special bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 50.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {
+      "food_title": "Burger2",
+      "delivery_charges": "\$11.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
+      "images":"https://www.acouplecooks.com/wp-content/uploads/2019/05/Chopped-Salad-001_1.jpg",
+      "your_title": "Hamburger",
+      "menu_title": "HHSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 30.00,
+      "description":
+      "This burger is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {
+      "food_title": "Burger 3",
+      "delivery_charges": "\$51.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
+      "images":
+      "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "KKSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 20.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {
+      "food_title": "Burger 4",
+      "delivery_charges": "\$51.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
+      "images":
+      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "JJSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 10.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {
+      "food_title": "Pizza ",
+      "delivery_charges": "\$51.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
+      "images":
+      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "JJSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 10.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+
+  ];
   List<dynamic> getHomeItemData() {
     return discountArray;
   }
