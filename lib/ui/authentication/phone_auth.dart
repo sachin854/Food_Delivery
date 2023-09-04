@@ -50,10 +50,17 @@ class _LoginScreenState extends State<LoginScreen> {
     _phoneNumberController = TextEditingController();
     super.initState();
   }
+  @override
+  void dispose() {
+    _signInBloc!.close();
+    _phoneNumberController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: BlocConsumer<SignInBloc, SignInState>(
         listener: (context, state) {
           if (state is SignInOnFirebaseOtpSentState) {

@@ -15,6 +15,7 @@ import '../login_intro/login_intro.dart';
 import '../more_category/more_category.dart';
 import '../notification/notification_screen.dart';
 import '../offers/special_offers.dart';
+import 'addbasket/homeitem_screen.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = "/home";
@@ -354,9 +355,20 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                context
-                                    .read<HomeBloc>()
-                                    .add(HomeDiscountCardTapEvent());
+                                print('iteeemmm...' +
+                                    index.toString());
+
+                                Map<String, dynamic>
+                                item = {"index": index};
+                                Navigator.pushNamed(
+                                    context,
+                                    HomeItemScreen
+                                        .routeName,
+                                    arguments: item);
+                                //Navigator.pushNamed(context,HomeItemScreen.routeName);
+                                // context
+                                //     .read<HomeBloc>()
+                                //     .add(HomeDiscountCardTapEvent());
                               },
                               child: DiscountCard(
                                 img: state.discountArray[index]

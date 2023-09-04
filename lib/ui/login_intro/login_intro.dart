@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../resources/assets/images.dart';
 import '../../widgets/social_sign_in_button.dart';
 import '../authentication/phone_auth.dart';
+import '../home_screen/addbasket/homeitem_screen.dart';
 
 class LoginIntro extends StatefulWidget {
   static const routeName = "/loginIntro";
@@ -119,7 +120,7 @@ class _LoginIntroState extends State<LoginIntro> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, RecommendedScreen.routeName);
+                  Navigator.pushNamed(context, HomeItemScreen.routeName);
                 },
                 child: const TextWidget(
                   title: "Sign in with Phone Number",

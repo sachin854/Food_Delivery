@@ -99,11 +99,11 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>{
       SharedPreferences preferences = await SharedPreferences.getInstance();
       final result = await RestApiClientService.shared.loginData();
       print(result);
-      if(result == 'isExisting'){
+      if(result == 404){
         // preferences.setBool('exist', true);
         emit(SignInVerifiedState(isExisting: false));
 
-      }else if(result == 'isEmpty'){
+      }else if(result == 500){
         // preferences.setBool('exist', false);
         emit(SignInErrorState("Something Went Wrong"));
       }
@@ -113,6 +113,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState>{
       }
       return result;
     } on DioError catch (error) {
+      print("statys code...."+error.response!.statusCode.toString());
       if (error.response?.statusCode == 404) {
         if (error.response?.data != null) {
           print("data ...response error..." + error.response!.data["message"].toString());
