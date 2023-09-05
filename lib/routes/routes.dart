@@ -154,6 +154,9 @@ class AppRoutes {
               child: SearchScreen(
               ),
             ));
+      case ApplyFiltersScreen.routeName: return MaterialPageRoute(
+          builder: (context) =>  const ApplyFiltersScreen(
+          ));
       default:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
     }

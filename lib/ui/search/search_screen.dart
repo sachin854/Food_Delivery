@@ -5,6 +5,7 @@ import 'package:finalapppp/resources/constants/color.dart';
 import 'package:finalapppp/resources/constants/dimensions.dart';
 import 'package:finalapppp/resources/constants/font_weight.dart';
 import 'package:finalapppp/resources/constants/padding.dart';
+import 'package:finalapppp/ui/search/filters_screen.dart';
 import 'package:finalapppp/widgets/component/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -298,70 +299,76 @@ class _SearchScreenState extends State<SearchScreen> {
                           bool isFilterButton = state
                               .filterData[index]["food_filter"] ==
                               "Filter";
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: isFocused
-                                  ? Colors.green
-                                  : Colors.grey.withOpacity(0.1),
-                              border: Border.all(
-                                  color: Colors.green, width: 2),
-                              borderRadius: BorderRadius.circular(35),
+                          return InkWell(
+                            onTap: (){
+
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: isFocused
+                                    ? Colors.green
+                                    : Colors.grey.withOpacity(0.1),
+                                border: Border.all(
+                                    color: Colors.green, width: 2),
+                                borderRadius: BorderRadius.circular(35),
+                              ),
+                              margin: EdgeInsets.only(left: 16),
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, ApplyFiltersScreen.routeName);
+                                    setState(() {
+                                      _selectedButtonIndex = index;
+                                    });
+                                    _handleTap;
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      alignment: Alignment.center,
+                                      backgroundColor: isFocused
+                                          ? Colors.green
+                                          : Colors.white,
+                                      padding: EdgeInsets.only(
+                                          left: 10, right: 10),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(25))),
+                                  child: Row(
+                                    children: [
+                                      if (isSortButton)
+                                        Icon(
+                                          Icons.sort,
+                                          size: 20,
+                                          color: isFocused
+                                              ? Colors.white
+                                              : Colors.green,
+                                        ),
+                                      if (isFilterButton)
+                                        Icon(
+                                          Icons.filter_list,
+                                          size: 20,
+                                          color: isFocused
+                                              ? Colors.white
+                                              : Colors.green,
+                                        ),
+                                      if (!isSortButton && !isFilterButton)
+                                        SizedBox(width: 20),
+                                      Padding(
+                                        padding:
+                                        const EdgeInsets.only(left: 0),
+                                        child: TextWidget(
+                                          title: state.filterData[index]
+                                          ["food_filter"],
+                                          titleColor: isFocused
+                                              ? Colors.white
+                                              : Colors.green,
+                                          fontSize: AppFontWeight.font13,
+                                          fontWeight: FontWeight.w700,
+                                          textoverflow:
+                                          TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  )),
                             ),
-                            margin: EdgeInsets.only(left: 16),
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _selectedButtonIndex = index;
-                                  });
-                                  _handleTap;
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    alignment: Alignment.center,
-                                    backgroundColor: isFocused
-                                        ? Colors.green
-                                        : Colors.white,
-                                    padding: EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(25))),
-                                child: Row(
-                                  children: [
-                                    if (isSortButton)
-                                      Icon(
-                                        Icons.sort,
-                                        size: 20,
-                                        color: isFocused
-                                            ? Colors.white
-                                            : Colors.green,
-                                      ),
-                                    if (isFilterButton)
-                                      Icon(
-                                        Icons.filter_list,
-                                        size: 20,
-                                        color: isFocused
-                                            ? Colors.white
-                                            : Colors.green,
-                                      ),
-                                    if (!isSortButton && !isFilterButton)
-                                      SizedBox(width: 20),
-                                    Padding(
-                                      padding:
-                                      const EdgeInsets.only(left: 0),
-                                      child: TextWidget(
-                                        title: state.filterData[index]
-                                        ["food_filter"],
-                                        titleColor: isFocused
-                                            ? Colors.white
-                                            : Colors.green,
-                                        fontSize: AppFontWeight.font13,
-                                        fontWeight: FontWeight.w700,
-                                        textoverflow:
-                                        TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                )),
                           );
                         }),
                   ),
