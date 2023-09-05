@@ -9,11 +9,13 @@ class AddItemsTapEvent extends CheckoutEvent{}
 class EditItemsTapEvent extends CheckoutEvent{}
 class PaymentTapEvent extends CheckoutEvent{
   BuildContext context;
-  PaymentTapEvent(this.context);
+  double totalOrderPrice;
+  PaymentTapEvent(this.context, this.totalOrderPrice);
 }
 class GetDiscountsTapEvent extends CheckoutEvent{
   BuildContext context;
-  GetDiscountsTapEvent(this.context);
+  double totalOrderPrice;
+  GetDiscountsTapEvent(this.context,this.totalOrderPrice);
 }
 class PlaceOrderTapEvent extends CheckoutEvent{
   BuildContext context;

@@ -24,7 +24,7 @@ class _OfferCardState extends State<OfferCard> {
         borderRadius: BorderRadius.circular(32),
         boxShadow: [
           BoxShadow(
-            color: AppColor.greenColor.withOpacity(0.5),
+            color: AppColor.greenColor.withOpacity(0.2),
             spreadRadius: 5,
             blurRadius: 10,
             offset: const Offset(1, 2),

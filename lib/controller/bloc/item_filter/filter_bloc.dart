@@ -13,11 +13,17 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     });
   }
 
-  itemFilter() async{
+ Future itemFilter() async{
     List sortOptions= await RestApiClientService.shared.sortOptions();
-    List categoryDataFilter = await RestApiClientService.shared.getFilteredData(selectedCategoryName);
-    print("categoryDataFilter"+categoryDataFilter.toString());
-    emit(FilterLoadingState(sortOptions,categoryDataFilter));
+    // List categoryDataFilter = await RestApiClientService.shared.getFilteredData(selectedCategoryName);
+    List categoryDataFilter = await RestApiClientService.shared.discountArray;
+
+    List filteredData = await categoryDataFilter
+        .where((item) => item["id"] == selectedCategoryName)
+        .toList();
+
+    print("categoryDataFilter"+filteredData.toString());
+    emit(FilterLoadingState(sortOptions,filteredData));
   }
 
 

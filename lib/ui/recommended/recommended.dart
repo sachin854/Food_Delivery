@@ -159,8 +159,9 @@ class _RecommendedScreenState extends State<RecommendedScreen> {
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {
+                                  var selectedItem=index;
                                   Navigator.pushNamed(
-                                      context, HomeItemScreen.routeName);
+                                      context, HomeItemScreen.routeName,arguments: selectedItem);
                                 },
                                 child: Card(
                                   margin: const EdgeInsets.only(

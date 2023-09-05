@@ -3,9 +3,9 @@ abstract class FilterState {}
 class FilterInitialState extends FilterState {}
 
 class FilterLoadingState extends FilterState {
-  List<dynamic> categoryDataFilter;
+  List<dynamic> filteredData;
   List<dynamic> sortOptions;
-  FilterLoadingState(this.sortOptions,this.categoryDataFilter,);
+  FilterLoadingState(this.sortOptions,this.filteredData,);
 }
 
 

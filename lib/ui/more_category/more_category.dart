@@ -43,14 +43,11 @@ class _MoreCategoryState extends State<MoreCategory> {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: AppColor.whiteColor,
-            leading: InkWell(
-              onTap: () {
+            leading:  BackButton(
+              color: AppColor.blackColor,
+              onPressed: () {
                 Navigator.pushNamed(context, HomePage.routeName);
               },
-              child: const Icon(
-                Icons.arrow_back,
-                color: AppColor.blackColor,
-              ),
             ),
             title: const TextWidget(
               title: "More Category",
@@ -61,7 +58,8 @@ class _MoreCategoryState extends State<MoreCategory> {
             child: BlocConsumer<CategoryBloc, CategoryState>(
               listener: (context, state) {
                 if (state is CategoryItemTappedState) {
-                  Navigator.of(context).pushNamed(FilterScreen.routeName,arguments:categoryName);
+                  Navigator.of(context).pushNamed(FilterScreen.routeName,
+                      arguments: categoryName);
                 }
               },
               builder: (context, state) {
@@ -78,21 +76,18 @@ class _MoreCategoryState extends State<MoreCategory> {
                             spacing: 14,
                             crossAxisAlignment: WrapCrossAlignment.start,
                             children: [
-                              for (var i = 0;
-                                  i < state.category.length;
-                                  i++)
+                              for (var i = 0; i < state.category.length; i++)
                                 InkWell(
                                   onTap: () {
-                                    categoryName=state.category[i]?["category_name"];
-                                    context
-                                        .read<CategoryBloc>()
-                                        .add(CategoryItemTapEvent(state.category[i]
-                                    ?["category_name"]));
+                                    categoryName =
+                                        state.category[i]?["category_name"];
+                                    context.read<CategoryBloc>().add(
+                                        CategoryItemTapEvent(state.category[i]
+                                            ?["category_name"]));
                                   },
                                   child: CategoryItem(
                                     image: state.category[i]?["food_image"],
-                                    name: state.category[i]
-                                        ?["category_name"],
+                                    name: state.category[i]?["category_name"],
                                   ),
                                 )
                             ],

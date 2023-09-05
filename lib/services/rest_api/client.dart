@@ -134,15 +134,16 @@ class RestApiClientService extends RestApiBaseService {
     },
 
   ];
+
   List discountArray = [
     {
-      "food_title": "Burger1",
+      "id": "Humbarg",
+      "food_title": "Burger 1",
       "delivery_charges": "\$10.00",
       "distance": "1.5 km",
       "ratings": "4.8 (1.2k)",
-      "like": false,
-      "images":
-      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "like": true,
+      "images":"https://www.realsimple.com/thmb/z3cQCYXTyDQS9ddsqqlTVE8fnpc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/real-simple-mushroom-black-bean-burgers-recipe-0c365277d4294e6db2daa3353d6ff605.jpg",
       "your_title": "1x mixed vegitable salad",
       "menu_title": "Special bound salad",
       "drink_title": "1x Fresh Avacado juice",
@@ -151,27 +152,13 @@ class RestApiClientService extends RestApiBaseService {
       "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
     {
-      "food_title": "Burger2",
-      "delivery_charges": "\$11.00",
-      "distance": "1.5 km",
-      "ratings": "4.8 (1.2k)",
-      "like": false,
-      "images":"https://www.acouplecooks.com/wp-content/uploads/2019/05/Chopped-Salad-001_1.jpg",
-      "your_title": "Hamburger",
-      "menu_title": "HHSpecial bound salad",
-      "drink_title": "1x Fresh Avacado juice",
-      "price": 30.00,
-      "description":
-      "This burger is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
-    },
-    {
-      "food_title": "Burger 3",
+      "id": "Humbarg",
+      "food_title": "Burger 2",
       "delivery_charges": "\$51.00",
       "distance": "1.5 km",
       "ratings": "4.8 (1.2k)",
       "like": false,
-      "images":
-      "https://www.freepnglogos.com/uploads/food-png/food-png-transparent-images-png-only-6.png",
+      "images":"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fHww&w=1000&q=80",
       "your_title": "1x mixed vegitable salad",
       "menu_title": "KKSpecial bound salad",
       "drink_title": "1x Fresh Avacado juice",
@@ -180,7 +167,37 @@ class RestApiClientService extends RestApiBaseService {
       "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
     {
+      "id": "Humbarg",
+      "food_title": "Burger 3",
+      "delivery_charges": "\$11.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": true,
+      "images":"https://assets.cntraveller.in/photos/60ba26c0bfe773a828a47146/16:9/w_1920,h_1080,c_limit/Burgers-Mumbai-Delivery.jpg",
+      "your_title": "Hamburger",
+      "menu_title": "HHSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 30.00,
+      "description":
+      "This burger is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {
+      "id": "Humbarg",
       "food_title": "Burger 4",
+      "delivery_charges": "\$51.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": true,
+      "images":"https://assets.cntraveller.in/photos/6246f468c579dd6f2d1244b6/4:3/w_2120,h_1590,c_limit/Best%20Burgers%20in%20Mumbai%20_Louis%20Monstercheese%20Burger.jpg","your_title": "1x mixed vegitable salad",
+      "menu_title": "JJSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 10.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {
+      "id": "Humbarg",
+      "food_title": "Burger 5",
       "delivery_charges": "\$51.00",
       "distance": "1.5 km",
       "ratings": "4.8 (1.2k)",
@@ -194,14 +211,56 @@ class RestApiClientService extends RestApiBaseService {
       "description":
       "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
     },
-    {
-      "food_title": "Pizza ",
+    {"id": "Pizza",
+      "food_title": "Pizza",
       "delivery_charges": "\$51.00",
       "distance": "1.5 km",
       "ratings": "4.8 (1.2k)",
       "like": false,
       "images":
-      "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "JJSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 10.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {"id": "Noodles",
+      "food_title": "Noodles",
+      "delivery_charges": "\$51.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
+      "images":"https://www.chewoutloud.com/wp-content/uploads/2021/05/lo-mein-square-500x500.jpg",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "JJSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 10.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {"id": "Noodles",
+      "food_title": "Noodles",
+      "delivery_charges": "\$51.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": true,
+      "images":"https://www.chewoutloud.com/wp-content/uploads/2021/05/lo-mein-square-500x500.jpg",
+      "your_title": "1x mixed vegitable salad",
+      "menu_title": "JJSpecial bound salad",
+      "drink_title": "1x Fresh Avacado juice",
+      "price": 10.00,
+      "description":
+      "This vegitable salad is tasty and delesious summer salad made with fresh raw veggies.avacado,nuts and its is good for health",
+    },
+    {"id": "Meat",
+      "food_title": "Meat",
+      "delivery_charges": "\$51.00",
+      "distance": "1.5 km",
+      "ratings": "4.8 (1.2k)",
+      "like": false,
+      "images":"https://hips.hearstapps.com/hmg-prod/images/peach-balsamic-grilled-chicken-5-1662057070.jpg",
       "your_title": "1x mixed vegitable salad",
       "menu_title": "JJSpecial bound salad",
       "drink_title": "1x Fresh Avacado juice",
@@ -407,11 +466,11 @@ class RestApiClientService extends RestApiBaseService {
 
   List<dynamic> getRecommendFilterData() {
     List data = [
-      {"food_image": Images.burger, "title": "All"},
+      {"food_image": Images.check, "title": "All"},
       {"food_image": Images.burger, "title": "Hamburger"},
-      {"food_image": Images.burger, "title": "Pizza"},
-      {"food_image": Images.burger, "title": "Icecreams"},
-      {"food_image": Images.burger, "title": "Drinks"}
+      {"food_image": Images.pizza, "title": "Pizza"},
+      {"food_image": Images.dessert, "title": "Icecreams"},
+      {"food_image": Images.vegetables, "title": "Drinks"}
     ];
     List recommendFilterData = data;
     return recommendFilterData;
@@ -924,6 +983,7 @@ class RestApiClientService extends RestApiBaseService {
     return sortOptions;
   }
 
+  ///Old File
   List<dynamic> getFilteredData(String selectedCategoryName,) {
     List<Map<String, dynamic>> categoryData = [
       {

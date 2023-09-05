@@ -14,5 +14,7 @@ class AddressChangedState extends CheckoutState{
 }
 class CheckoutOrderSummaryState extends CheckoutState{}
 class CheckoutAddressTapState extends CheckoutState{}
+class CheckoutPaymentTapState extends CheckoutState{}
+
 
 

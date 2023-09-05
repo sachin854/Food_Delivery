@@ -32,4 +32,8 @@ class HomeRecommendSeeAllTapEvent extends HomeEvent {
 class FilterTapEvent extends HomeEvent {
 }
 class RecommendCardTapEvent extends HomeEvent {
+  final int selecteIndex;
+  RecommendCardTapEvent(this.selecteIndex);
+}
+class HomeRecommendCardTapEvent extends HomeEvent {
 }

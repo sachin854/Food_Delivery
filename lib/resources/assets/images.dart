@@ -14,4 +14,5 @@ class Images{
   static String dessert = "assets/images/dessert.png";
   static String drink = "assets/images/drink.png";
   static String more = "assets/images/more.png";
+  static String check = "assets/images/check.png";
 }

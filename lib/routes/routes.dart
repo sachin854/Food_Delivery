@@ -108,7 +108,7 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
                 create: (context) => RecommendedBloc(),
-                child: RecommendedScreen()));
+                child: const RecommendedScreen()));
       case FilterScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
@@ -118,12 +118,14 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
                 create: (context) => DeliveryAddressBloc(),
-                child: DeliverAddressScreen()));
-      case CheckoutOrderScreen.routeName:
+                child: const DeliverAddressScreen()));
+      case
+      CheckoutOrderScreen.routeName:
+      // "/":
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
               create: (context) => CheckoutBloc(),
-              child:  CheckoutOrderScreen()));
+              child:  CheckoutOrderScreen(selectedItem: setting.arguments as int,)));
         case HomeItemScreen.routeName:
       case HomeItemScreen.routeName:
         return MaterialPageRoute(
@@ -140,18 +142,17 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
                 create: (context) => PaymentBloc(),
-                child: const Payment()));
+                child:  Payment(totalPrice: setting.arguments as double,)));
         case GetDiscount.routeName:
-        /*"/":*/
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
                 create: (context) => GetDiscountBloc(),
-                child: const GetDiscount()));
+                child:  GetDiscount(totalPrice: setting.arguments as double,)));
       case SearchScreen.routeName:
         return MaterialPageRoute(
             builder: (context) =>  BlocProvider(
               create: (context)=>SearchBloc(),
-              child: SearchScreen(
+              child: const SearchScreen(
               ),
             ));
       case ApplyFiltersScreen.routeName: return MaterialPageRoute(

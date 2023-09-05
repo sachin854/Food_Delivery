@@ -1,3 +1,4 @@
+import 'package:finalapppp/ui/CheckoutOrders/deliver_address_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,13 +9,15 @@ import '../../resources/constants/color.dart';
 import '../../resources/constants/dimensions.dart';
 import '../../resources/constants/font_weight.dart';
 import '../../resources/constants/padding.dart';
+import '../../services/rest_api/client.dart';
 import '../../widgets/component/text_widget.dart';
 import '../../widgets/component/textfield_widget.dart';
 import '../../widgets/payment_card.dart';
 
 class Payment extends StatefulWidget {
+  double totalPrice;
   static const routeName = "/payment";
-  const Payment({super.key});
+   Payment({super.key,required this.totalPrice});
 
   @override
   State<Payment> createState() => _PaymentState();
@@ -23,6 +26,8 @@ class Payment extends StatefulWidget {
 class _PaymentState extends State<Payment> {
   int selectedIndex = 0;
 
+  List discountArray =  RestApiClientService.shared.discountArray;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,14 +35,8 @@ class _PaymentState extends State<Payment> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColor.whiteColor,
-          leading: InkWell(
-            onTap: () {
-              // Navigator.pushNamed(context, HomePage.routeName);
-            },
-            child: const Icon(
-              Icons.arrow_back,
-              color: AppColor.blackColor,
-            ),
+          leading: const BackButton(
+            color: AppColor.blackColor,
           ),
           title: const Row(
             children: [
@@ -93,7 +92,7 @@ class _PaymentState extends State<Payment> {
                             child: PaymentCard(
                               icons: state.paymentData[index]['icon'],
                               paymentTitle: state.paymentData[index]['title'],
-                              price: state.paymentData[index]['price'],
+                              price: "\$ ${widget.totalPrice}",
                               isSelected: selectedIndex == index,
                               onChanged: (value) {
                                 context

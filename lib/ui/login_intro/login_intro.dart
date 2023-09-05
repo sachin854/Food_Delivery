@@ -9,6 +9,7 @@ import '../../resources/assets/images.dart';
 import '../../widgets/social_sign_in_button.dart';
 import '../authentication/phone_auth.dart';
 import '../home_screen/addbasket/homeitem_screen.dart';
+import '../sign_up/sign_up.dart';
 
 class LoginIntro extends StatefulWidget {
   static const routeName = "/loginIntro";
@@ -51,6 +52,7 @@ class _LoginIntroState extends State<LoginIntro> {
       ),
       body: Column(
         children: [
+         const SizedBox(height: Dimensions.dimen10,),
           Center(
             child: SvgPicture.asset(
               Images.loginIntro,
@@ -120,7 +122,7 @@ class _LoginIntroState extends State<LoginIntro> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, HomeItemScreen.routeName);
+                  Navigator.pushNamed(context, LoginScreen.routeName);
                 },
                 child: const TextWidget(
                   title: "Sign in with Phone Number",
@@ -143,7 +145,7 @@ class _LoginIntroState extends State<LoginIntro> {
                   )),
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, LoginScreen.routeName);
+                  Navigator.pushNamed(context, SignUp.routeName);
                   },
                 child: const TextWidget(
                   title: "Sign Up",

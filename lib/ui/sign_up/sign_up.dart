@@ -71,7 +71,7 @@ class _SignUpState extends State<SignUp> {
           elevation: 0,
           backgroundColor: AppColor.primaryColor,
           leading: const BackButton(
-            color: AppColor.greyColor,
+            color: AppColor.blackColor,
           ),
         ),
         body: SingleChildScrollView(
@@ -379,6 +379,9 @@ class _SignUpState extends State<SignUp> {
                           ],
                         ),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 20,
                     ),
                   ],
                 );

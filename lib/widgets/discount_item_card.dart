@@ -179,10 +179,13 @@ class _DiscountCardState extends State<DiscountCard> {
                       textoverflow: TextOverflow.ellipsis,
                     ),
                     const Spacer(),
-                     Icon(
-                       widget.likeValue ?Icons.favorite:
-                       Icons.favorite_border_outlined,
-                      color: AppColor.redColor,
+                    Icon(
+                      widget.likeValue
+                          ? Icons.favorite
+                          : Icons.favorite_border_outlined,
+                      color: widget.likeValue
+                          ? AppColor.redColor
+                          : Colors.grey, // Use your desired grey color
                     )
                   ],
                 ),

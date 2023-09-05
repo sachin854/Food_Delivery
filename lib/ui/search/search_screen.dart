@@ -6,6 +6,7 @@ import 'package:finalapppp/resources/constants/dimensions.dart';
 import 'package:finalapppp/resources/constants/font_weight.dart';
 import 'package:finalapppp/resources/constants/padding.dart';
 import 'package:finalapppp/ui/search/filters_screen.dart';
+import 'package:finalapppp/ui/home_screen/home_page.dart';
 import 'package:finalapppp/widgets/component/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../resources/assets/images.dart';
 
 class SearchScreen extends StatefulWidget {
-  static const routeName="/search";
+  static const routeName = "/search";
   const SearchScreen({super.key});
 
   @override
@@ -36,6 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
       _isFocused = true;
     });
   }
+
   TextEditingController _searchController = TextEditingController();
   void initState() {
     // TODO: implement initState
@@ -49,9 +51,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
   onChange() async {
     String textVal = _searchController.text.toString();
-    print("textVal "+textVal.toString());
+    print("textVal " + textVal.toString());
     _searchBloc.add(SearchTextChangedEvent(textVal));
-
   }
 
   @override
@@ -71,8 +72,9 @@ class _SearchScreenState extends State<SearchScreen> {
                 children: [
                   Row(
                     children: [
-                      IconButton(
-                          onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.arrow_back)),
+                      const BackButton(
+                        color: AppColor.blackColor,
+                      ),
                       Expanded(
                         child: Container(
                           height: 50,
@@ -127,7 +129,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   index < state.recentSearchData!.length;
                                   index++)
                                 Container(
-                                  margin: EdgeInsets.all(5),
+                                  margin: const EdgeInsets.all(5),
                                   width: 100,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
@@ -169,10 +171,10 @@ class _SearchScreenState extends State<SearchScreen> {
                             crossAxisAlignment: WrapCrossAlignment.start,
                             children: [
                               for (var index = 0;
-                              index < state.popularCuisineData!.length;
-                              index++)
+                                  index < state.popularCuisineData!.length;
+                                  index++)
                                 Container(
-                                  margin: EdgeInsets.all(5),
+                                  margin: const EdgeInsets.all(5),
                                   width: 100,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
@@ -215,10 +217,10 @@ class _SearchScreenState extends State<SearchScreen> {
                             crossAxisAlignment: WrapCrossAlignment.start,
                             children: [
                               for (var index = 0;
-                              index < state.allCuisineData!.length;
-                              index++)
+                                  index < state.allCuisineData!.length;
+                                  index++)
                                 Container(
-                                  margin: EdgeInsets.all(5),
+                                  margin: const EdgeInsets.all(5),
                                   width: 100,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
@@ -248,7 +250,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ],
               );
             }
-            if(state is SearchTextChangedState){
+            if (state is SearchTextChangedState) {
               print("stateeee");
               print(state.result);
               return Column(
@@ -256,7 +258,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   Row(
                     children: [
                       IconButton(
-                          onPressed: () {}, icon: Icon(Icons.arrow_back)),
+                          onPressed: () {}, icon: const Icon(Icons.arrow_back)),
                       Expanded(
                         child: Container(
                           height: 50,
@@ -277,14 +279,16 @@ class _SearchScreenState extends State<SearchScreen> {
                                     color: AppColor.blackColor,
                                   ),
                                   hintStyle:
-                                  TextStyle(color: AppColor.blackColor),
+                                      TextStyle(color: AppColor.blackColor),
                                   hintText: "Search",
                                   focusColor: AppColor.greenColor)),
                         ),
                       )
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: 45,
@@ -293,11 +297,10 @@ class _SearchScreenState extends State<SearchScreen> {
                         itemCount: state.filterData.length,
                         itemBuilder: (context, index) {
                           bool isFocused = _selectedButtonIndex == index;
-                          bool isSortButton = state.filterData[index]
-                          ["food_filter"] ==
-                              "Sort";
-                          bool isFilterButton = state
-                              .filterData[index]["food_filter"] ==
+                          bool isSortButton =
+                              state.filterData[index]["food_filter"] == "Sort";
+                          bool isFilterButton = state.filterData[index]
+                                  ["food_filter"] ==
                               "Filter";
                           return InkWell(
                             onTap: (){
@@ -372,25 +375,24 @@ class _SearchScreenState extends State<SearchScreen> {
                           );
                         }),
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height,
                     child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: state.searchData.length,
                       itemBuilder: (context, index) {
-
                         return Card(
-                          margin: EdgeInsets.only(
-                              top: 20, left: 16),
+                          margin: const EdgeInsets.only(top: 20, left: 16),
                           elevation: 2,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                           child: Column(
                             children: [
                               Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Stack(
                                     children: [
@@ -401,30 +403,29 @@ class _SearchScreenState extends State<SearchScreen> {
                                           borderRadius: BorderRadius.circular(
                                               20), // Adjust the radius as needed
                                         ),
-                                        child:Container(
+                                        child: Container(
                                           height: 100,
                                           width: 110,
-                                          margin: EdgeInsets.only(
+                                          margin: const EdgeInsets.only(
                                               left: (9.0),
                                               right: 8,
                                               top: 8,
                                               bottom: 8),
                                           padding: const EdgeInsets.only(
-                                              left: Paddings.padding2,
-                                            ),
+                                            left: Paddings.padding2,
+                                          ),
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(14),
+                                                BorderRadius.circular(14),
                                             border: Border.all(
                                                 color: AppColor.whiteColor,
                                                 width: 3),
                                           ),
                                           child: ClipRRect(
                                             borderRadius:
-                                            BorderRadius.circular(20),
+                                                BorderRadius.circular(20),
                                             child: Image.network(
-                                              state.searchData[index]
-                                              ?["img"],
+                                              state.searchData[index]?["img"],
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -437,7 +438,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                           decoration: BoxDecoration(
                                             color: AppColor.greenColor,
                                             borderRadius:
-                                            BorderRadius.circular(8),
+                                                BorderRadius.circular(8),
                                           ),
                                           padding: const EdgeInsets.only(
                                               top: Dimensions.dimen5,
@@ -448,8 +449,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                               title: "Promo",
                                               fontSize: 10,
                                               fontWeight: FontWeight.bold,
-                                              titleColor:
-                                              AppColor.whiteColor),
+                                              titleColor: AppColor.whiteColor),
                                         ),
                                       ),
                                     ],
@@ -457,99 +457,81 @@ class _SearchScreenState extends State<SearchScreen> {
                                   Expanded(
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         TextWidget(
-                                          title:
-                                          state.searchData[index]
-                                          ["restaurant"],
+                                          title: state.searchData[index]
+                                              ["restaurant"],
                                           titleColor: AppColor.blackColor,
                                           fontSize: AppFontWeight.font18,
                                           fontWeight: FontWeight.w700,
                                           //height: 4,
-                                          textoverflow:
-                                          TextOverflow.ellipsis,
+                                          textoverflow: TextOverflow.ellipsis,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 15,
                                         ),
                                         Row(
                                           children: [
                                             TextWidget(
-                                              title: state.searchData[
-                                              index]["kms"],
-                                              titleColor:
-                                              AppColor.greyColor,
-                                              fontSize:
-                                              AppFontWeight.font12,
+                                              title: state.searchData[index]
+                                                  ["kms"],
+                                              titleColor: AppColor.greyColor,
+                                              fontSize: AppFontWeight.font12,
                                               fontWeight: FontWeight.w700,
                                             ),
-                                            Padding(
+                                            const Padding(
                                               padding: EdgeInsets.only(
                                                   left: Paddings.padding5,
-                                                  right:
-                                                  Paddings.padding5),
+                                                  right: Paddings.padding5),
                                               child: TextWidget(
                                                 title: "|",
-                                                titleColor:
-                                                AppColor.greyColor,
-                                                fontSize:
-                                                AppFontWeight.font12,
-                                                fontWeight:
-                                                FontWeight.w700,
+                                                titleColor: AppColor.greyColor,
+                                                fontSize: AppFontWeight.font12,
+                                                fontWeight: FontWeight.w700,
                                               ),
                                             ),
                                             Row(
                                               children: [
-                                                Icon(Icons.star,
+                                                const Icon(Icons.star,
                                                     color: Colors.orange,
                                                     size: 15),
                                                 TextWidget(
-                                                  title: state
-                                                      .searchData[
-                                                  index]["rating"],
+                                                  title: state.searchData[index]
+                                                      ["rating"],
                                                   titleColor:
-                                                  AppColor.greyColor,
-                                                  fontSize: AppFontWeight
-                                                      .font12,
-                                                  fontWeight:
-                                                  FontWeight.w700,
+                                                      AppColor.greyColor,
+                                                  fontSize:
+                                                      AppFontWeight.font12,
+                                                  fontWeight: FontWeight.w700,
                                                 ),
                                               ],
                                             )
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 15,
                                         ),
-
                                         Row(
                                           children: [
-                                            Icon(Icons.delivery_dining,
-                                                color: Colors.green,
-                                                size: 15),
+                                            const Icon(Icons.delivery_dining,
+                                                color: Colors.green, size: 15),
                                             Padding(
-                                              padding:
-                                              const EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                   left: 10),
                                               child: TextWidget(
-                                                title: state
-                                                    .searchData[
-                                                index]["food_price"],
-                                                titleColor:
-                                                AppColor.greyColor,
-                                                fontSize:
-                                                AppFontWeight.font12,
-                                                fontWeight:
-                                                FontWeight.w700,
+                                                title: state.searchData[index]
+                                                    ["food_price"],
+                                                titleColor: AppColor.greyColor,
+                                                fontSize: AppFontWeight.font12,
+                                                fontWeight: FontWeight.w700,
                                               ),
                                             ),
-                                            Spacer(),
+                                            const Spacer(),
                                             Padding(
-                                              padding:
-                                              const EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                   right: 12),
                                               child: GestureDetector(
                                                 onTap: () {
@@ -558,10 +540,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                 child: Icon(
                                                   isFavoriteList[index]
                                                       ? Icons.favorite
-                                                      : Icons
-                                                      .favorite_border,
-                                                  color: isFavoriteList[
-                                                  index]
+                                                      : Icons.favorite_border,
+                                                  color: isFavoriteList[index]
                                                       ? Colors.red
                                                       : Colors.red,
                                                 ),
@@ -574,83 +554,85 @@ class _SearchScreenState extends State<SearchScreen> {
                                   ),
                                 ],
                               ),
-                              Divider(thickness: 1,indent: 15,endIndent: 10,),
-                              for(int i=0;i<state.searchData[index]?["items"].length;i++)
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                Container(
-                                  height: 80,
-                                  width: 90,
-                                  margin: EdgeInsets.only(
-                                      left: (9.0),
-                                      right: 8,
-                                      top: 4,
-                                      bottom: 8),
-                                  padding: const EdgeInsets.only(
-                                      left: Paddings.padding2,
-                                      right: Paddings.padding8),
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(14),
-                                    border: Border.all(
-                                        color: AppColor.whiteColor,
-                                        width: 3),
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius:
-                                    BorderRadius.circular(20),
-                                    child: Image.network(
-                                      state.searchData[index]?["items"]?[i]?["img"] ?? "",
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                              const Divider(
+                                thickness: 1,
+                                indent: 15,
+                                endIndent: 10,
+                              ),
+                              for (int i = 0;
+                                  i < state.searchData[index]?["items"].length;
+                                  i++)
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                  TextWidget(
-                                    title: state
-                                        .searchData[
-                                    index]["items"][i]["title"],
-                                    titleColor:
-                                    AppColor.blackColor,
-                                    fontSize:
-                                    AppFontWeight.font14,
-                                    fontWeight:
-                                    FontWeight.w700,
-                                  ),
-                                  SizedBox(height: 15,),
-                                  TextWidget(
-                                    title: state
-                                        .searchData[
-                                    index]["items"][i]["price"],
-                                    titleColor:
-                                    AppColor.greenColor,
-                                    fontSize:
-                                    AppFontWeight.font12,
-                                    fontWeight:
-                                    FontWeight.w700,
-                                  ),
-                                    SizedBox(height: 10,),
-                                ],),
-                              ],)
-
+                                    Container(
+                                      height: 80,
+                                      width: 90,
+                                      margin: const EdgeInsets.only(
+                                          left: (9.0),
+                                          right: 8,
+                                          top: 4,
+                                          bottom: 8),
+                                      padding: const EdgeInsets.only(
+                                          left: Paddings.padding2,
+                                          right: Paddings.padding8),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(14),
+                                        border: Border.all(
+                                            color: AppColor.whiteColor,
+                                            width: 3),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image.network(
+                                          state.searchData[index]?["items"]?[i]
+                                                  ?["img"] ??
+                                              "",
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        TextWidget(
+                                          title: state.searchData[index]
+                                              ["items"][i]["title"],
+                                          titleColor: AppColor.blackColor,
+                                          fontSize: AppFontWeight.font14,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        ),
+                                        TextWidget(
+                                          title: state.searchData[index]
+                                              ["items"][i]["price"],
+                                          titleColor: AppColor.greenColor,
+                                          fontSize: AppFontWeight.font12,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
                             ],
                           ),
                         );
-
                       },
                     ),
                   ),
-
-
                 ],
               );
             }
 
-            return SizedBox();
+            return const SizedBox();
           }),
         ),
       ),

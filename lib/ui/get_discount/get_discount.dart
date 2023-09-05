@@ -16,29 +16,33 @@ import '../../widgets/get_discount_card.dart';
 import '../home_screen/home_page.dart';
 
 class GetDiscount extends StatefulWidget {
+  double totalPrice;
   static const routeName = "/getDiscount";
-  const GetDiscount({super.key});
+  GetDiscount({super.key,required this.totalPrice});
 
   @override
   State<GetDiscount> createState() => _GetDiscountState();
 }
 
 class _GetDiscountState extends State<GetDiscount> {
-  int selectedIndex = 0;
+  @override
+  void initState() {
+    double finalAmount=widget.totalPrice;
+    // TODO: implement initState
+    widget.totalPrice=widget.totalPrice*20/100;
+    widget.totalPrice=finalAmount-widget.totalPrice;
+    print("totaaal${widget.totalPrice}");
+    super.initState();
+  }
+  int selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     return  SafeArea(child: Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColor.whiteColor,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pushNamed(context, HomePage.routeName);
-          },
-          child: const Icon(
-            Icons.arrow_back,
-            color: AppColor.blackColor,
-          ),
+        leading: const BackButton(
+          color: AppColor.blackColor,
         ),
         title:  const Row(
           children: [
@@ -60,6 +64,7 @@ class _GetDiscountState extends State<GetDiscount> {
             listener: (context, state) {
               if (state is GetDiscountAddCardTappedState) {}
               if (state is GetDiscountAppyTappedState) {}
+
               if (state is GetDiscountCardSelectionTappedState) {
                 selectedIndex=state.selectedIndex;
                   print("Card Selected${state.selectedIndex}");
@@ -208,7 +213,9 @@ class _GetDiscountState extends State<GetDiscount> {
                   BorderRadius.circular(36), // Set the corner radius here
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context,widget.totalPrice);
+              },
               child: const TextWidget(
                 title: "Apply",
                 fontWeight: FontWeight.bold,

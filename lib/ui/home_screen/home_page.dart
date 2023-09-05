@@ -1,5 +1,3 @@
-import 'package:finalapppp/ui/home_screen/addbasket/homeitem_screen.dart';
-import 'package:finalapppp/ui/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../controller/bloc/home/home_bloc.dart';
@@ -20,6 +18,8 @@ import '../notification/notification_screen.dart';
 import '../offers/special_offers.dart';
 import '../recommended/filter.dart';
 import '../recommended/recommended.dart';
+import '../search/search_screen.dart';
+import 'addbasket/homeitem_screen.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = "/home";
@@ -32,10 +32,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final int selecteIndex;
+  late final int selectedIndex;
+  late final int selectedRecommendedIndex;
   late final String selectedCategoryName;
+  int selctedRecommendFilter = 0;
   late HomeBloc? _homeBloc;
-  final int _selectedButtonIndex = -1;
 
   @override
   void initState() {
@@ -66,12 +67,17 @@ class _HomePageState extends State<HomePage> {
               HomeDicountCardIndividualTappedState: HomeItemScreen.routeName,
               HomeRecommendedSeeAllTappedState: RecommendedScreen.routeName,
               // FilterTappedState: null,
-              RecommendCardTappedState: MoreCategory.routeName,
+              // RecommendCardTappedState: HomeItemScreen.routeName,
             };
             final routeName = stateToRouteMap[state.runtimeType];
+
+            if(state is RecommendCardTappedState){
+              Navigator.of(context).pushNamed(HomeItemScreen.routeName,
+                  arguments: selectedRecommendedIndex);
+            }
             if (routeName != null) {
               if (routeName == HomeItemScreen.routeName) {
-                final index = selecteIndex;
+                final index = selectedIndex;
                 Navigator.of(context).pushNamed(
                   routeName,
                   arguments: index,
@@ -117,6 +123,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Column(
                         children: [
+
+                          ///Profile
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -225,6 +233,8 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           const SizedBox(height: Dimensions.dimen20),
+
+                          ///Search Field
                           Container(
                             height: Dimensions.dimen48,
                             padding: const EdgeInsets.all(Paddings.padding10),
@@ -232,23 +242,24 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.grey.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(12)),
                             child: TextFormField(
+                              readOnly: true,
                               onTap: (){
                                 Navigator.pushNamed(context, SearchScreen.routeName);
                               },
-                              onChanged: (val) {},
                               keyboardType: TextInputType.emailAddress,
-                              // controller: ,
                               decoration: const InputDecoration(
                                 enabledBorder: InputBorder.none,
                                 hintText: "What are you craving?",
                                 hintStyle: TextStyle(color: AppColor.greyColor),
                                 prefixIcon: Icon(
                                   Icons.search,
-                                  size: Dimensions.dimen27,
+                                  size: Dimensions.dimen27,color: AppColor.greyColor,
                                 ),
                               ),
                             ),
                           ),
+
+                          ///Special Offers
                           Row(
                             children: [
                               const Padding(
@@ -321,8 +332,7 @@ class _HomePageState extends State<HomePage> {
                                   index++)
                                 InkWell(
                                   onTap: () {
-                                    selectedCategoryName =
-                                        state.category[index]?["category_name"];
+                                    selectedCategoryName = state.category[index]?["category_name"];
                                     context.read<HomeBloc>().add(
                                         HomeCategoryItemTapEvent(
                                             selectedCategoryName));
@@ -387,13 +397,15 @@ class _HomePageState extends State<HomePage> {
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
+                          print("likeeeee"+state.discountArray[index]
+                          !['like'].toString());
                           return Row(
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  selecteIndex = index;
+                                  selectedIndex = index;
                                   context.read<HomeBloc>().add(
-                                      HomeDiscountCardTapEvent(selecteIndex));
+                                      HomeDiscountCardTapEvent(selectedIndex));
                                 },
                                 child: DiscountCard(
                                   img: state.discountArray[index]?['images'] ??
@@ -415,8 +427,7 @@ class _HomePageState extends State<HomePage> {
                                           ?['delivery_charges'] ??
                                       '',
                                   likeValue: state.discountArray[index]
-                                          ?['like'] ??
-                                      false,
+                                          ?['like'],
                                 ),
                               ),
                             ],
@@ -460,59 +471,66 @@ class _HomePageState extends State<HomePage> {
                     /// Filter
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      height: 40,
+                      height: 45,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: state.discountArray.length,
+                          itemCount: state.recommendFilterData.length,
                           itemBuilder: (context, index) {
-                            bool isFocused = _selectedButtonIndex == index;
+                            bool selectedFilter = selctedRecommendFilter == index;
                             return Container(
                               decoration: BoxDecoration(
-                                color: isFocused
+                                color: selectedFilter
                                     ? Colors.green
                                     : Colors.grey.withOpacity(0.1),
-                                border:
-                                    Border.all(color: Colors.green, width: 2),
-                                borderRadius: BorderRadius.circular(35),
+                                border: Border.all(
+                                    color: Colors.green, width: 2),
+                                borderRadius:
+                                BorderRadius.circular(35),
                               ),
-                              margin: const EdgeInsets.only(
-                                left: Dimensions.dimen15,
-                              ),
+                              margin: const EdgeInsets.only(left: 16),
                               child: ElevatedButton(
                                   onPressed: () {
-                                    context
-                                        .read<HomeBloc>()
-                                        .add(FilterTapEvent());
+                                    setState(() {
+                                      selctedRecommendFilter = index;
+                                    });
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: isFocused
+                                      backgroundColor: selectedFilter
                                           ? Colors.green
                                           : Colors.white,
                                       padding: const EdgeInsets.only(
                                           left: 10, right: 10),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(25))),
+                                          BorderRadius.circular(
+                                              25))),
                                   child: Row(
                                     children: [
                                       Image.asset(
-                                        state.recommendFilterData[index]
-                                            ["food_image"],
-                                        height: 30,
-                                        width: 15,
+                                        state.recommendFilterData[
+                                        index]
+                                        ["food_image"],
+                                        height: 19,
+                                        width: 19,
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 5),
+                                        padding:
+                                        const EdgeInsets.only(
+                                            left: 5),
                                         child: TextWidget(
-                                          title:
-                                              state.recommendFilterData[index]
-                                                  ["title"],
-                                          titleColor: isFocused
+                                          title: state.recommendFilterData[
+                                          index]
+                                          ["title"]
+                                              .toString() ??
+                                              "",
+                                          titleColor: selectedFilter
                                               ? Colors.white
                                               : Colors.green,
-                                          fontSize: AppFontWeight.font13,
+                                          fontSize:
+                                          AppFontWeight.font13,
                                           fontWeight: FontWeight.w700,
-                                          textoverflow: TextOverflow.ellipsis,
+                                          textoverflow:
+                                          TextOverflow.ellipsis,
                                         ),
                                       ),
                                     ],
@@ -526,7 +544,8 @@ class _HomePageState extends State<HomePage> {
                       child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: state.discountArray.length,
+                        itemCount:
+                        state.discountArray.length,
                         itemBuilder: (context, index) {
                           return Card(
                             margin: const EdgeInsets.only(
@@ -538,9 +557,9 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(15)),
                             child: GestureDetector(
                               onTap: () {
-                                selecteIndex = index;
+                                selectedRecommendedIndex = index;
                                 context.read<HomeBloc>().add(
-                                    HomeDiscountCardTapEvent(selecteIndex));
+                                    RecommendCardTapEvent(selectedRecommendedIndex));
                               },
                               child: Column(
                                 children: [
@@ -655,13 +674,19 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                                 const Spacer(),
-                                                const Padding(
+                                                 Padding(
                                                   padding: EdgeInsets.only(
                                                       right: 12),
                                                   child: Icon(
-                                                    Icons.favorite,
-                                                    color: Colors.red,
-                                                  ),
+                                                    state.discountArray[
+                                                    index]?['like']
+                                                        ? Icons.favorite
+                                                        : Icons.favorite_border_outlined,
+                                                    color: state.discountArray[
+                                                    index]?['like']
+                                                        ? AppColor.redColor
+                                                        : Colors.grey, // Use your desired grey color
+                                                  )
                                                 )
                                               ],
                                             ),

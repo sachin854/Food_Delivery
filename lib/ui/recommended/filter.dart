@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../controller/bloc/item_filter/filter_bloc.dart';
 import '../../controller/bloc/item_filter/filter_event.dart';
 import '../../controller/bloc/item_filter/filter_state.dart';
-import '../../resources/assets/images.dart';
 import '../../resources/constants/color.dart';
 import '../../resources/constants/dimensions.dart';
 import '../../resources/constants/font_weight.dart';
@@ -35,9 +34,6 @@ class _FilterScreenState extends State<FilterScreen> {
     });
   }
 
-  void _handleTap() {
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +57,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   : widget.selectedCategoryName == "Drink"
                   ? "Drink"
                   : "None",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: AppColor.blackColor),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: AppColor.blackColor),
             ),
             backgroundColor: AppColor.primaryColor,
             leading:  BackButton(
@@ -76,7 +72,7 @@ class _FilterScreenState extends State<FilterScreen> {
               listener: (context, state) {
                 if(state is FilterCardTappedState){
                   final index = selecteIndex;
-                  print("hhh"+index.toString());
+                  print("hhh$index");
                   Navigator.of(context).pushNamed(
                     HomeItemScreen.routeName,
                     arguments: index,
@@ -113,7 +109,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                       color: Colors.green, width: 2),
                                   borderRadius: BorderRadius.circular(35),
                                 ),
-                                margin: EdgeInsets.only(left: 16),
+                                margin: const EdgeInsets.only(left: 16),
                                 child: ElevatedButton(
                                     onPressed: () {
                                       setState(() {
@@ -125,7 +121,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                         backgroundColor: isFocused
                                             ? Colors.green
                                             : Colors.white,
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 10, right: 10),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -149,7 +145,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                                 : Colors.green,
                                           ),
                                         if (!isSortButton && !isFilterButton)
-                                          SizedBox(width: 20),
+                                          const SizedBox(width: 20),
                                         Padding(
                                           padding:
                                           const EdgeInsets.only(left: 5),
@@ -171,88 +167,13 @@ class _FilterScreenState extends State<FilterScreen> {
                               );
                             }),
                       ),
-                      // SizedBox(
-                      //   height: MediaQuery.of(context).size.height,
-                      //   child: ListView.builder(
-                      //       shrinkWrap: true,
-                      //       itemCount: state.categoryDataFilter.length,
-                      //       itemBuilder: (context, index) {
-                      //         return Card(
-                      //           margin: EdgeInsets.only(
-                      //               top: 20, left: 16, right: 16),
-                      //           elevation: 2,
-                      //           shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.circular(15)),
-                      //           child: Column(children: [
-                      //             Row(
-                      //               mainAxisAlignment:
-                      //               MainAxisAlignment.start,
-                      //               children: [
-                      //                 Stack(
-                      //                   children: [
-                      //                     Card(
-                      //                       color: AppColor.whiteColor,
-                      //                       elevation: 0,
-                      //                       shape: RoundedRectangleBorder(
-                      //                         borderRadius: BorderRadius.circular(
-                      //                             20), // Adjust the radius as needed
-                      //                       ),
-                      //                       child: Padding(
-                      //                         padding:
-                      //                         const EdgeInsets.all(15.0),
-                      //                         child: Image.asset(
-                      //                           state.categoryDataFilter[index]['food_image'],
-                      //                           width: Dimensions.dimen100,
-                      //                           height: Dimensions.dimen90,
-                      //                         ),
-                      //                       ),
-                      //                     ),
-                      //                     Positioned(
-                      //                       top: 10,
-                      //                       left: 20,
-                      //                       child: Container(
-                      //                         decoration: BoxDecoration(
-                      //                           color: AppColor.greenColor,
-                      //                           borderRadius:
-                      //                           BorderRadius.circular(8),
-                      //                         ),
-                      //                         padding: const EdgeInsets.only(
-                      //                             top: Dimensions.dimen5,
-                      //                             bottom: Dimensions.dimen5,
-                      //                             left: Dimensions.dimen8,
-                      //                             right: Dimensions.dimen8),
-                      //                         child: const TextWidget(
-                      //                             title: "Promo",
-                      //                             fontSize: 10,
-                      //                             fontWeight: FontWeight.bold,
-                      //                             titleColor:
-                      //                             AppColor.whiteColor),
-                      //                       ),
-                      //                     ),
-                      //                   ],
-                      //                 ),
-                      //
-                      //                 /* if (isFilterButton)
-                      //             Icon(
-                      //               Icons.filter_list,
-                      //               size: 20,
-                      //               color: isFocused
-                      //                   ? Colors.white
-                      //                   : Colors.green,
-                      //             ),
-                      //           if (!isSortButton && !isFilterButton)*/
-                      //
-                      //               ],
-                      //             )
-                      //           ]),
-                      //         );
-                      //       }),
-                      // ),
+
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: state.categoryDataFilter.length,
+                          itemCount: state.filteredData.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: (){
@@ -287,8 +208,9 @@ class _FilterScreenState extends State<FilterScreen> {
                                           child: ClipRRect(
                                               borderRadius:
                                               BorderRadius.circular(20),
-                                              child: Image.asset(
-                                                Images.burger,
+                                              child: Image.network(
+                                                state.filteredData[
+                                                index]["images"],
                                                 fit: BoxFit.cover,
                                               )),
                                         ),
@@ -300,7 +222,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                             CrossAxisAlignment.start,
                                             children: [
                                               TextWidget(
-                                                title: discountArray[
+                                                title: state.filteredData[
                                                 index]["food_title"],
                                                 titleColor: AppColor.blackColor,
                                                 fontSize: AppFontWeight.font18,
@@ -314,7 +236,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                               Row(
                                                 children: [
                                                   TextWidget(
-                                                    title:discountArray[
+                                                    title:state.filteredData[
                                                     index]["distance"],
                                                     titleColor:
                                                     AppColor.greyColor,
@@ -343,7 +265,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                                           color: Colors.orange,
                                                           size: 15),
                                                       TextWidget(
-                                                        title: discountArray[
+                                                        title: state.filteredData[
                                                         index]["ratings"],
                                                         titleColor:
                                                         AppColor.greyColor,
@@ -370,7 +292,7 @@ class _FilterScreenState extends State<FilterScreen> {
                                                     const EdgeInsets.only(
                                                         left: 10),
                                                     child: TextWidget(
-                                                      title:discountArray[
+                                                      title:state.filteredData[
                                                       index]["price"].toString(),
                                                       titleColor:
                                                       AppColor.greyColor,

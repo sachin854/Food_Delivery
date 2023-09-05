@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../controller/bloc/home/home_bloc.dart';
 import '../../resources/constants/constants.dart';
 import '../../widgets/component/text_widget.dart';
+import '../BottomBar/BottomBar.dart';
 import '../home_screen/home_page.dart';
 import '../login_intro/login_intro.dart';
 
@@ -29,11 +32,18 @@ class _SplashScreenState extends State<SplashScreen> {
         return;
       }
       if (user != null) {
-        await Future.delayed(const Duration(seconds: 0));
-        Navigator.of(context).pushNamed(HomePage.routeName);
+        await Future.delayed(const Duration(seconds: 3));
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) =>   BottomBar(
+            )));
+
+        // Navigator.of(context).pushReplacementNamed(BottomBar.routeName,arguments: {
+        // "index": 0
+        // });
+        // Navigator.of(context).pushNamed(HomePage.routeName);
       }
       else{
-        await Future.delayed(const Duration(seconds: 0));
+        await Future.delayed(const Duration(seconds: 3));
         Navigator.of(context).pushNamed(LoginIntro.routeName);
       }
     } catch (e) {
