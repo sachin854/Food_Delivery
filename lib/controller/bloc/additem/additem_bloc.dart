@@ -14,4 +14,5 @@ class AddItemBloc extends Bloc<AddItemEvent, AddItemState> {
     print("recommended...." + result.toString());
     emit(AddItemLoadingState(additemdata: result));
   }
+
 }

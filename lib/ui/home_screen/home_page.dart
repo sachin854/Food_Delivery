@@ -28,14 +28,15 @@ class HomePage extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  late final int selectedIndex;
+  late int? selectedIndex;
   late final int selectedRecommendedIndex;
   late final String selectedCategoryName;
-  int selctedRecommendFilter = 0;
+  int selectedRecommendFilter = 0;
   late HomeBloc? _homeBloc;
 
   @override
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               HomeOffersSeeAllTappedState: SpecialOffers.routeName,
               HomeCategoryItemTappedState: FilterScreen.routeName,
               HomeDicountCardSeeAllTappedState: MoreCategory.routeName,
-              HomeDicountCardIndividualTappedState: HomeItemScreen.routeName,
+              // HomeDicountCardIndividualTappedState: HomeItemScreen.routeName,
               HomeRecommendedSeeAllTappedState: RecommendedScreen.routeName,
               // FilterTappedState: null,
               // RecommendCardTappedState: HomeItemScreen.routeName,
@@ -74,6 +75,10 @@ class _HomePageState extends State<HomePage> {
             if(state is RecommendCardTappedState){
               Navigator.of(context).pushNamed(HomeItemScreen.routeName,
                   arguments: selectedRecommendedIndex);
+            }
+            if(state is HomeDicountCardIndividualTappedState){
+              Navigator.of(context).pushNamed(HomeItemScreen.routeName,
+                  arguments: selectedIndex as int);
             }
             if (routeName != null) {
               if (routeName == HomeItemScreen.routeName) {
@@ -86,7 +91,6 @@ class _HomePageState extends State<HomePage> {
 
               if (routeName == FilterScreen.routeName) {
                 final categoryName = selectedCategoryName;
-                print(categoryName.toString());
                 if (categoryName == "More") {
                   Navigator.of(context).pushNamed(MoreCategory.routeName);
                 } else {
@@ -397,15 +401,13 @@ class _HomePageState extends State<HomePage> {
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          print("likeeeee"+state.discountArray[index]
-                          !['like'].toString());
                           return Row(
                             children: [
                               GestureDetector(
                                 onTap: () {
                                   selectedIndex = index;
                                   context.read<HomeBloc>().add(
-                                      HomeDiscountCardTapEvent(selectedIndex));
+                                      HomeDiscountCardTapEvent(selectedIndex!));
                                 },
                                 child: DiscountCard(
                                   img: state.discountArray[index]?['images'] ??
@@ -476,7 +478,7 @@ class _HomePageState extends State<HomePage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: state.recommendFilterData.length,
                           itemBuilder: (context, index) {
-                            bool selectedFilter = selctedRecommendFilter == index;
+                            bool selectedFilter = selectedRecommendFilter == index;
                             return Container(
                               decoration: BoxDecoration(
                                 color: selectedFilter
@@ -491,7 +493,7 @@ class _HomePageState extends State<HomePage> {
                               child: ElevatedButton(
                                   onPressed: () {
                                     setState(() {
-                                      selctedRecommendFilter = index;
+                                      selectedRecommendFilter = index;
                                     });
                                   },
                                   style: ElevatedButton.styleFrom(
@@ -521,8 +523,7 @@ class _HomePageState extends State<HomePage> {
                                           title: state.recommendFilterData[
                                           index]
                                           ["title"]
-                                              .toString() ??
-                                              "",
+                                              .toString(),
                                           titleColor: selectedFilter
                                               ? Colors.white
                                               : Colors.green,
@@ -675,7 +676,7 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                                 const Spacer(),
                                                  Padding(
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       right: 12),
                                                   child: Icon(
                                                     state.discountArray[

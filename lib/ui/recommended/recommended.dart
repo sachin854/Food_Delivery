@@ -6,6 +6,7 @@ import '../../resources/assets/images.dart';
 import '../../resources/constants/color.dart';
 import '../../resources/constants/font_weight.dart';
 import '../../resources/constants/padding.dart';
+import '../../services/rest_api/client.dart';
 import '../../widgets/component/text_widget.dart';
 import '../home_screen/addbasket/homeitem_screen.dart';
 import '../home_screen/home_page.dart';
@@ -24,6 +25,7 @@ class _RecommendedScreenState extends State<RecommendedScreen> {
   List<bool> isFavoriteList = List.generate(6, (index) => false);
   late RecommendedBloc _recommendedBloc;
   int _selectedButtonIndex = 0;
+  List discountArray =  RestApiClientService.shared.discountArray;
 
   void toggleFavorite(int index) {
     setState(() {
@@ -155,7 +157,7 @@ class _RecommendedScreenState extends State<RecommendedScreen> {
                           height: MediaQuery.of(context).size.height,
                           child: ListView.builder(
                             shrinkWrap: true,
-                            itemCount: state.recommenddata.length,
+                            itemCount: discountArray.length,
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {
@@ -208,7 +210,7 @@ class _RecommendedScreenState extends State<RecommendedScreen> {
                                                       .start,
                                               children: [
                                                 TextWidget(
-                                                  title: state.recommenddata[
+                                                  title: discountArray[
                                                               index][
                                                           "food_title"] ??
                                                       "",
@@ -229,7 +231,7 @@ class _RecommendedScreenState extends State<RecommendedScreen> {
                                                 Row(
                                                   children: [
                                                     TextWidget(
-                                                      title: state.recommenddata[
+                                                      title: discountArray[
                                                                   index][
                                                               "distance"] ??
                                                           "",
@@ -267,7 +269,7 @@ class _RecommendedScreenState extends State<RecommendedScreen> {
                                                                 .orange,
                                                             size: 15),
                                                         TextWidget(
-                                                          title: state.recommenddata[
+                                                          title: discountArray[
                                                                       index]
                                                                   [
                                                                   "rating"] ??
@@ -303,7 +305,7 @@ class _RecommendedScreenState extends State<RecommendedScreen> {
                                                                   .only(
                                                               left: 10),
                                                       child: TextWidget(
-                                                        title: state.recommenddata[
+                                                        title: discountArray[
                                                                     index]
                                                                 [
                                                                 "food_price"] ??
@@ -332,17 +334,14 @@ class _RecommendedScreenState extends State<RecommendedScreen> {
                                                               index);
                                                         },
                                                         child: Icon(
-                                                          isFavoriteList[
-                                                                  index]
-                                                              ? Icons
-                                                                  .favorite
-                                                              : Icons
-                                                                  .favorite_border,
-                                                          color: isFavoriteList[
-                                                                  index]
-                                                              ? Colors.red
-                                                              : Colors
-                                                                  .red,
+                                                         discountArray[
+                                                          index]?['like']
+                                                              ? Icons.favorite
+                                                              : Icons.favorite_border_outlined,
+                                                          color: discountArray[
+                                                          index]?['like']
+                                                              ? AppColor.redColor
+                                                              : Colors.grey, // Use your desired grey color
                                                         ),
                                                       ),
                                                     )

@@ -13,7 +13,7 @@ import '../../resources/constants/font_weight.dart';
 import '../../resources/constants/padding.dart';
 import '../../controller/bloc/signup/signup_bloc.dart';
 import '../../widgets/component/text_widget.dart';
-import '../../widgets/social_sign_in_button.dart';
+import '../authentication/phone_auth.dart';
 
 class SignUp extends StatefulWidget {
   static const routeName = "/signUp";
@@ -247,7 +247,8 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    signUpPressed(context);
+                                    //signUpPressed(context);
+                                    Navigator.pushNamed(context!, LoginScreen.routeName);
                                   },
                                   child: const TextWidget(
                                     title: "Sign up",   fontWeight: FontWeight.bold,fontSize: AppFontWeight.font16,
@@ -366,10 +367,10 @@ class _SignUpState extends State<SignUp> {
                                     )),
                                 InkWell(
                                   onTap: () {
-                                    //Navigator.pushNamed(context, LoginScreen.routename);
+                                    Navigator.pushNamed(context, LoginScreen.routeName);
                                   },
                                   child: const TextWidget(
-                                    title: "Sign in",
+                                    title: "Sign In",
                                     titleColor: AppColor.greenColor,
                                     fontWeight: FontWeight.w600,fontSize: AppFontWeight.font15,
                                   ),

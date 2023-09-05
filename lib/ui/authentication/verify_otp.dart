@@ -12,6 +12,7 @@ import '../../resources/constants/dimensions.dart';
 import '../../utilities/keyboard.dart';
 import '../../widgets/component/snackbar_widget.dart';
 import '../../widgets/component/text_widget.dart';
+import '../BottomBar/BottomBar.dart';
 import '../home_screen/home_page.dart';
 import '../sign_up/sign_up.dart';
 
@@ -76,7 +77,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           }
           if (state is SignInVerifiedState) {
             if (state.isExisting == true) {
-              Navigator.pushNamed(context, HomePage.routeName);
+              Navigator.pushNamed(context, BottomBar.routeName);
             } else {
               Navigator.pushNamed(context, SignUp.routeName);
             }
@@ -157,8 +158,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(12),
                           activeColor: Colors.green.withOpacity(0.2),
-                          fieldHeight: 52,
-                          fieldWidth: 60,
+                          fieldHeight: 40,
+                          fieldWidth: 45,
                           fieldOuterPadding: const EdgeInsets.only(left: 5),
                         ),
                         cursorColor: Colors.grey,

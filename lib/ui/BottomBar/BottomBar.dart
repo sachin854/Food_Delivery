@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../controller/bloc/home/home_bloc.dart';
 import '../home_screen/home_page.dart';
 class BottomBar extends StatefulWidget {
+  static const routeName = "/bottomBar";
   const BottomBar ({Key,key}) : super(key: key);
 
   @override
