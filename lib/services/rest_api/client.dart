@@ -700,7 +700,9 @@ class RestApiClientService extends RestApiBaseService {
       } catch (e) {
         print("erorrrr" + e.toString());
       }
-    } else {
+    }
+    else {
+
       final GoogleSignIn googleSignIn = GoogleSignIn();
 
       final GoogleSignInAccount? googleSignInAccount =
@@ -731,6 +733,7 @@ class RestApiClientService extends RestApiBaseService {
           // ...
         }
       }
+
     }
 
     return user;

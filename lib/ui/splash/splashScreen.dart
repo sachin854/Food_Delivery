@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../controller/bloc/home/home_bloc.dart';
@@ -19,10 +20,20 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+    getToken();
     checkUser();
+
+
     super.initState();
   }
 
+  getToken()async{
+    String? fcmToken = await FirebaseMessaging.instance.getToken();
+    print("fcm token....."+fcmToken.toString());
+    // FirebaseMessaging.onMessageOpenedApp.listen((message) {
+    //   print('Message clicked! '+message.toString());
+    // });
+  }
 
 
   Future checkUser() async {

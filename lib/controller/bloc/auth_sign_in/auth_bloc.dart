@@ -17,6 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
 
   Future googleSignInPressed(GoogleSignInTapEvent event, Emitter<AuthState> emit) async {
+
     emit(AuthLoadingState());
     User? user;
     try {

@@ -127,7 +127,6 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Column(
                         children: [
-
                           ///Profile
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -715,7 +714,8 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             );
           },
-        )),
+        ),
+        ),
         // bottomNavigationBar: BottomBar(),
       ),
     );

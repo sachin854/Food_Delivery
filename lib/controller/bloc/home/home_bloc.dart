@@ -12,27 +12,35 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeNotificationTapEvent>((event, emit) {
       emit(HomeNotificationTappedState());
     });
+
     on<HomeCartTapEvent>((event, emit) {
       emit(HomeCartTappedState());
     });
+
     on<HomeOffersSeeAllTapEvent>((event, emit) {
       emit(HomeOffersSeeAllTappedState());
     });
+
     on<HomeCategoryItemTapEvent>((event, emit) {
       emit(HomeCategoryItemTappedState());
     });
+
     on<HomeDiscountSeeAllTapEvent>((event, emit) {
       emit(HomeDicountCardSeeAllTappedState());
     });
+
     on<HomeDiscountCardTapEvent>((event, emit) {
       emit(HomeDicountCardIndividualTappedState());
     });
+
     on<HomeRecommendSeeAllTapEvent>((event, emit) {
       emit(HomeRecommendedSeeAllTappedState());
     });
+
     on<FilterTapEvent>((event, emit) {
       emit(FilterTappedState());
     });
+
     on<RecommendCardTapEvent>((event, emit) {
       emit(RecommendCardTappedState());
     });

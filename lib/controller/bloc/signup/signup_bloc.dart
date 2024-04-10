@@ -1,14 +1,55 @@
 import 'package:finalapppp/controller/bloc/signup/signup_event.dart';
 import 'package:finalapppp/controller/bloc/signup/signup_state.dart';
 import 'package:bloc/bloc.dart';
+import 'package:finalapppp/ui/authentication/verify_otp.dart';
 import 'package:finalapppp/ui/home_screen/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../generated/l10n.dart';
 import '../../../services/rest_api/client.dart';
+import '../authentication/signIn/sign_state.dart';
 class SignUpBloc extends Bloc<SignUpEvent,SignUpState>{
   BuildContext? context;
   SignUpBloc() :super(SignUpInitialState()){
+
+    final auth = FirebaseAuth.instance;
+    RestApiClientService? phoneAuthRepository;
+
+    on<SignUpSendOtpEvent>((event , emit )   async{
+      phoneAuthRepository = RestApiClientService.shared;
+
+      // emit(SignInLoadingState() as SignUpState);
+      try {
+        await phoneAuthRepository!.verifyPhone(
+          phoneNumber: event.phoneNumber,
+          verificationCompleted: (PhoneAuthCredential credential) async {
+            emit(SignUpLoadedState(credential));
+          },
+          codeSent: (String verificationId, int? resendToken) {
+            add(SignUpOnFirebaseOtpSentEvent(verificationId, resendToken!));
+          },
+          verificationFailed: (FirebaseAuthException e) {
+            add(SignUpVerifyErrorEvent(e.code));
+          },
+          codeAutoRetrievalTimeout: (String verificationId) {},
+        );
+      }  catch (e) {
+        print(e.toString());
+        emit(SignInErrorState(e.toString()) as SignUpState);
+      }
+    });
+
+    on<SignUpVerifyOtpEvent>((event , emit ) {
+      print(event.verificationId);
+      print(event.otpCode);
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: event.verificationId,
+        smsCode: event.otpCode,
+      );
+      emit(SignInLoadedState(credential) as SignUpState);
+    });
+
     on<SignUpNameChangedEvent>(nameEvent);
 
     on<SignUpNumberChangedEvent>(numberEvent);
@@ -35,6 +76,7 @@ class SignUpBloc extends Bloc<SignUpEvent,SignUpState>{
         print("bloccc"+event.number);
         print("bloccc"+event.email);
         print("bloccc"+event.name);
+        Navigator.pushNamed(context!, VerifyOtpScreen.routeName);
       }
     });
   }
@@ -92,7 +134,7 @@ class SignUpBloc extends Bloc<SignUpEvent,SignUpState>{
       print("ff"+fullname.toString());
       // ignore: invalid_use_of_visible_for_testing_member
       emit(SignUpValidState());
-      Navigator.pushNamed(context!, HomePage.routeName);
+      Navigator.pushNamed(context!, VerifyOtpScreen.routeName);
       return;
       // RestApiClientService.shared.setToken();
 

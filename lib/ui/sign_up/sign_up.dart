@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../controller/bloc/auth_sign_in/auth_bloc.dart';
 import '../../controller/bloc/auth_sign_in/auth_event.dart';
+import '../../controller/bloc/authentication/signIn/signin_event.dart';
 import '../../controller/bloc/signup/signup_event.dart';
 import '../../controller/bloc/signup/signup_state.dart';
 import '../../resources/assets/images.dart';
@@ -14,6 +15,7 @@ import '../../resources/constants/padding.dart';
 import '../../controller/bloc/signup/signup_bloc.dart';
 import '../../widgets/component/text_widget.dart';
 import '../authentication/phone_auth.dart';
+import '../authentication/verify_otp.dart';
 
 class SignUp extends StatefulWidget {
   static const routeName = "/signUp";
@@ -32,6 +34,9 @@ class _SignUpState extends State<SignUp> {
   CountryCode _countryCode = CountryCode(code: 'IN', dialCode: '+91');
   bool isFocus = false;
   bool isRemember = false;
+  final GlobalKey<FormState> _phoneNumberFormKey = GlobalKey();
+  late String phoneNumberWithCode = "";
+
   void focus() {
     setState(() {
       isFocus = true;
@@ -48,6 +53,14 @@ class _SignUpState extends State<SignUp> {
     _authBloc = AuthBloc();
     // TODO: implement initState
     super.initState();
+  }
+
+  void _sendOtp({required String phoneNumber, required BuildContext context}) {
+    phoneNumberWithCode = "${_countryCode.dialCode}$phoneNumber";
+    _signUpBloc!.add(SignUpSendOtpEvent(phoneNumberWithCode));
+    setState(() {
+      _phoneNoController?.clear();
+    });
   }
 
   @override
@@ -76,7 +89,18 @@ class _SignUpState extends State<SignUp> {
         ),
         body: SingleChildScrollView(
           child: BlocConsumer<SignUpBloc, SignUpState>(
-              listener: (context, state) {},
+              listener: (context, state) {
+
+                if (state is SignUpOnFirebaseOtpSentState) {
+                  var resObj = {
+                    "phNo": _phoneNoController!.text.toString(),
+                    "verificationId": state.verificationId
+                  };
+                  Navigator.pushNamed(context, VerifyOtpScreen.routeName,
+                      arguments: resObj);
+                }
+
+              },
               builder: (context, state) {
                 print("knitting$state");
                 return Column(
@@ -102,6 +126,7 @@ class _SignUpState extends State<SignUp> {
                       height: Dimensions.dimen15,
                     ),
                     Form(
+                      key: _phoneNumberFormKey,
                       child: Container(
                         margin: const EdgeInsets.only(
                             left: Paddings.padding16,
@@ -247,8 +272,16 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    //signUpPressed(context);
-                                    Navigator.pushNamed(context!, LoginScreen.routeName);
+                                    // signUpPressed(context);
+                                    if (_phoneNumberFormKey.currentState!
+                                        .validate())
+                                    {
+                                      _sendOtp(
+                                        phoneNumber:
+                                        _phoneNoController!.text,
+                                        context: context,
+                                      );
+                                  }
                                   },
                                   child: const TextWidget(
                                     title: "Sign up",   fontWeight: FontWeight.bold,fontSize: AppFontWeight.font16,

@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 abstract class SignUpState{}
 
 class SignUpInitialState extends SignUpState{}
@@ -32,3 +34,13 @@ class SignUpInvalidState extends SignUpState{
 
 class SignUpLoadingState extends SignUpState{}
 
+class SignUpOnFirebaseOtpSentState extends SignUpState{
+  final int token;
+  final String verificationId;
+  SignUpOnFirebaseOtpSentState(this.verificationId, this.token);
+}
+
+class SignUpLoadedState extends SignUpState{
+  final AuthCredential credential;
+  SignUpLoadedState(this.credential);
+}

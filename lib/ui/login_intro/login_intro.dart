@@ -145,6 +145,7 @@ class _LoginIntroState extends State<LoginIntro> {
                   )),
               InkWell(
                 onTap: () {
+
                   Navigator.pushNamed(context, SignUp.routeName);
                   },
                 child: const TextWidget(
