@@ -7,7 +7,7 @@ import '../../resources/constants/color.dart';
 import '../../resources/constants/dimensions.dart';
 
 class ApplyFiltersScreen extends StatefulWidget {
-  static const routeName="applyFilters";
+  static const routeName = "applyFilters";
   const ApplyFiltersScreen({Key? key}) : super(key: key);
 
   @override
@@ -67,7 +67,7 @@ class _ApplyFiltersScreenState extends State<ApplyFiltersScreen>
 
   @override
   Widget build(BuildContext context) {
-
+    print("helllo");
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -75,11 +75,13 @@ class _ApplyFiltersScreenState extends State<ApplyFiltersScreen>
         elevation: 0,
         title: const TextWidget(
           titleColor: AppColor.blackColor,
-            fontSize: AppFontWeight.font18,
-         title: "Filter",
+          fontSize: AppFontWeight.font18,
+          title: "Filter",
         ),
-        leading:  InkWell(
-          onTap: (){Navigator.pop(context);},
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: Icon(
             Icons.close,
             color: Colors.black,
