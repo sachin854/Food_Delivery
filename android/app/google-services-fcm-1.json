@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "121168182570",
+    "project_id": "demomsg-ae7ab",
+    "storage_bucket": "demomsg-ae7ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121168182570:android:68a27fdeeb3174522ab253",
+        "android_client_info": {
+          "package_name": "com.fooddelivery.finalapppp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "j"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
