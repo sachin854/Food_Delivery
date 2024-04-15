@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -7,6 +7,8 @@ import '../../../resources/constants/constants.dart';
 import '../../../resources/constants/theming.dart';
 import '../../../routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+
 
 void main() async{
 
